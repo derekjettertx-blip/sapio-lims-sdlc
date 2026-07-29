@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sapio LIMS — Coordinator Launcher</title>
+<style>
+  :root {
+    --bg: #0f1420;
+    --panel: #161d2e;
+    --panel-border: #263049;
+    --text: #e6e9f2;
+    --muted: #8b94ab;
+    --accent: #4f8cff;
+    --accent-dark: #3a6fd6;
+    --danger: #e05a5a;
+    --ok: #3ecf8e;
+    --chip-bg: #1e2740;
+    --radius: 10px;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    padding: 32px 16px 64px;
+  }
+  .wrap { max-width: 780px; margin: 0 auto; }
+  header { margin-bottom: 24px; }
+  header h1 { font-size: 22px; margin: 0 0 4px; }
+  header p { color: var(--muted); margin: 0; font-size: 14px; }
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 18px;
+  }
+  .card h2 {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    color: var(--muted);
+    margin: 0 0 14px;
+  }
+  label.field-label {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 6px;
+    color: var(--text);
+  }
+  input[type=text], textarea {
+    width: 100%;
+    background: #0d1220;
+    border: 1px solid var(--panel-border);
+    border-radius: 8px;
+    color: var(--text);
+    padding: 10px 12px;
+    font-size: 14px;
+    font-family: inherit;
+  }
+  input[type=text]:focus, textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+  textarea { resize: vertical; min-height: 70px; }
+  .hint { font-size: 12px; color: var(--muted); margin-top: 6px; }
+  .error-text { font-size: 12px; color: var(--danger); margin-top: 6px; display: none; }
+  .error-text.show { display: block; }
+
+  /* Segmented mode control */
+  .segmented {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .segmented label {
+    flex: 1 1 auto;
+    min-width: 170px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    border: 1px solid var(--panel-border);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    background: #0d1220;
+    transition: border-color .15s, background .15s;
+  }
+  .segmented input { accent-color: var(--accent); }
+  .segmented label:hover { border-color: var(--accent); }
+  .segmented label.active { border-color: var(--accent); background: #14203f; }
+
+  /* Agent checklist */
+  .agent-search { margin-bottom: 10px; }
+  .agent-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-height: 260px;
+    overflow-y: auto;
+    padding-right: 4px;
+  }
+  .agent-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 12px;
+    border: 1px solid var(--panel-border);
+    border-radius: 8px;
+    background: var(--chip-bg);
+  }
+  .agent-row.disabled { opacity: .45; }
+  .agent-row input[type=checkbox] { margin-top: 3px; accent-color: var(--accent); }
+  .agent-row .meta { display: flex; flex-direction: column; }
+  .agent-row .meta .name { font-size: 13px; font-weight: 600; }
+  .agent-row .meta .phase { font-size: 11px; color: var(--muted); }
+  .agent-row .meta .desc { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .agent-row.hidden-by-filter { display: none; }
+
+  fieldset { border: 0; padding: 0; margin: 0; }
+  fieldset[disabled] .agent-list { opacity: .5; pointer-events: none; }
+
+  .actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 4px; }
+  button {
+    font-family: inherit;
+    font-size: 14px;
+    padding: 10px 18px;
+    border-radius: 8px;
+    border: 1px solid var(--panel-border);
+    cursor: pointer;
+    background: #0d1220;
+    color: var(--text);
+  }
+  button.primary { background: var(--accent); border-color: var(--accent); color: #08101f; font-weight: 600; }
+  button.primary:hover { background: var(--accent-dark); }
+  button:hover { border-color: var(--accent); }
+  button:disabled { opacity: .5; cursor: not-allowed; }
+
+  .preview-box {
+    width: 100%;
+    background: #0a0e18;
+    border: 1px solid var(--panel-border);
+    border-radius: 8px;
+    color: #b9e6c9;
+    font-family: "SF Mono", Consolas, Menlo, monospace;
+    font-size: 12.5px;
+    padding: 12px;
+    min-height: 90px;
+    white-space: pre-wrap;
+  }
+  .status-banner {
+    display: none;
+    margin-top: 12px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+  }
+  .status-banner.show { display: block; }
+  .status-banner.ok { background: #123726; color: var(--ok); border: 1px solid #1f5a41; }
+  .status-banner.err { background: #3a1f1f; color: var(--danger); border: 1px solid #6b2c2c; }
+  .config-note { font-size: 11px; color: var(--muted); margin-top: 10px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Sapio LIMS — Coordinator Launcher</h1>
+    <p>Builds a correctly formatted prompt for <code>.claude/agents/coordinator.md</code> — the entry point for the Requirements → UAT pipeline.</p>
+  </header>
+
+  <!-- A. Ticket Selection -->
+  <div class="card">
+    <h2>Ticket</h2>
+    <label class="field-label" for="ticketId">Ticket ID (optional)</label>
+    <input type="text" id="ticketId" placeholder="e.g., ABC-123" autocomplete="off">
+    <div class="error-text" id="ticketError">Ticket ID must look like PROJECT-123 (letters/digits, hyphen, number).</div>
+    <div class="hint">Leave blank if you don't have a ticket yet — the coordinator will ask for one when needed.</div>
+  </div>
+
+  <!-- B. Execution Mode -->
+  <div class="card">
+    <h2>Execution Mode</h2>
+    <div class="segmented" id="modeGroup">
+      <label data-mode="full" class="active">
+        <input type="radio" name="mode" value="full" checked> Run full workflow
+      </label>
+      <label data-mode="only">
+        <input type="radio" name="mode" value="only"> Run only selected agents
+      </label>
+      <label data-mode="skip">
+        <input type="radio" name="mode" value="skip"> Skip selected agents
+      </label>
+    </div>
+  </div>
+
+  <!-- C. Agent Selection -->
+  <div class="card">
+    <h2 id="agentListTitle">Agents</h2>
+    <fieldset id="agentFieldset" disabled>
+      <input type="text" class="agent-search" id="agentSearch" placeholder="Filter agents…">
+      <div class="agent-list" id="agentList"><!-- populated by JS --></div>
+    </fieldset>
+    <div class="error-text" id="agentError">Select at least one agent for this mode.</div>
+    <div class="config-note" id="configSource">Loading agent list…</div>
+  </div>
+
+  <!-- D. Additional Context -->
+  <div class="card">
+    <h2>Additional Context (optional)</h2>
+    <label class="field-label" for="extraContext">Notes, constraints, or links (Confluence / Lucidchart)</label>
+    <textarea id="extraContext" placeholder="e.g. Field mapping must reuse the existing Sample barcode regex. Confluence: https://…"></textarea>
+  </div>
+
+  <!-- Preview -->
+  <div class="card">
+    <h2>Generated Prompt</h2>
+    <div class="preview-box" id="promptPreview"></div>
+    <div class="actions" style="margin-top:12px;">
+      <button class="primary" id="startBtn">Start</button>
+      <button id="copyBtn">Copy Prompt</button>
+      <button id="resetBtn">Reset</button>
+    </div>
+    <div class="status-banner" id="statusBanner"></div>
+  </div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  // Fallback list — used if tools/agents.config.json can't be fetched
+  // (e.g. the file was opened directly via file:// and the browser blocks
+  // local fetch). Keep this in sync with agents.config.json and with the
+  // six-agent list in .claude/agents/coordinator.md's Prompt Tags section.
+  var FALLBACK_AGENTS = [
+    { id: "requirements-analyst", label: "Requirements Analyst", phase: "Phase 1 — Requirements", description: "" },
+    { id: "webhook-designer", label: "Webhook Designer", phase: "Phase 2 — Design", description: "" },
+    { id: "scaffold-engineer", label: "Scaffold Engineer", phase: "Phase 3 — Scaffold", description: "" },
+    { id: "code-reviewer", label: "Code Reviewer", phase: "Phase 4 — Review", description: "" },
+    { id: "test-engineer", label: "Test Engineer", phase: "Phase 5 — Tests", description: "" },
+    { id: "uat-packager", label: "UAT Packager", phase: "Phase 6 — UAT", description: "" }
+  ];
+
+  var TICKET_ID_RE = /^[A-Za-z][A-Za-z0-9]*-\d+$/;
+
+  var els = {
+    ticketId: document.getElementById("ticketId"),
+    ticketError: document.getElementById("ticketError"),
+    modeGroup: document.getElementById("modeGroup"),
+    agentFieldset: document.getElementById("agentFieldset"),
+    agentListTitle: document.getElementById("agentListTitle"),
+    agentSearch: document.getElementById("agentSearch"),
+    agentList: document.getElementById("agentList"),
+    agentError: document.getElementById("agentError"),
+    configSource: document.getElementById("configSource"),
+    extraContext: document.getElementById("extraContext"),
+    promptPreview: document.getElementById("promptPreview"),
+    startBtn: document.getElementById("startBtn"),
+    copyBtn: document.getElementById("copyBtn"),
+    resetBtn: document.getElementById("resetBtn"),
+    statusBanner: document.getElementById("statusBanner")
+  };
+
+  var agents = [];
+
+  function renderAgentList() {
+    els.agentList.innerHTML = "";
+    agents.forEach(function (a) {
+      var row = document.createElement("label");
+      row.className = "agent-row";
+      row.dataset.agentId = a.id;
+      row.dataset.searchText = (a.id + " " + a.label + " " + a.phase).toLowerCase();
+
+      var cb = document.createElement("input");
+      cb.type = "checkbox";
+      cb.value = a.id;
+      cb.addEventListener("change", updatePrompt);
+
+      var meta = document.createElement("div");
+      meta.className = "meta";
+      var name = document.createElement("div");
+      name.className = "name";
+      name.textContent = a.label + " (" + a.id + ")";
+      var phase = document.createElement("div");
+      phase.className = "phase";
+      phase.textContent = a.phase || "";
+      meta.appendChild(name);
+      meta.appendChild(phase);
+      if (a.description) {
+        var desc = document.createElement("div");
+        desc.className = "desc";
+        desc.textContent = a.description;
+        meta.appendChild(desc);
+      }
+
+      row.appendChild(cb);
+      row.appendChild(meta);
+      els.agentList.appendChild(row);
+    });
+  }
+
+  function loadAgentConfig() {
+    fetch("./agents.config.json")
+      .then(function (res) {
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        return res.json();
+      })
+      .then(function (cfg) {
+        if (!cfg || !Array.isArray(cfg.agents) || cfg.agents.length === 0) {
+          throw new Error("Config file had no agents");
+        }
+        agents = cfg.agents;
+        els.configSource.textContent = "Agent list loaded from tools/agents.config.json (" + agents.length + " agents).";
+        renderAgentList();
+      })
+      .catch(function () {
+        agents = FALLBACK_AGENTS;
+        els.configSource.textContent = "Could not fetch agents.config.json (likely opened via file://) — using the built-in fallback list of " + agents.length + " agents. Serve this folder over http(s) to load the config file live.";
+        renderAgentList();
+      });
+  }
+
+  function getMode() {
+    var checked = els.modeGroup.querySelector("input[name=mode]:checked");
+    return checked ? checked.value : "full";
+  }
+
+  function getSelectedAgentIds() {
+    return Array.prototype.slice
+      .call(els.agentList.querySelectorAll("input[type=checkbox]:checked"))
+      .map(function (cb) { return cb.value; });
+  }
+
+  function setAgentFieldsetEnabled(mode) {
+    var enabled = mode === "only" || mode === "skip";
+    els.agentFieldset.disabled = !enabled;
+    els.agentListTitle.textContent = mode === "only" ? "Agents to run"
+      : mode === "skip" ? "Agents to skip"
+      : "Agents";
+    els.agentList.querySelectorAll(".agent-row").forEach(function (row) {
+      row.classList.toggle("disabled", !enabled);
+    });
+    if (!enabled) {
+      els.agentList.querySelectorAll("input[type=checkbox]").forEach(function (cb) { cb.checked = false; });
+    }
+  }
+
+  function validate() {
+    var ok = true;
+    var ticketVal = els.ticketId.value.trim();
+    var ticketValid = ticketVal === "" || TICKET_ID_RE.test(ticketVal);
+    els.ticketError.classList.toggle("show", !ticketValid);
+    if (!ticketValid) ok = false;
+
+    var mode = getMode();
+    var selected = getSelectedAgentIds();
+    var agentSelectionRequired = mode === "only" || mode === "skip";
+    var agentSelectionOk = !agentSelectionRequired || selected.length > 0;
+    els.agentError.classList.toggle("show", !agentSelectionOk);
+    if (!agentSelectionOk) ok = false;
+
+    return ok;
+  }
+
+  // --- Prompt Builder — must match .claude/agents/coordinator.md exactly ---
+  // TicketID: <ID>                       (no literal braces — {ID} in the
+  //                                        contract is placeholder notation)
+  // Agent: {agent1, agent2}              (literal braces around the list)
+  // Skip Agents: {agent1, agent2}        (literal braces around the list)
+  // Full workflow mode adds neither line.
+  function buildPrompt() {
+    var lines = [];
+    var ticketVal = els.ticketId.value.trim().toUpperCase();
+    if (ticketVal) {
+      lines.push("TicketID: " + ticketVal);
+    }
+
+    var mode = getMode();
+    var selected = getSelectedAgentIds();
+    if (mode === "only" && selected.length > 0) {
+      lines.push("Agent: {" + selected.join(", ") + "}");
+    } else if (mode === "skip" && selected.length > 0) {
+      lines.push("Skip Agents: {" + selected.join(", ") + "}");
+    }
+
+    var prompt = lines.join("\n");
+    var extra = els.extraContext.value.trim();
+    if (extra) {
+      prompt = prompt ? prompt + "\n\n" + extra : extra;
+    }
+    return prompt;
+  }
+
+  function updatePrompt() {
+    var mode = getMode();
+    els.modeGroup.querySelectorAll("label[data-mode]").forEach(function (lbl) {
+      lbl.classList.toggle("active", lbl.dataset.mode === mode);
+    });
+    setAgentFieldsetEnabled(mode);
+    validate();
+    els.promptPreview.textContent = buildPrompt() || "(empty — nothing to send yet)";
+  }
+
+  function showStatus(kind, message) {
+    els.statusBanner.className = "status-banner show " + kind;
+    els.statusBanner.textContent = message;
+  }
+
+  function copyToClipboard(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(text).catch(function () {
+        return legacyCopy(text);
+      });
+    }
+    return legacyCopy(text) ? Promise.resolve() : Promise.reject(new Error("copy failed"));
+  }
+
+  function legacyCopy(text) {
+    try {
+      var ta = document.createElement("textarea");
+      ta.value = text;
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      var ok = document.execCommand("copy");
+      document.body.removeChild(ta);
+      return ok;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  els.agentSearch.addEventListener("input", function () {
+    var q = els.agentSearch.value.trim().toLowerCase();
+    els.agentList.querySelectorAll(".agent-row").forEach(function (row) {
+      var match = !q || row.dataset.searchText.indexOf(q) !== -1;
+      row.classList.toggle("hidden-by-filter", !match);
+    });
+  });
+
+  els.modeGroup.querySelectorAll("input[name=mode]").forEach(function (r) {
+    r.addEventListener("change", updatePrompt);
+  });
+  els.ticketId.addEventListener("input", updatePrompt);
+  els.extraContext.addEventListener("input", updatePrompt);
+
+  els.copyBtn.addEventListener("click", function () {
+    if (!validate()) {
+      showStatus("err", "Fix the highlighted fields before copying.");
+      return;
+    }
+    var text = buildPrompt();
+    copyToClipboard(text).then(function () {
+      showStatus("ok", "Prompt copied to clipboard.");
+    }).catch(function () {
+      showStatus("err", "Couldn't copy automatically — select the text in the box above and copy manually.");
+    });
+  });
+
+  els.startBtn.addEventListener("click", function () {
+    if (!validate()) {
+      showStatus("err", "Fix the highlighted fields before starting.");
+      return;
+    }
+    var text = buildPrompt();
+    if (!text) {
+      showStatus("err", "Nothing to send — enter a ticket ID, select agents, or add context first.");
+      return;
+    }
+    // There is no live backend wired to this static page, so "Start" does
+    // the most useful real thing it can: copies the finished prompt and
+    // tells the user exactly what to do with it.
+    copyToClipboard(text).then(function () {
+      showStatus("ok", "✅ Prompt ready and copied. Paste it into your Claude Code chat with the Coordinator agent to begin.");
+    }).catch(function () {
+      showStatus("err", "Prompt built (see box above) but automatic copy failed — copy it manually and paste into Claude Code.");
+    });
+  });
+
+  els.resetBtn.addEventListener("click", function () {
+    els.ticketId.value = "";
+    els.extraContext.value = "";
+    els.agentSearch.value = "";
+    els.modeGroup.querySelector('input[value="full"]').checked = true;
+    els.agentList.querySelectorAll("input[type=checkbox]").forEach(function (cb) { cb.checked = false; });
+    els.agentList.querySelectorAll(".agent-row").forEach(function (row) { row.classList.remove("hidden-by-filter"); });
+    els.statusBanner.classList.remove("show");
+    updatePrompt();
+  });
+
+  loadAgentConfig();
+  updatePrompt();
+})();
+</script>
+</body>
+</html>

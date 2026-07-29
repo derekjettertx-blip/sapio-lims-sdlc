@@ -1,0 +1,19 @@
+image: python:3.11
+
+pipelines:
+  branches:
+    "webhook/**":
+      - step: &lint-and-test
+          name: Lint, type check & test
+          caches:
+            - pip
+          script:
+            - pip install -e ".[dev]"
+            - ruff check webhooks/ tests/ --line-length 100
+            - mypy webhooks/ --strict --ignore-missing-imports
+            - pytest tests/unit/ -v --tb=short --cov=webhooks --cov-report=term-missing --cov-report=xml --cov-fail-under=80
+          artifacts:
+            - coverage.xml
+  pull-requests:
+    "**":
+      - step: *lint-and-test

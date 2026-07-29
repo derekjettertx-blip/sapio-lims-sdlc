@@ -1,0 +1,9 @@
+Markdown==3.6
+sapiopylib==2025.10.7.295
+sapiopycommons==2025.12.30a844
+waitress==2.1.2
+pytz
+mcp>=1.0.0
+pydantic>=2.0.0
+
+anthropic

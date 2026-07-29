@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0",
+  "ticket_id": "SAPIOLIMS-20",
+  "ticket_url": "https://stowers.atlassian.net/browse/SAPIOLIMS-20",
+  "ticket_summary": "New Request Creation: With Samples",
+  "sapio_module": "Request",
+  "webhook_type": "pre-save",
+
+  "branch_name": "",
+  "webhook_file_path": "",
+  "test_file_path": "",
+  "design_reference": {
+    "location": "jira_comment",
+    "comment_id": "",
+    "comment_url": ""
+  },
+  "confluence_uat_url": "",
+  "github_pr_url": "",
+  "github_pr_number": null,
+  "github_release_tag": "",
+
+  "pipeline_status": {
+    "requirements": "done",
+    "design": "pending",
+    "scaffold": "pending",
+    "review": "pending",
+    "tests": "pending",
+    "uat": "pending"
+  },
+
+  "requirements_payload": {
+    "module": "Request",
+    "webhook_type": "pre-save",
+    "trigger_description": "Before a Request record's status is changed to Submitted (via the 'Submit Request' toolbar rule), validate that all required fields have been filled; block the transition and surface the missing fields if not.",
+    "acceptance_criteria": [
+      "Logged-in requesters can initiate creation of a new Core Service request from the Dashboard (or Requests area).",
+      "Requests can be created and submitted with samples, with the ability to add samples by creating new samples and/or attaching existing samples.",
+      "Requester should be able to add attachment (an optional feature) with the request if they require it.",
+      "Requesters can save drafts of the requests and can revisit & review later before finally submitting them.",
+      "Submission is blocked when required fields are missing, and the system identifies the missing required fields clearly.",
+      "If all the required information and fields are filled, requester can review it before making the final submission."
+    ],
+    "input_fields": [
+      {"name": "RequestId", "type": "String", "required": true, "validation": "system-assigned, non-empty"},
+      {"name": "RequestName", "type": "String", "required": true, "validation": "non-empty"},
+      {"name": "C_RequestType", "type": "PickList", "required": true, "validation": "must be set (e.g. CVT) to determine extension datatype routing"},
+      {"name": "Status", "type": "PickList", "required": true, "validation": "must be 'In Draft' on create; gate the transition to 'Submitted'"},
+      {"name": "NumberOfSamples", "type": "Integer", "required": false, "validation": "unvalidated in ticket text; carry forward, confirm with Data Dictionary"},
+      {"name": "SampleRegistrationLink", "type": "SideLink -> SampleRegistrationModel", "required": false, "validation": "populated when samples are attached/created via the request"}
+    ],
+    "output_fields": [
+      {"name": "Status", "type": "PickList", "note": "set to 'Submitted' once validation passes"}
+    ],
+    "business_rules": [
+      "Requesters can save drafts before final submission — do not force full validation on every save, only on the Submit action.",
+      "'Submit Request' toolbar rule (Request form layout) validates all required fields are filled before allowing the status change to 'Submitted'; on failure it must clearly identify which required fields are missing.",
+      "SECONDARY BEHAVIOR (separate from the pre-save validation above, likely a distinct post-save/creation rule, not to be dropped in design/scaffold): when a Request is added via the layout's 'Add+' button with Request Type = CVT, a rule must auto-create a linked 'CVT Request' extension record and default the Request status to 'In Draft'.",
+      "'Add+' must also be enabled on the Sample layout so samples can be created/attached inline from the Request view.",
+      "Optional file attachment support on the Request."
+    ],
+    "external_integrations": [],
+    "existing_pattern_path": "",
+    "lucidchart_notes": "Not consulted — Step-new (kb/data_type_model_relationships.md) already supplied entire classification context (entity, action, system scope, model mapping), so the Confluence/Lucidchart gate (Steps 3-4) was skipped. webhook-designer should still pull LIMS/Architecture/Data-Dictionary to confirm exact Request/CVT Request field names before finalizing input_fields.",
+    "ambiguities": [
+      "Module resolution required kb/data_type_model_relationships.md cross-reference: ticket text explicitly names 'Sample' (a Known Module per requirements-analyst.md), but the ticket's own Design field (customfield_10051) and the KB's RequestModel entry confirm the primary entity under validation is 'Request' (with a 'CVT Request' extension datatype) — Sample is only a related/attached record via SampleRegistrationLink, not the datatype the described toolbar rule runs on. Recommend adding 'Request' to the Known Modules list in requirements-analyst.md — this is a documentation gap, not a data blocker.",
+      "Ticket scope spans two distinct rule behaviors (pre-save validation gate + post-save CVT-Request auto-link on creation). webhook_type is classified 'pre-save' against the AC's core testable requirement (blocked submission on missing fields); webhook-designer should scope the CVT auto-link as a second method/hook rather than let it fall out of scope.",
+      "Target environment not specified in Jira for this project (expected/normal per CLAUDE.md caveat — not tracked here at all).",
+      "Jira status transition to 'In Analysis' was skipped: this project's actual workflow (fetched via getTransitionsForJiraIssue) does not expose an 'In Analysis' transition from the ticket's current status ('In Progress') — only Cancelled, Done, In UAT, To Do are available. Flagging as a coordinator.md/workflow documentation mismatch rather than forcing an incorrect status change."
+    ]
+  },
+
+  "test_results": {
+    "total_passed": null,
+    "total_failed": null,
+    "coverage_pct": null,
+    "ci_status": "pending"
+  },
+
+  "review_results": {
+    "blocking_issues": [],
+    "warnings": [],
+    "overall": "pending"
+  },
+
+  "blockers": [],
+  "last_agent": "requirements-analyst",
+  "last_updated": "2026-07-21T00:00:00Z"
+}
