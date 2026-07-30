@@ -3068,7 +3068,7 @@ class BatchModel(WrappedRecordModel):
     """
     Auto-Generated Record Model Wrapper for data type Batch
     Data Type Display Name: Batch (Batches)
-    Fields: AssignedTo, BatchId, BatchName, C_LinkedGmpC_Vector, CreatedBy, DataRecordName, DateCreated, ExemplarBatchStatus, LinkedGmpDrugProduct, NumberOfSamples, PriorityLevel, StartDate, VeloxLastModifiedBy, VeloxLastModifiedDate, WorkflowName
+    Fields: AssignedTo, BatchId, BatchName, CreatedBy, DataRecordName, DateCreated, ExemplarBatchStatus, LinkedGmpDrugProduct, NumberOfSamples, PriorityLevel, StartDate, VeloxLastModifiedBy, VeloxLastModifiedDate, WorkflowName
     Module: General and Work Queue
     """
     DATA_TYPE_NAME: Final[str] = 'Batch'
@@ -3077,7 +3077,6 @@ class BatchModel(WrappedRecordModel):
     ASSIGNEDTO__FIELD_NAME: Final[WrapperField] = WrapperField("AssignedTo", FieldType.SELECTION, display_name="Assigned to")
     BATCHID__FIELD_NAME: Final[WrapperField] = WrapperField("BatchId", FieldType.STRING, display_name="Batch ID")
     BATCHNAME__FIELD_NAME: Final[WrapperField] = WrapperField("BatchName", FieldType.STRING, display_name="Batch Name")
-    C_LINKEDGMPC_VECTOR__FIELD_NAME: Final[WrapperField] = WrapperField("C_LinkedGmpC_Vector", FieldType.SIDE_LINK, display_name="Vector")
     CREATEDBY__FIELD_NAME: Final[WrapperField] = WrapperField("CreatedBy", FieldType.STRING, display_name="Created By")
     DATARECORDNAME__FIELD_NAME: Final[WrapperField] = WrapperField("DataRecordName", FieldType.IDENTIFIER, display_name="ID")
     DATECREATED__FIELD_NAME: Final[WrapperField] = WrapperField("DateCreated", FieldType.DATE, display_name="Date Created")
@@ -3129,18 +3128,6 @@ class BatchModel(WrappedRecordModel):
         Get data field value with field name 'BatchName' from this record model
         """
         return self.get_field_value(self.BATCHNAME__FIELD_NAME.field_name)
-
-    def set_C_LinkedGmpC_Vector_field(self, value: Optional[int]):
-        """
-        Set data field with field name 'C_LinkedGmpC_Vector' on this record model
-        """
-        self.set_field_value(self.C_LINKEDGMPC_VECTOR__FIELD_NAME.field_name, value)
-
-    def get_C_LinkedGmpC_Vector_field(self) -> Optional[int]:
-        """
-        Get data field value with field name 'C_LinkedGmpC_Vector' from this record model
-        """
-        return self.get_field_value(self.C_LINKEDGMPC_VECTOR__FIELD_NAME.field_name)
 
     def get_CreatedBy_field(self) -> Optional[str]:
         """
@@ -4489,19 +4476,20 @@ class BioSpecResultModel(WrappedRecordModel):
         return self.get_field_value(self.VELOXLASTMODIFIEDDATE__FIELD_NAME.field_name)
 
 
-class C_AlexReservationEventModel(WrappedRecordModel):
+class C_BillableAccountModel(WrappedRecordModel):
     """
-    Auto-Generated Record Model Wrapper for data type C_AlexReservationEvent
-    Data Type Display Name: Alex Reservation Event (Alex Reservation Events)
-    Fields: C_EndTime, C_Requester, C_StartTime, CreatedBy, DataRecordName, DateCreated, VeloxLastModifiedBy, VeloxLastModifiedDate
-    Testing out creating calendar events
+    Auto-Generated Record Model Wrapper for data type C_BillableAccount
+    Data Type Display Name: Billable Account (Billable Accounts)
+    Fields: C_CrossSystemGUID, C_IsActive, C_ProjectAndAward, C_SLChargeAward, C_SLChargeProject, CreatedBy, DataRecordName, DateCreated, VeloxLastModifiedBy, VeloxLastModifiedDate
     """
-    DATA_TYPE_NAME: Final[str] = 'C_AlexReservationEvent'
-    DISPLAY_NAME: Final[str] = "Alex Reservation Event"
-    PLURAL_DISPLAY_NAME: Final[str] = "Alex Reservation Events"
-    C_ENDTIME__FIELD_NAME: Final[WrapperField] = WrapperField("C_EndTime", FieldType.DATE, display_name="End Time")
-    C_REQUESTER__FIELD_NAME: Final[WrapperField] = WrapperField("C_Requester", FieldType.SELECTION, display_name="Requester")
-    C_STARTTIME__FIELD_NAME: Final[WrapperField] = WrapperField("C_StartTime", FieldType.DATE, display_name="Start Time")
+    DATA_TYPE_NAME: Final[str] = 'C_BillableAccount'
+    DISPLAY_NAME: Final[str] = "Billable Account"
+    PLURAL_DISPLAY_NAME: Final[str] = "Billable Accounts"
+    C_CROSSSYSTEMGUID__FIELD_NAME: Final[WrapperField] = WrapperField("C_CrossSystemGUID", FieldType.STRING, display_name="Cross System GUID")
+    C_ISACTIVE__FIELD_NAME: Final[WrapperField] = WrapperField("C_IsActive", FieldType.BOOLEAN, display_name="Is Active ?")
+    C_PROJECTANDAWARD__FIELD_NAME: Final[WrapperField] = WrapperField("C_ProjectAndAward", FieldType.STRING, display_name="Project/Award")
+    C_SLCHARGEAWARD__FIELD_NAME: Final[WrapperField] = WrapperField("C_SLChargeAward", FieldType.SIDE_LINK, display_name="Linked Charge Award")
+    C_SLCHARGEPROJECT__FIELD_NAME: Final[WrapperField] = WrapperField("C_SLChargeProject", FieldType.SIDE_LINK, display_name="Linked Charge Project")
     CREATEDBY__FIELD_NAME: Final[WrapperField] = WrapperField("CreatedBy", FieldType.STRING, display_name="Created By")
     DATARECORDNAME__FIELD_NAME: Final[WrapperField] = WrapperField("DataRecordName", FieldType.IDENTIFIER, display_name="ID")
     DATECREATED__FIELD_NAME: Final[WrapperField] = WrapperField("DateCreated", FieldType.DATE, display_name="Date Created")
@@ -4512,41 +4500,65 @@ class C_AlexReservationEventModel(WrappedRecordModel):
     def get_wrapper_data_type_name(cls):
         return cls.DATA_TYPE_NAME
 
-    def set_C_EndTime_field(self, value: Optional[int]):
+    def set_C_CrossSystemGUID_field(self, value: Optional[str]):
         """
-        Set data field with field name 'C_EndTime' on this record model
+        Set data field with field name 'C_CrossSystemGUID' on this record model
         """
-        self.set_field_value(self.C_ENDTIME__FIELD_NAME.field_name, value)
+        self.set_field_value(self.C_CROSSSYSTEMGUID__FIELD_NAME.field_name, value)
 
-    def get_C_EndTime_field(self) -> Optional[int]:
+    def get_C_CrossSystemGUID_field(self) -> Optional[str]:
         """
-        Get data field value with field name 'C_EndTime' from this record model
+        Get data field value with field name 'C_CrossSystemGUID' from this record model
         """
-        return self.get_field_value(self.C_ENDTIME__FIELD_NAME.field_name)
+        return self.get_field_value(self.C_CROSSSYSTEMGUID__FIELD_NAME.field_name)
 
-    def set_C_Requester_field(self, value: Optional[str]):
+    def set_C_IsActive_field(self, value: Optional[bool]):
         """
-        Set data field with field name 'C_Requester' on this record model
+        Set data field with field name 'C_IsActive' on this record model
         """
-        self.set_field_value(self.C_REQUESTER__FIELD_NAME.field_name, value)
+        self.set_field_value(self.C_ISACTIVE__FIELD_NAME.field_name, value)
 
-    def get_C_Requester_field(self) -> Optional[str]:
+    def get_C_IsActive_field(self) -> Optional[bool]:
         """
-        Get data field value with field name 'C_Requester' from this record model
+        Get data field value with field name 'C_IsActive' from this record model
         """
-        return self.get_field_value(self.C_REQUESTER__FIELD_NAME.field_name)
+        return self.get_field_value(self.C_ISACTIVE__FIELD_NAME.field_name)
 
-    def set_C_StartTime_field(self, value: Optional[int]):
+    def set_C_ProjectAndAward_field(self, value: Optional[str]):
         """
-        Set data field with field name 'C_StartTime' on this record model
+        Set data field with field name 'C_ProjectAndAward' on this record model
         """
-        self.set_field_value(self.C_STARTTIME__FIELD_NAME.field_name, value)
+        self.set_field_value(self.C_PROJECTANDAWARD__FIELD_NAME.field_name, value)
 
-    def get_C_StartTime_field(self) -> Optional[int]:
+    def get_C_ProjectAndAward_field(self) -> Optional[str]:
         """
-        Get data field value with field name 'C_StartTime' from this record model
+        Get data field value with field name 'C_ProjectAndAward' from this record model
         """
-        return self.get_field_value(self.C_STARTTIME__FIELD_NAME.field_name)
+        return self.get_field_value(self.C_PROJECTANDAWARD__FIELD_NAME.field_name)
+
+    def set_C_SLChargeAward_field(self, value: Optional[int]):
+        """
+        Set data field with field name 'C_SLChargeAward' on this record model
+        """
+        self.set_field_value(self.C_SLCHARGEAWARD__FIELD_NAME.field_name, value)
+
+    def get_C_SLChargeAward_field(self) -> Optional[int]:
+        """
+        Get data field value with field name 'C_SLChargeAward' from this record model
+        """
+        return self.get_field_value(self.C_SLCHARGEAWARD__FIELD_NAME.field_name)
+
+    def set_C_SLChargeProject_field(self, value: Optional[int]):
+        """
+        Set data field with field name 'C_SLChargeProject' on this record model
+        """
+        self.set_field_value(self.C_SLCHARGEPROJECT__FIELD_NAME.field_name, value)
+
+    def get_C_SLChargeProject_field(self) -> Optional[int]:
+        """
+        Get data field value with field name 'C_SLChargeProject' from this record model
+        """
+        return self.get_field_value(self.C_SLCHARGEPROJECT__FIELD_NAME.field_name)
 
     def get_CreatedBy_field(self) -> Optional[str]:
         """
@@ -4579,17 +4591,19 @@ class C_AlexReservationEventModel(WrappedRecordModel):
         return self.get_field_value(self.VELOXLASTMODIFIEDDATE__FIELD_NAME.field_name)
 
 
-class C_AlexSandboxModel(WrappedRecordModel):
+class C_ChargeAwardModel(WrappedRecordModel):
     """
-    Auto-Generated Record Model Wrapper for data type C_AlexSandbox
-    Data Type Display Name: Alex Sandbox Type (Alex Sandbox Types)
-    Fields: C_AlexTestTextField, CreatedBy, DataRecordName, DateCreated, VeloxLastModifiedBy, VeloxLastModifiedDate
-    adean testing out data types
+    Auto-Generated Record Model Wrapper for data type C_ChargeAward
+    Data Type Display Name: Charge Award (Charge Awards)
+    Fields: C_AwardNumber, C_CrossSystemGUID, C_IsActive, C_Label, CreatedBy, DataRecordName, DateCreated, VeloxLastModifiedBy, VeloxLastModifiedDate
     """
-    DATA_TYPE_NAME: Final[str] = 'C_AlexSandbox'
-    DISPLAY_NAME: Final[str] = "Alex Sandbox Type"
-    PLURAL_DISPLAY_NAME: Final[str] = "Alex Sandbox Types"
-    C_ALEXTESTTEXTFIELD__FIELD_NAME: Final[WrapperField] = WrapperField("C_AlexTestTextField", FieldType.STRING, display_name="Alex Test Text Field")
+    DATA_TYPE_NAME: Final[str] = 'C_ChargeAward'
+    DISPLAY_NAME: Final[str] = "Charge Award"
+    PLURAL_DISPLAY_NAME: Final[str] = "Charge Awards"
+    C_AWARDNUMBER__FIELD_NAME: Final[WrapperField] = WrapperField("C_AwardNumber", FieldType.STRING, display_name="Award Number")
+    C_CROSSSYSTEMGUID__FIELD_NAME: Final[WrapperField] = WrapperField("C_CrossSystemGUID", FieldType.STRING, display_name="Cross System GUID")
+    C_ISACTIVE__FIELD_NAME: Final[WrapperField] = WrapperField("C_IsActive", FieldType.BOOLEAN, display_name="Is Active")
+    C_LABEL__FIELD_NAME: Final[WrapperField] = WrapperField("C_Label", FieldType.STRING, display_name="Label")
     CREATEDBY__FIELD_NAME: Final[WrapperField] = WrapperField("CreatedBy", FieldType.STRING, display_name="Created By")
     DATARECORDNAME__FIELD_NAME: Final[WrapperField] = WrapperField("DataRecordName", FieldType.IDENTIFIER, display_name="ID")
     DATECREATED__FIELD_NAME: Final[WrapperField] = WrapperField("DateCreated", FieldType.DATE, display_name="Date Created")
@@ -4600,17 +4614,53 @@ class C_AlexSandboxModel(WrappedRecordModel):
     def get_wrapper_data_type_name(cls):
         return cls.DATA_TYPE_NAME
 
-    def set_C_AlexTestTextField_field(self, value: Optional[str]):
+    def set_C_AwardNumber_field(self, value: Optional[str]):
         """
-        Set data field with field name 'C_AlexTestTextField' on this record model
+        Set data field with field name 'C_AwardNumber' on this record model
         """
-        self.set_field_value(self.C_ALEXTESTTEXTFIELD__FIELD_NAME.field_name, value)
+        self.set_field_value(self.C_AWARDNUMBER__FIELD_NAME.field_name, value)
 
-    def get_C_AlexTestTextField_field(self) -> Optional[str]:
+    def get_C_AwardNumber_field(self) -> Optional[str]:
         """
-        Get data field value with field name 'C_AlexTestTextField' from this record model
+        Get data field value with field name 'C_AwardNumber' from this record model
         """
-        return self.get_field_value(self.C_ALEXTESTTEXTFIELD__FIELD_NAME.field_name)
+        return self.get_field_value(self.C_AWARDNUMBER__FIELD_NAME.field_name)
+
+    def set_C_CrossSystemGUID_field(self, value: Optional[str]):
+        """
+        Set data field with field name 'C_CrossSystemGUID' on this record model
+        """
+        self.set_field_value(self.C_CROSSSYSTEMGUID__FIELD_NAME.field_name, value)
+
+    def get_C_CrossSystemGUID_field(self) -> Optional[str]:
+        """
+        Get data field value with field name 'C_CrossSystemGUID' from this record model
+        """
+        return self.get_field_value(self.C_CROSSSYSTEMGUID__FIELD_NAME.field_name)
+
+    def set_C_IsActive_field(self, value: Optional[bool]):
+        """
+        Set data field with field name 'C_IsActive' on this record model
+        """
+        self.set_field_value(self.C_ISACTIVE__FIELD_NAME.field_name, value)
+
+    def get_C_IsActive_field(self) -> Optional[bool]:
+        """
+        Get data field value with field name 'C_IsActive' from this record model
+        """
+        return self.get_field_value(self.C_ISACTIVE__FIELD_NAME.field_name)
+
+    def set_C_Label_field(self, value: Optional[str]):
+        """
+        Set data field with field name 'C_Label' on this record model
+        """
+        self.set_field_value(self.C_LABEL__FIELD_NAME.field_name, value)
+
+    def get_C_Label_field(self) -> Optional[str]:
+        """
+        Get data field value with field name 'C_Label' from this record model
+        """
+        return self.get_field_value(self.C_LABEL__FIELD_NAME.field_name)
 
     def get_CreatedBy_field(self) -> Optional[str]:
         """
@@ -4643,16 +4693,21 @@ class C_AlexSandboxModel(WrappedRecordModel):
         return self.get_field_value(self.VELOXLASTMODIFIEDDATE__FIELD_NAME.field_name)
 
 
-class C_BloodModel(WrappedRecordModel):
+class C_ChargeProjectModel(WrappedRecordModel):
     """
-    Auto-Generated Record Model Wrapper for data type C_Blood
-    Data Type Display Name: C_Blood (C_Bloods)
-    Fields: CreatedBy, DataRecordName, DateCreated, VeloxLastModifiedBy, VeloxLastModifiedDate
-    The C_Blood Data Type
+    Auto-Generated Record Model Wrapper for data type C_ChargeProject
+    Data Type Display Name: Charge Project (Charge Projects)
+    Fields: C_CrossSystemGUID, C_Department, C_IsActive, C_Label, C_ProjectNumber, C_SLDepartment, CreatedBy, DataRecordName, DateCreated, VeloxLastModifiedBy, VeloxLastModifiedDate
     """
-    DATA_TYPE_NAME: Final[str] = 'C_Blood'
-    DISPLAY_NAME: Final[str] = "C_Blood"
-    PLURAL_DISPLAY_NAME: Final[str] = "C_Bloods"
+    DATA_TYPE_NAME: Final[str] = 'C_ChargeProject'
+    DISPLAY_NAME: Final[str] = "Charge Project"
+    PLURAL_DISPLAY_NAME: Final[str] = "Charge Projects"
+    C_CROSSSYSTEMGUID__FIELD_NAME: Final[WrapperField] = WrapperField("C_CrossSystemGUID", FieldType.STRING, display_name="Cross System GUID")
+    C_DEPARTMENT__FIELD_NAME: Final[WrapperField] = WrapperField("C_Department", FieldType.STRING, display_name="Department")
+    C_ISACTIVE__FIELD_NAME: Final[WrapperField] = WrapperField("C_IsActive", FieldType.BOOLEAN, display_name="Is Active ?")
+    C_LABEL__FIELD_NAME: Final[WrapperField] = WrapperField("C_Label", FieldType.STRING, display_name="Label")
+    C_PROJECTNUMBER__FIELD_NAME: Final[WrapperField] = WrapperField("C_ProjectNumber", FieldType.STRING, display_name="Project Number")
+    C_SLDEPARTMENT__FIELD_NAME: Final[WrapperField] = WrapperField("C_SLDepartment", FieldType.SIDE_LINK, display_name="Owning Department")
     CREATEDBY__FIELD_NAME: Final[WrapperField] = WrapperField("CreatedBy", FieldType.STRING, display_name="Created By")
     DATARECORDNAME__FIELD_NAME: Final[WrapperField] = WrapperField("DataRecordName", FieldType.IDENTIFIER, display_name="ID")
     DATECREATED__FIELD_NAME: Final[WrapperField] = WrapperField("DateCreated", FieldType.DATE, display_name="Date Created")
@@ -4662,6 +4717,78 @@ class C_BloodModel(WrappedRecordModel):
     @classmethod
     def get_wrapper_data_type_name(cls):
         return cls.DATA_TYPE_NAME
+
+    def set_C_CrossSystemGUID_field(self, value: Optional[str]):
+        """
+        Set data field with field name 'C_CrossSystemGUID' on this record model
+        """
+        self.set_field_value(self.C_CROSSSYSTEMGUID__FIELD_NAME.field_name, value)
+
+    def get_C_CrossSystemGUID_field(self) -> Optional[str]:
+        """
+        Get data field value with field name 'C_CrossSystemGUID' from this record model
+        """
+        return self.get_field_value(self.C_CROSSSYSTEMGUID__FIELD_NAME.field_name)
+
+    def set_C_Department_field(self, value: Optional[str]):
+        """
+        Set data field with field name 'C_Department' on this record model
+        """
+        self.set_field_value(self.C_DEPARTMENT__FIELD_NAME.field_name, value)
+
+    def get_C_Department_field(self) -> Optional[str]:
+        """
+        Get data field value with field name 'C_Department' from this record model
+        """
+        return self.get_field_value(self.C_DEPARTMENT__FIELD_NAME.field_name)
+
+    def set_C_IsActive_field(self, value: Optional[bool]):
+        """
+        Set data field with field name 'C_IsActive' on this record model
+        """
+        self.set_field_value(self.C_ISACTIVE__FIELD_NAME.field_name, value)
+
+    def get_C_IsActive_field(self) -> Optional[bool]:
+        """
+        Get data field value with field name 'C_IsActive' from this record model
+        """
+        return self.get_field_value(self.C_ISACTIVE__FIELD_NAME.field_name)
+
+    def set_C_Label_field(self, value: Optional[str]):
+        """
+        Set data field with field name 'C_Label' on this record model
+        """
+        self.set_field_value(self.C_LABEL__FIELD_NAME.field_name, value)
+
+    def get_C_Label_field(self) -> Optional[str]:
+        """
+        Get data field value with field name 'C_Label' from this record model
+        """
+        return self.get_field_value(self.C_LABEL__FIELD_NAME.field_name)
+
+    def set_C_ProjectNumber_field(self, value: Optional[str]):
+        """
+        Set data field with field name 'C_ProjectNumber' on this record model
+        """
+        self.set_field_value(self.C_PROJECTNUMBER__FIELD_NAME.field_name, value)
+
+    def get_C_ProjectNumber_field(self) -> Optional[str]:
+        """
+        Get data field value with field name 'C_ProjectNumber' from this record model
+        """
+        return self.get_field_value(self.C_PROJECTNUMBER__FIELD_NAME.field_name)
+
+    def set_C_SLDepartment_field(self, value: Optional[int]):
+        """
+        Set data field with field name 'C_SLDepartment' on this record model
+        """
+        self.set_field_value(self.C_SLDEPARTMENT__FIELD_NAME.field_name, value)
+
+    def get_C_SLDepartment_field(self) -> Optional[int]:
+        """
+        Get data field value with field name 'C_SLDepartment' from this record model
+        """
+        return self.get_field_value(self.C_SLDEPARTMENT__FIELD_NAME.field_name)
 
     def get_CreatedBy_field(self) -> Optional[str]:
         """
@@ -4694,67 +4821,16 @@ class C_BloodModel(WrappedRecordModel):
         return self.get_field_value(self.VELOXLASTMODIFIEDDATE__FIELD_NAME.field_name)
 
 
-class C_BloodPartModel(WrappedRecordModel):
+class C_CVTRequestModel(WrappedRecordModel):
     """
-    Auto-Generated Record Model Wrapper for data type C_BloodPart
-    Data Type Display Name: C_BloodPart (C_BloodParts)
-    Fields: CreatedBy, DataRecordName, DateCreated, VeloxLastModifiedBy, VeloxLastModifiedDate
-    The C_BloodPart Data Type
+    Auto-Generated Record Model Wrapper for data type C_CVTRequest
+    Data Type Display Name: CVT Request (CVT Requests)
+    Fields: C_NoOfSamples, C_Status, CreatedBy, DataRecordName, DateCreated, VeloxLastModifiedBy, VeloxLastModifiedDate
     """
-    DATA_TYPE_NAME: Final[str] = 'C_BloodPart'
-    DISPLAY_NAME: Final[str] = "C_BloodPart"
-    PLURAL_DISPLAY_NAME: Final[str] = "C_BloodParts"
-    CREATEDBY__FIELD_NAME: Final[WrapperField] = WrapperField("CreatedBy", FieldType.STRING, display_name="Created By")
-    DATARECORDNAME__FIELD_NAME: Final[WrapperField] = WrapperField("DataRecordName", FieldType.IDENTIFIER, display_name="ID")
-    DATECREATED__FIELD_NAME: Final[WrapperField] = WrapperField("DateCreated", FieldType.DATE, display_name="Date Created")
-    VELOXLASTMODIFIEDBY__FIELD_NAME: Final[WrapperField] = WrapperField("VeloxLastModifiedBy", FieldType.STRING, display_name="Last Modified By")
-    VELOXLASTMODIFIEDDATE__FIELD_NAME: Final[WrapperField] = WrapperField("VeloxLastModifiedDate", FieldType.DATE, display_name="Last Modified Date")
-
-    @classmethod
-    def get_wrapper_data_type_name(cls):
-        return cls.DATA_TYPE_NAME
-
-    def get_CreatedBy_field(self) -> Optional[str]:
-        """
-        Get data field value with field name 'CreatedBy' from this record model
-        """
-        return self.get_field_value(self.CREATEDBY__FIELD_NAME.field_name)
-
-    def get_DataRecordName_field(self) -> Optional[str]:
-        """
-        Get data field value with field name 'DataRecordName' from this record model
-        """
-        return self.get_field_value(self.DATARECORDNAME__FIELD_NAME.field_name)
-
-    def get_DateCreated_field(self) -> Optional[int]:
-        """
-        Get data field value with field name 'DateCreated' from this record model
-        """
-        return self.get_field_value(self.DATECREATED__FIELD_NAME.field_name)
-
-    def get_VeloxLastModifiedBy_field(self) -> Optional[str]:
-        """
-        Get data field value with field name 'VeloxLastModifiedBy' from this record model
-        """
-        return self.get_field_value(self.VELOXLASTMODIFIEDBY__FIELD_NAME.field_name)
-
-    def get_VeloxLastModifiedDate_field(self) -> Optional[int]:
-        """
-        Get data field value with field name 'VeloxLastModifiedDate' from this record model
-        """
-        return self.get_field_value(self.VELOXLASTMODIFIEDDATE__FIELD_NAME.field_name)
-
-
-class C_CloneAndVectorRequestModel(WrappedRecordModel):
-    """
-    Auto-Generated Record Model Wrapper for data type C_CloneAndVectorRequest
-    Data Type Display Name: Clone And Vector Request (Clone And Vector Requests)
-    Fields: C_RequestName, C_Status, CreatedBy, DataRecordName, DateCreated, VeloxLastModifiedBy, VeloxLastModifiedDate
-    """
-    DATA_TYPE_NAME: Final[str] = 'C_CloneAndVectorRequest'
-    DISPLAY_NAME: Final[str] = "Clone And Vector Request"
-    PLURAL_DISPLAY_NAME: Final[str] = "Clone And Vector Requests"
-    C_REQUESTNAME__FIELD_NAME: Final[WrapperField] = WrapperField("C_RequestName", FieldType.STRING, display_name="Request Name")
+    DATA_TYPE_NAME: Final[str] = 'C_CVTRequest'
+    DISPLAY_NAME: Final[str] = "CVT Request"
+    PLURAL_DISPLAY_NAME: Final[str] = "CVT Requests"
+    C_NOOFSAMPLES__FIELD_NAME: Final[WrapperField] = WrapperField("C_NoOfSamples", FieldType.INTEGER, display_name="Samples #")
     C_STATUS__FIELD_NAME: Final[WrapperField] = WrapperField("C_Status", FieldType.PICKLIST, display_name="Status")
     CREATEDBY__FIELD_NAME: Final[WrapperField] = WrapperField("CreatedBy", FieldType.STRING, display_name="Created By")
     DATARECORDNAME__FIELD_NAME: Final[WrapperField] = WrapperField("DataRecordName", FieldType.IDENTIFIER, display_name="ID")
@@ -4766,17 +4842,17 @@ class C_CloneAndVectorRequestModel(WrappedRecordModel):
     def get_wrapper_data_type_name(cls):
         return cls.DATA_TYPE_NAME
 
-    def set_C_RequestName_field(self, value: Optional[str]):
+    def set_C_NoOfSamples_field(self, value: Optional[int]):
         """
-        Set data field with field name 'C_RequestName' on this record model
+        Set data field with field name 'C_NoOfSamples' on this record model
         """
-        self.set_field_value(self.C_REQUESTNAME__FIELD_NAME.field_name, value)
+        self.set_field_value(self.C_NOOFSAMPLES__FIELD_NAME.field_name, value)
 
-    def get_C_RequestName_field(self) -> Optional[str]:
+    def get_C_NoOfSamples_field(self) -> Optional[int]:
         """
-        Get data field value with field name 'C_RequestName' from this record model
+        Get data field value with field name 'C_NoOfSamples' from this record model
         """
-        return self.get_field_value(self.C_REQUESTNAME__FIELD_NAME.field_name)
+        return self.get_field_value(self.C_NOOFSAMPLES__FIELD_NAME.field_name)
 
     def set_C_Status_field(self, value: Optional[str]):
         """
@@ -4821,20 +4897,21 @@ class C_CloneAndVectorRequestModel(WrappedRecordModel):
         return self.get_field_value(self.VELOXLASTMODIFIEDDATE__FIELD_NAME.field_name)
 
 
-class C_ClonesAndVectorsModel(WrappedRecordModel):
+class C_DepartmentUserMappingModel(WrappedRecordModel):
     """
-    Auto-Generated Record Model Wrapper for data type C_ClonesAndVectors
-    Data Type Display Name: Clones & Vectors (Clones And Vectors)
-    Fields: C_Category, C_Collection, C_IBCRequired, C_SLCloneAndVectorRequest, C_cloneId, CreatedBy, DataRecordName, DateCreated, VeloxLastModifiedBy, VeloxLastModifiedDate
+    Auto-Generated Record Model Wrapper for data type C_DepartmentUserMapping
+    Data Type Display Name: Department User Mapping (Department User Mappings)
+    Fields: C_Department, C_IsDepartmentHead, C_IsPrimaryDepartment, C_SLDepartment, C_SLUser, C_User, CreatedBy, DataRecordName, DateCreated, VeloxLastModifiedBy, VeloxLastModifiedDate
     """
-    DATA_TYPE_NAME: Final[str] = 'C_ClonesAndVectors'
-    DISPLAY_NAME: Final[str] = "Clones & Vectors"
-    PLURAL_DISPLAY_NAME: Final[str] = "Clones And Vectors"
-    C_CATEGORY__FIELD_NAME: Final[WrapperField] = WrapperField("C_Category", FieldType.STRING, display_name="Category")
-    C_COLLECTION__FIELD_NAME: Final[WrapperField] = WrapperField("C_Collection", FieldType.STRING, display_name="Collection")
-    C_IBCREQUIRED__FIELD_NAME: Final[WrapperField] = WrapperField("C_IBCRequired", FieldType.STRING, display_name="IBC Required")
-    C_SLCLONEANDVECTORREQUEST__FIELD_NAME: Final[WrapperField] = WrapperField("C_SLCloneAndVectorRequest", FieldType.SIDE_LINK, display_name="Related Clone & Vector Request")
-    C_CLONEID__FIELD_NAME: Final[WrapperField] = WrapperField("C_cloneId", FieldType.STRING, display_name="Clone Id")
+    DATA_TYPE_NAME: Final[str] = 'C_DepartmentUserMapping'
+    DISPLAY_NAME: Final[str] = "Department User Mapping"
+    PLURAL_DISPLAY_NAME: Final[str] = "Department User Mappings"
+    C_DEPARTMENT__FIELD_NAME: Final[WrapperField] = WrapperField("C_Department", FieldType.STRING, display_name="Department")
+    C_ISDEPARTMENTHEAD__FIELD_NAME: Final[WrapperField] = WrapperField("C_IsDepartmentHead", FieldType.BOOLEAN, display_name="Is Department Head ?")
+    C_ISPRIMARYDEPARTMENT__FIELD_NAME: Final[WrapperField] = WrapperField("C_IsPrimaryDepartment", FieldType.BOOLEAN, display_name="Is Primary Department ?")
+    C_SLDEPARTMENT__FIELD_NAME: Final[WrapperField] = WrapperField("C_SLDepartment", FieldType.SIDE_LINK, display_name="SL Department")
+    C_SLUSER__FIELD_NAME: Final[WrapperField] = WrapperField("C_SLUser", FieldType.SIDE_LINK, display_name="SL User")
+    C_USER__FIELD_NAME: Final[WrapperField] = WrapperField("C_User", FieldType.STRING, display_name="User")
     CREATEDBY__FIELD_NAME: Final[WrapperField] = WrapperField("CreatedBy", FieldType.STRING, display_name="Created By")
     DATARECORDNAME__FIELD_NAME: Final[WrapperField] = WrapperField("DataRecordName", FieldType.IDENTIFIER, display_name="ID")
     DATECREATED__FIELD_NAME: Final[WrapperField] = WrapperField("DateCreated", FieldType.DATE, display_name="Date Created")
@@ -4845,65 +4922,77 @@ class C_ClonesAndVectorsModel(WrappedRecordModel):
     def get_wrapper_data_type_name(cls):
         return cls.DATA_TYPE_NAME
 
-    def set_C_Category_field(self, value: Optional[str]):
+    def set_C_Department_field(self, value: Optional[str]):
         """
-        Set data field with field name 'C_Category' on this record model
+        Set data field with field name 'C_Department' on this record model
         """
-        self.set_field_value(self.C_CATEGORY__FIELD_NAME.field_name, value)
+        self.set_field_value(self.C_DEPARTMENT__FIELD_NAME.field_name, value)
 
-    def get_C_Category_field(self) -> Optional[str]:
+    def get_C_Department_field(self) -> Optional[str]:
         """
-        Get data field value with field name 'C_Category' from this record model
+        Get data field value with field name 'C_Department' from this record model
         """
-        return self.get_field_value(self.C_CATEGORY__FIELD_NAME.field_name)
+        return self.get_field_value(self.C_DEPARTMENT__FIELD_NAME.field_name)
 
-    def set_C_Collection_field(self, value: Optional[str]):
+    def set_C_IsDepartmentHead_field(self, value: Optional[bool]):
         """
-        Set data field with field name 'C_Collection' on this record model
+        Set data field with field name 'C_IsDepartmentHead' on this record model
         """
-        self.set_field_value(self.C_COLLECTION__FIELD_NAME.field_name, value)
+        self.set_field_value(self.C_ISDEPARTMENTHEAD__FIELD_NAME.field_name, value)
 
-    def get_C_Collection_field(self) -> Optional[str]:
+    def get_C_IsDepartmentHead_field(self) -> Optional[bool]:
         """
-        Get data field value with field name 'C_Collection' from this record model
+        Get data field value with field name 'C_IsDepartmentHead' from this record model
         """
-        return self.get_field_value(self.C_COLLECTION__FIELD_NAME.field_name)
+        return self.get_field_value(self.C_ISDEPARTMENTHEAD__FIELD_NAME.field_name)
 
-    def set_C_IBCRequired_field(self, value: Optional[str]):
+    def set_C_IsPrimaryDepartment_field(self, value: Optional[bool]):
         """
-        Set data field with field name 'C_IBCRequired' on this record model
+        Set data field with field name 'C_IsPrimaryDepartment' on this record model
         """
-        self.set_field_value(self.C_IBCREQUIRED__FIELD_NAME.field_name, value)
+        self.set_field_value(self.C_ISPRIMARYDEPARTMENT__FIELD_NAME.field_name, value)
 
-    def get_C_IBCRequired_field(self) -> Optional[str]:
+    def get_C_IsPrimaryDepartment_field(self) -> Optional[bool]:
         """
-        Get data field value with field name 'C_IBCRequired' from this record model
+        Get data field value with field name 'C_IsPrimaryDepartment' from this record model
         """
-        return self.get_field_value(self.C_IBCREQUIRED__FIELD_NAME.field_name)
+        return self.get_field_value(self.C_ISPRIMARYDEPARTMENT__FIELD_NAME.field_name)
 
-    def set_C_SLCloneAndVectorRequest_field(self, value: Optional[int]):
+    def set_C_SLDepartment_field(self, value: Optional[int]):
         """
-        Set data field with field name 'C_SLCloneAndVectorRequest' on this record model
+        Set data field with field name 'C_SLDepartment' on this record model
         """
-        self.set_field_value(self.C_SLCLONEANDVECTORREQUEST__FIELD_NAME.field_name, value)
+        self.set_field_value(self.C_SLDEPARTMENT__FIELD_NAME.field_name, value)
 
-    def get_C_SLCloneAndVectorRequest_field(self) -> Optional[int]:
+    def get_C_SLDepartment_field(self) -> Optional[int]:
         """
-        Get data field value with field name 'C_SLCloneAndVectorRequest' from this record model
+        Get data field value with field name 'C_SLDepartment' from this record model
         """
-        return self.get_field_value(self.C_SLCLONEANDVECTORREQUEST__FIELD_NAME.field_name)
+        return self.get_field_value(self.C_SLDEPARTMENT__FIELD_NAME.field_name)
 
-    def set_C_cloneId_field(self, value: Optional[str]):
+    def set_C_SLUser_field(self, value: Optional[int]):
         """
-        Set data field with field name 'C_cloneId' on this record model
+        Set data field with field name 'C_SLUser' on this record model
         """
-        self.set_field_value(self.C_CLONEID__FIELD_NAME.field_name, value)
+        self.set_field_value(self.C_SLUSER__FIELD_NAME.field_name, value)
 
-    def get_C_cloneId_field(self) -> Optional[str]:
+    def get_C_SLUser_field(self) -> Optional[int]:
         """
-        Get data field value with field name 'C_cloneId' from this record model
+        Get data field value with field name 'C_SLUser' from this record model
         """
-        return self.get_field_value(self.C_CLONEID__FIELD_NAME.field_name)
+        return self.get_field_value(self.C_SLUSER__FIELD_NAME.field_name)
+
+    def set_C_User_field(self, value: Optional[str]):
+        """
+        Set data field with field name 'C_User' on this record model
+        """
+        self.set_field_value(self.C_USER__FIELD_NAME.field_name, value)
+
+    def get_C_User_field(self) -> Optional[str]:
+        """
+        Get data field value with field name 'C_User' from this record model
+        """
+        return self.get_field_value(self.C_USER__FIELD_NAME.field_name)
 
     def get_CreatedBy_field(self) -> Optional[str]:
         """
@@ -4936,20 +5025,19 @@ class C_ClonesAndVectorsModel(WrappedRecordModel):
         return self.get_field_value(self.VELOXLASTMODIFIEDDATE__FIELD_NAME.field_name)
 
 
-class C_LibraryServiceRequestModel(WrappedRecordModel):
+class C_NGSRequestModel(WrappedRecordModel):
     """
-    Auto-Generated Record Model Wrapper for data type C_LibraryServiceRequest
-    Data Type Display Name: Library Service Request (Library Service Requests)
-    Fields: C_Author, C_BookTitle, C_ChapterTitle, C_Edition, C_URL, CreatedBy, DataRecordName, DateCreated, VeloxLastModifiedBy, VeloxLastModifiedDate
+    Auto-Generated Record Model Wrapper for data type C_NGSRequest
+    Data Type Display Name: NGS Request (NGS Requests)
+    Fields: C_MolBioTechnician, C_PoolingInstructions, C_ReadLength, C_SpecialInstruction, CreatedBy, DataRecordName, DateCreated, VeloxLastModifiedBy, VeloxLastModifiedDate
     """
-    DATA_TYPE_NAME: Final[str] = 'C_LibraryServiceRequest'
-    DISPLAY_NAME: Final[str] = "Library Service Request"
-    PLURAL_DISPLAY_NAME: Final[str] = "Library Service Requests"
-    C_AUTHOR__FIELD_NAME: Final[WrapperField] = WrapperField("C_Author", FieldType.STRING, display_name="Author")
-    C_BOOKTITLE__FIELD_NAME: Final[WrapperField] = WrapperField("C_BookTitle", FieldType.STRING, display_name="Book Title")
-    C_CHAPTERTITLE__FIELD_NAME: Final[WrapperField] = WrapperField("C_ChapterTitle", FieldType.STRING, display_name="Chapter Title")
-    C_EDITION__FIELD_NAME: Final[WrapperField] = WrapperField("C_Edition", FieldType.STRING, display_name="Edition")
-    C_URL__FIELD_NAME: Final[WrapperField] = WrapperField("C_URL", FieldType.STRING, display_name="URL/Link")
+    DATA_TYPE_NAME: Final[str] = 'C_NGSRequest'
+    DISPLAY_NAME: Final[str] = "NGS Request"
+    PLURAL_DISPLAY_NAME: Final[str] = "NGS Requests"
+    C_MOLBIOTECHNICIAN__FIELD_NAME: Final[WrapperField] = WrapperField("C_MolBioTechnician", FieldType.SELECTION, display_name="Mol Bio Technician")
+    C_POOLINGINSTRUCTIONS__FIELD_NAME: Final[WrapperField] = WrapperField("C_PoolingInstructions", FieldType.STRING, display_name="Pooling Instructions")
+    C_READLENGTH__FIELD_NAME: Final[WrapperField] = WrapperField("C_ReadLength", FieldType.STRING, display_name="Read Length")
+    C_SPECIALINSTRUCTION__FIELD_NAME: Final[WrapperField] = WrapperField("C_SpecialInstruction", FieldType.STRING, display_name="Special Instruction")
     CREATEDBY__FIELD_NAME: Final[WrapperField] = WrapperField("CreatedBy", FieldType.STRING, display_name="Created By")
     DATARECORDNAME__FIELD_NAME: Final[WrapperField] = WrapperField("DataRecordName", FieldType.IDENTIFIER, display_name="ID")
     DATECREATED__FIELD_NAME: Final[WrapperField] = WrapperField("DateCreated", FieldType.DATE, display_name="Date Created")
@@ -4960,65 +5048,53 @@ class C_LibraryServiceRequestModel(WrappedRecordModel):
     def get_wrapper_data_type_name(cls):
         return cls.DATA_TYPE_NAME
 
-    def set_C_Author_field(self, value: Optional[str]):
+    def set_C_MolBioTechnician_field(self, value: Optional[str]):
         """
-        Set data field with field name 'C_Author' on this record model
+        Set data field with field name 'C_MolBioTechnician' on this record model
         """
-        self.set_field_value(self.C_AUTHOR__FIELD_NAME.field_name, value)
+        self.set_field_value(self.C_MOLBIOTECHNICIAN__FIELD_NAME.field_name, value)
 
-    def get_C_Author_field(self) -> Optional[str]:
+    def get_C_MolBioTechnician_field(self) -> Optional[str]:
         """
-        Get data field value with field name 'C_Author' from this record model
+        Get data field value with field name 'C_MolBioTechnician' from this record model
         """
-        return self.get_field_value(self.C_AUTHOR__FIELD_NAME.field_name)
+        return self.get_field_value(self.C_MOLBIOTECHNICIAN__FIELD_NAME.field_name)
 
-    def set_C_BookTitle_field(self, value: Optional[str]):
+    def set_C_PoolingInstructions_field(self, value: Optional[str]):
         """
-        Set data field with field name 'C_BookTitle' on this record model
+        Set data field with field name 'C_PoolingInstructions' on this record model
         """
-        self.set_field_value(self.C_BOOKTITLE__FIELD_NAME.field_name, value)
+        self.set_field_value(self.C_POOLINGINSTRUCTIONS__FIELD_NAME.field_name, value)
 
-    def get_C_BookTitle_field(self) -> Optional[str]:
+    def get_C_PoolingInstructions_field(self) -> Optional[str]:
         """
-        Get data field value with field name 'C_BookTitle' from this record model
+        Get data field value with field name 'C_PoolingInstructions' from this record model
         """
-        return self.get_field_value(self.C_BOOKTITLE__FIELD_NAME.field_name)
+        return self.get_field_value(self.C_POOLINGINSTRUCTIONS__FIELD_NAME.field_name)
 
-    def set_C_ChapterTitle_field(self, value: Optional[str]):
+    def set_C_ReadLength_field(self, value: Optional[str]):
         """
-        Set data field with field name 'C_ChapterTitle' on this record model
+        Set data field with field name 'C_ReadLength' on this record model
         """
-        self.set_field_value(self.C_CHAPTERTITLE__FIELD_NAME.field_name, value)
+        self.set_field_value(self.C_READLENGTH__FIELD_NAME.field_name, value)
 
-    def get_C_ChapterTitle_field(self) -> Optional[str]:
+    def get_C_ReadLength_field(self) -> Optional[str]:
         """
-        Get data field value with field name 'C_ChapterTitle' from this record model
+        Get data field value with field name 'C_ReadLength' from this record model
         """
-        return self.get_field_value(self.C_CHAPTERTITLE__FIELD_NAME.field_name)
+        return self.get_field_value(self.C_READLENGTH__FIELD_NAME.field_name)
 
-    def set_C_Edition_field(self, value: Optional[str]):
+    def set_C_SpecialInstruction_field(self, value: Optional[str]):
         """
-        Set data field with field name 'C_Edition' on this record model
+        Set data field with field name 'C_SpecialInstruction' on this record model
         """
-        self.set_field_value(self.C_EDITION__FIELD_NAME.field_name, value)
+        self.set_field_value(self.C_SPECIALINSTRUCTION__FIELD_NAME.field_name, value)
 
-    def get_C_Edition_field(self) -> Optional[str]:
+    def get_C_SpecialInstruction_field(self) -> Optional[str]:
         """
-        Get data field value with field name 'C_Edition' from this record model
+        Get data field value with field name 'C_SpecialInstruction' from this record model
         """
-        return self.get_field_value(self.C_EDITION__FIELD_NAME.field_name)
-
-    def set_C_URL_field(self, value: Optional[str]):
-        """
-        Set data field with field name 'C_URL' on this record model
-        """
-        self.set_field_value(self.C_URL__FIELD_NAME.field_name, value)
-
-    def get_C_URL_field(self) -> Optional[str]:
-        """
-        Get data field value with field name 'C_URL' from this record model
-        """
-        return self.get_field_value(self.C_URL__FIELD_NAME.field_name)
+        return self.get_field_value(self.C_SPECIALINSTRUCTION__FIELD_NAME.field_name)
 
     def get_CreatedBy_field(self) -> Optional[str]:
         """
@@ -5051,17 +5127,19 @@ class C_LibraryServiceRequestModel(WrappedRecordModel):
         return self.get_field_value(self.VELOXLASTMODIFIEDDATE__FIELD_NAME.field_name)
 
 
-class C_RabbitModel(WrappedRecordModel):
+class C_UserSupervisorMappingModel(WrappedRecordModel):
     """
-    Auto-Generated Record Model Wrapper for data type C_Rabbit
-    Data Type Display Name: Rabbit (Rabbits)
-    Fields: C_DateofBirth, CreatedBy, DataRecordName, DateCreated, VeloxLastModifiedBy, VeloxLastModifiedDate
-    Animals or other living organisms to be used for experiments
+    Auto-Generated Record Model Wrapper for data type C_UserSupervisorMapping
+    Data Type Display Name: User Supervisor Mapping (User Supervisor Mappings)
+    Fields: C_SLSupervisor, C_SLUser, C_Supervisor, C_User, CreatedBy, DataRecordName, DateCreated, VeloxLastModifiedBy, VeloxLastModifiedDate
     """
-    DATA_TYPE_NAME: Final[str] = 'C_Rabbit'
-    DISPLAY_NAME: Final[str] = "Rabbit"
-    PLURAL_DISPLAY_NAME: Final[str] = "Rabbits"
-    C_DATEOFBIRTH__FIELD_NAME: Final[WrapperField] = WrapperField("C_DateofBirth", FieldType.DATE, display_name="Date of Birth")
+    DATA_TYPE_NAME: Final[str] = 'C_UserSupervisorMapping'
+    DISPLAY_NAME: Final[str] = "User Supervisor Mapping"
+    PLURAL_DISPLAY_NAME: Final[str] = "User Supervisor Mappings"
+    C_SLSUPERVISOR__FIELD_NAME: Final[WrapperField] = WrapperField("C_SLSupervisor", FieldType.SIDE_LINK, display_name="Supervisor")
+    C_SLUSER__FIELD_NAME: Final[WrapperField] = WrapperField("C_SLUser", FieldType.SIDE_LINK, display_name="User")
+    C_SUPERVISOR__FIELD_NAME: Final[WrapperField] = WrapperField("C_Supervisor", FieldType.STRING, display_name="Supervisor")
+    C_USER__FIELD_NAME: Final[WrapperField] = WrapperField("C_User", FieldType.STRING, display_name="User")
     CREATEDBY__FIELD_NAME: Final[WrapperField] = WrapperField("CreatedBy", FieldType.STRING, display_name="Created By")
     DATARECORDNAME__FIELD_NAME: Final[WrapperField] = WrapperField("DataRecordName", FieldType.IDENTIFIER, display_name="ID")
     DATECREATED__FIELD_NAME: Final[WrapperField] = WrapperField("DateCreated", FieldType.DATE, display_name="Date Created")
@@ -5072,388 +5150,53 @@ class C_RabbitModel(WrappedRecordModel):
     def get_wrapper_data_type_name(cls):
         return cls.DATA_TYPE_NAME
 
-    def set_C_DateofBirth_field(self, value: Optional[int]):
+    def set_C_SLSupervisor_field(self, value: Optional[int]):
         """
-        Set data field with field name 'C_DateofBirth' on this record model
+        Set data field with field name 'C_SLSupervisor' on this record model
         """
-        self.set_field_value(self.C_DATEOFBIRTH__FIELD_NAME.field_name, value)
+        self.set_field_value(self.C_SLSUPERVISOR__FIELD_NAME.field_name, value)
 
-    def get_C_DateofBirth_field(self) -> Optional[int]:
+    def get_C_SLSupervisor_field(self) -> Optional[int]:
         """
-        Get data field value with field name 'C_DateofBirth' from this record model
+        Get data field value with field name 'C_SLSupervisor' from this record model
         """
-        return self.get_field_value(self.C_DATEOFBIRTH__FIELD_NAME.field_name)
+        return self.get_field_value(self.C_SLSUPERVISOR__FIELD_NAME.field_name)
 
-    def get_CreatedBy_field(self) -> Optional[str]:
+    def set_C_SLUser_field(self, value: Optional[int]):
         """
-        Get data field value with field name 'CreatedBy' from this record model
+        Set data field with field name 'C_SLUser' on this record model
         """
-        return self.get_field_value(self.CREATEDBY__FIELD_NAME.field_name)
+        self.set_field_value(self.C_SLUSER__FIELD_NAME.field_name, value)
 
-    def get_DataRecordName_field(self) -> Optional[str]:
+    def get_C_SLUser_field(self) -> Optional[int]:
         """
-        Get data field value with field name 'DataRecordName' from this record model
+        Get data field value with field name 'C_SLUser' from this record model
         """
-        return self.get_field_value(self.DATARECORDNAME__FIELD_NAME.field_name)
+        return self.get_field_value(self.C_SLUSER__FIELD_NAME.field_name)
 
-    def get_DateCreated_field(self) -> Optional[int]:
+    def set_C_Supervisor_field(self, value: Optional[str]):
         """
-        Get data field value with field name 'DateCreated' from this record model
+        Set data field with field name 'C_Supervisor' on this record model
         """
-        return self.get_field_value(self.DATECREATED__FIELD_NAME.field_name)
+        self.set_field_value(self.C_SUPERVISOR__FIELD_NAME.field_name, value)
 
-    def get_VeloxLastModifiedBy_field(self) -> Optional[str]:
+    def get_C_Supervisor_field(self) -> Optional[str]:
         """
-        Get data field value with field name 'VeloxLastModifiedBy' from this record model
+        Get data field value with field name 'C_Supervisor' from this record model
         """
-        return self.get_field_value(self.VELOXLASTMODIFIEDBY__FIELD_NAME.field_name)
+        return self.get_field_value(self.C_SUPERVISOR__FIELD_NAME.field_name)
 
-    def get_VeloxLastModifiedDate_field(self) -> Optional[int]:
+    def set_C_User_field(self, value: Optional[str]):
         """
-        Get data field value with field name 'VeloxLastModifiedDate' from this record model
+        Set data field with field name 'C_User' on this record model
         """
-        return self.get_field_value(self.VELOXLASTMODIFIEDDATE__FIELD_NAME.field_name)
+        self.set_field_value(self.C_USER__FIELD_NAME.field_name, value)
 
-
-class C_SpeciminModel(WrappedRecordModel):
-    """
-    Auto-Generated Record Model Wrapper for data type C_Specimin
-    Data Type Display Name: Specimin (Specimins)
-    Fields: CreatedBy, DataRecordName, DateCreated, VeloxLastModifiedBy, VeloxLastModifiedDate
-    """
-    DATA_TYPE_NAME: Final[str] = 'C_Specimin'
-    DISPLAY_NAME: Final[str] = "Specimin"
-    PLURAL_DISPLAY_NAME: Final[str] = "Specimins"
-    CREATEDBY__FIELD_NAME: Final[WrapperField] = WrapperField("CreatedBy", FieldType.STRING, display_name="Created By")
-    DATARECORDNAME__FIELD_NAME: Final[WrapperField] = WrapperField("DataRecordName", FieldType.IDENTIFIER, display_name="ID")
-    DATECREATED__FIELD_NAME: Final[WrapperField] = WrapperField("DateCreated", FieldType.DATE, display_name="Date Created")
-    VELOXLASTMODIFIEDBY__FIELD_NAME: Final[WrapperField] = WrapperField("VeloxLastModifiedBy", FieldType.STRING, display_name="Last Modified By")
-    VELOXLASTMODIFIEDDATE__FIELD_NAME: Final[WrapperField] = WrapperField("VeloxLastModifiedDate", FieldType.DATE, display_name="Last Modified Date")
-
-    @classmethod
-    def get_wrapper_data_type_name(cls):
-        return cls.DATA_TYPE_NAME
-
-    def get_CreatedBy_field(self) -> Optional[str]:
+    def get_C_User_field(self) -> Optional[str]:
         """
-        Get data field value with field name 'CreatedBy' from this record model
+        Get data field value with field name 'C_User' from this record model
         """
-        return self.get_field_value(self.CREATEDBY__FIELD_NAME.field_name)
-
-    def get_DataRecordName_field(self) -> Optional[str]:
-        """
-        Get data field value with field name 'DataRecordName' from this record model
-        """
-        return self.get_field_value(self.DATARECORDNAME__FIELD_NAME.field_name)
-
-    def get_DateCreated_field(self) -> Optional[int]:
-        """
-        Get data field value with field name 'DateCreated' from this record model
-        """
-        return self.get_field_value(self.DATECREATED__FIELD_NAME.field_name)
-
-    def get_VeloxLastModifiedBy_field(self) -> Optional[str]:
-        """
-        Get data field value with field name 'VeloxLastModifiedBy' from this record model
-        """
-        return self.get_field_value(self.VELOXLASTMODIFIEDBY__FIELD_NAME.field_name)
-
-    def get_VeloxLastModifiedDate_field(self) -> Optional[int]:
-        """
-        Get data field value with field name 'VeloxLastModifiedDate' from this record model
-        """
-        return self.get_field_value(self.VELOXLASTMODIFIEDDATE__FIELD_NAME.field_name)
-
-
-class C_VectorModel(WrappedRecordModel):
-    """
-    Auto-Generated Record Model Wrapper for data type C_Vector
-    Data Type Display Name: Vector (Vectors)
-    Fields: C_ConsumableName, C_ConsumableType, C_ExpirationDate, C_Expired, C_LotNumber, C_Manufacturer, C_PartNumber, C_Validated, CreatedBy, DataRecordName, DateCreated, VeloxLastModifiedBy, VeloxLastModifiedDate
-    """
-    DATA_TYPE_NAME: Final[str] = 'C_Vector'
-    DISPLAY_NAME: Final[str] = "Vector"
-    PLURAL_DISPLAY_NAME: Final[str] = "Vectors"
-    C_CONSUMABLENAME__FIELD_NAME: Final[WrapperField] = WrapperField("C_ConsumableName", FieldType.STRING, display_name="Vector Name")
-    C_CONSUMABLETYPE__FIELD_NAME: Final[WrapperField] = WrapperField("C_ConsumableType", FieldType.SELECTION, display_name="Vector Subtype")
-    C_EXPIRATIONDATE__FIELD_NAME: Final[WrapperField] = WrapperField("C_ExpirationDate", FieldType.DATE, display_name="Expiration Date")
-    C_EXPIRED__FIELD_NAME: Final[WrapperField] = WrapperField("C_Expired", FieldType.BOOLEAN, display_name="Expired")
-    C_LOTNUMBER__FIELD_NAME: Final[WrapperField] = WrapperField("C_LotNumber", FieldType.STRING, display_name="Lot Number")
-    C_MANUFACTURER__FIELD_NAME: Final[WrapperField] = WrapperField("C_Manufacturer", FieldType.STRING, display_name="Manufacturer")
-    C_PARTNUMBER__FIELD_NAME: Final[WrapperField] = WrapperField("C_PartNumber", FieldType.STRING, display_name="Part Number")
-    C_VALIDATED__FIELD_NAME: Final[WrapperField] = WrapperField("C_Validated", FieldType.BOOLEAN, display_name="Validated")
-    CREATEDBY__FIELD_NAME: Final[WrapperField] = WrapperField("CreatedBy", FieldType.STRING, display_name="Created By")
-    DATARECORDNAME__FIELD_NAME: Final[WrapperField] = WrapperField("DataRecordName", FieldType.IDENTIFIER, display_name="ID")
-    DATECREATED__FIELD_NAME: Final[WrapperField] = WrapperField("DateCreated", FieldType.DATE, display_name="Date Created")
-    VELOXLASTMODIFIEDBY__FIELD_NAME: Final[WrapperField] = WrapperField("VeloxLastModifiedBy", FieldType.STRING, display_name="Last Modified By")
-    VELOXLASTMODIFIEDDATE__FIELD_NAME: Final[WrapperField] = WrapperField("VeloxLastModifiedDate", FieldType.DATE, display_name="Last Modified Date")
-
-    @classmethod
-    def get_wrapper_data_type_name(cls):
-        return cls.DATA_TYPE_NAME
-
-    def set_C_ConsumableName_field(self, value: Optional[str]):
-        """
-        Set data field with field name 'C_ConsumableName' on this record model
-        """
-        self.set_field_value(self.C_CONSUMABLENAME__FIELD_NAME.field_name, value)
-
-    def get_C_ConsumableName_field(self) -> Optional[str]:
-        """
-        Get data field value with field name 'C_ConsumableName' from this record model
-        """
-        return self.get_field_value(self.C_CONSUMABLENAME__FIELD_NAME.field_name)
-
-    def set_C_ConsumableType_field(self, value: Optional[str]):
-        """
-        Set data field with field name 'C_ConsumableType' on this record model
-        """
-        self.set_field_value(self.C_CONSUMABLETYPE__FIELD_NAME.field_name, value)
-
-    def get_C_ConsumableType_field(self) -> Optional[str]:
-        """
-        Get data field value with field name 'C_ConsumableType' from this record model
-        """
-        return self.get_field_value(self.C_CONSUMABLETYPE__FIELD_NAME.field_name)
-
-    def set_C_ExpirationDate_field(self, value: Optional[int]):
-        """
-        Set data field with field name 'C_ExpirationDate' on this record model
-        """
-        self.set_field_value(self.C_EXPIRATIONDATE__FIELD_NAME.field_name, value)
-
-    def get_C_ExpirationDate_field(self) -> Optional[int]:
-        """
-        Get data field value with field name 'C_ExpirationDate' from this record model
-        """
-        return self.get_field_value(self.C_EXPIRATIONDATE__FIELD_NAME.field_name)
-
-    def set_C_Expired_field(self, value: Optional[bool]):
-        """
-        Set data field with field name 'C_Expired' on this record model
-        """
-        self.set_field_value(self.C_EXPIRED__FIELD_NAME.field_name, value)
-
-    def get_C_Expired_field(self) -> Optional[bool]:
-        """
-        Get data field value with field name 'C_Expired' from this record model
-        """
-        return self.get_field_value(self.C_EXPIRED__FIELD_NAME.field_name)
-
-    def set_C_LotNumber_field(self, value: Optional[str]):
-        """
-        Set data field with field name 'C_LotNumber' on this record model
-        """
-        self.set_field_value(self.C_LOTNUMBER__FIELD_NAME.field_name, value)
-
-    def get_C_LotNumber_field(self) -> Optional[str]:
-        """
-        Get data field value with field name 'C_LotNumber' from this record model
-        """
-        return self.get_field_value(self.C_LOTNUMBER__FIELD_NAME.field_name)
-
-    def set_C_Manufacturer_field(self, value: Optional[str]):
-        """
-        Set data field with field name 'C_Manufacturer' on this record model
-        """
-        self.set_field_value(self.C_MANUFACTURER__FIELD_NAME.field_name, value)
-
-    def get_C_Manufacturer_field(self) -> Optional[str]:
-        """
-        Get data field value with field name 'C_Manufacturer' from this record model
-        """
-        return self.get_field_value(self.C_MANUFACTURER__FIELD_NAME.field_name)
-
-    def set_C_PartNumber_field(self, value: Optional[str]):
-        """
-        Set data field with field name 'C_PartNumber' on this record model
-        """
-        self.set_field_value(self.C_PARTNUMBER__FIELD_NAME.field_name, value)
-
-    def get_C_PartNumber_field(self) -> Optional[str]:
-        """
-        Get data field value with field name 'C_PartNumber' from this record model
-        """
-        return self.get_field_value(self.C_PARTNUMBER__FIELD_NAME.field_name)
-
-    def set_C_Validated_field(self, value: Optional[bool]):
-        """
-        Set data field with field name 'C_Validated' on this record model
-        """
-        self.set_field_value(self.C_VALIDATED__FIELD_NAME.field_name, value)
-
-    def get_C_Validated_field(self) -> Optional[bool]:
-        """
-        Get data field value with field name 'C_Validated' from this record model
-        """
-        return self.get_field_value(self.C_VALIDATED__FIELD_NAME.field_name)
-
-    def get_CreatedBy_field(self) -> Optional[str]:
-        """
-        Get data field value with field name 'CreatedBy' from this record model
-        """
-        return self.get_field_value(self.CREATEDBY__FIELD_NAME.field_name)
-
-    def get_DataRecordName_field(self) -> Optional[str]:
-        """
-        Get data field value with field name 'DataRecordName' from this record model
-        """
-        return self.get_field_value(self.DATARECORDNAME__FIELD_NAME.field_name)
-
-    def get_DateCreated_field(self) -> Optional[int]:
-        """
-        Get data field value with field name 'DateCreated' from this record model
-        """
-        return self.get_field_value(self.DATECREATED__FIELD_NAME.field_name)
-
-    def get_VeloxLastModifiedBy_field(self) -> Optional[str]:
-        """
-        Get data field value with field name 'VeloxLastModifiedBy' from this record model
-        """
-        return self.get_field_value(self.VELOXLASTMODIFIEDBY__FIELD_NAME.field_name)
-
-    def get_VeloxLastModifiedDate_field(self) -> Optional[int]:
-        """
-        Get data field value with field name 'VeloxLastModifiedDate' from this record model
-        """
-        return self.get_field_value(self.VELOXLASTMODIFIEDDATE__FIELD_NAME.field_name)
-
-
-class C_VectorPartModel(WrappedRecordModel):
-    """
-    Auto-Generated Record Model Wrapper for data type C_VectorPart
-    Data Type Display Name: Vector Part (Vector Parts)
-    Fields: C_ConsumableName, C_ConsumableType, C_Manufacturer, C_PartNumber, C_QuantityOnHand, C_QuantityPerItem, C_ReorderLevelQuantity, C_Units, C_Vendor, CreatedBy, DataRecordName, DateCreated, VeloxLastModifiedBy, VeloxLastModifiedDate
-    """
-    DATA_TYPE_NAME: Final[str] = 'C_VectorPart'
-    DISPLAY_NAME: Final[str] = "Vector Part"
-    PLURAL_DISPLAY_NAME: Final[str] = "Vector Parts"
-    C_CONSUMABLENAME__FIELD_NAME: Final[WrapperField] = WrapperField("C_ConsumableName", FieldType.STRING, display_name="Vector Name")
-    C_CONSUMABLETYPE__FIELD_NAME: Final[WrapperField] = WrapperField("C_ConsumableType", FieldType.SELECTION, display_name="Vector Subtype")
-    C_MANUFACTURER__FIELD_NAME: Final[WrapperField] = WrapperField("C_Manufacturer", FieldType.STRING, display_name="Manufacturer")
-    C_PARTNUMBER__FIELD_NAME: Final[WrapperField] = WrapperField("C_PartNumber", FieldType.STRING, display_name="Part Number")
-    C_QUANTITYONHAND__FIELD_NAME: Final[WrapperField] = WrapperField("C_QuantityOnHand", FieldType.DOUBLE, display_name="Quantity / Volume On Hand")
-    C_QUANTITYPERITEM__FIELD_NAME: Final[WrapperField] = WrapperField("C_QuantityPerItem", FieldType.DOUBLE, display_name="Quantity / Volume Per Item")
-    C_REORDERLEVELQUANTITY__FIELD_NAME: Final[WrapperField] = WrapperField("C_ReorderLevelQuantity", FieldType.DOUBLE, display_name="Reorder Level Quantity")
-    C_UNITS__FIELD_NAME: Final[WrapperField] = WrapperField("C_Units", FieldType.PICKLIST, display_name="Units")
-    C_VENDOR__FIELD_NAME: Final[WrapperField] = WrapperField("C_Vendor", FieldType.SELECTION, display_name="Vendor")
-    CREATEDBY__FIELD_NAME: Final[WrapperField] = WrapperField("CreatedBy", FieldType.STRING, display_name="Created By")
-    DATARECORDNAME__FIELD_NAME: Final[WrapperField] = WrapperField("DataRecordName", FieldType.IDENTIFIER, display_name="ID")
-    DATECREATED__FIELD_NAME: Final[WrapperField] = WrapperField("DateCreated", FieldType.DATE, display_name="Date Created")
-    VELOXLASTMODIFIEDBY__FIELD_NAME: Final[WrapperField] = WrapperField("VeloxLastModifiedBy", FieldType.STRING, display_name="Last Modified By")
-    VELOXLASTMODIFIEDDATE__FIELD_NAME: Final[WrapperField] = WrapperField("VeloxLastModifiedDate", FieldType.DATE, display_name="Last Modified Date")
-
-    @classmethod
-    def get_wrapper_data_type_name(cls):
-        return cls.DATA_TYPE_NAME
-
-    def set_C_ConsumableName_field(self, value: Optional[str]):
-        """
-        Set data field with field name 'C_ConsumableName' on this record model
-        """
-        self.set_field_value(self.C_CONSUMABLENAME__FIELD_NAME.field_name, value)
-
-    def get_C_ConsumableName_field(self) -> Optional[str]:
-        """
-        Get data field value with field name 'C_ConsumableName' from this record model
-        """
-        return self.get_field_value(self.C_CONSUMABLENAME__FIELD_NAME.field_name)
-
-    def set_C_ConsumableType_field(self, value: Optional[str]):
-        """
-        Set data field with field name 'C_ConsumableType' on this record model
-        """
-        self.set_field_value(self.C_CONSUMABLETYPE__FIELD_NAME.field_name, value)
-
-    def get_C_ConsumableType_field(self) -> Optional[str]:
-        """
-        Get data field value with field name 'C_ConsumableType' from this record model
-        """
-        return self.get_field_value(self.C_CONSUMABLETYPE__FIELD_NAME.field_name)
-
-    def set_C_Manufacturer_field(self, value: Optional[str]):
-        """
-        Set data field with field name 'C_Manufacturer' on this record model
-        """
-        self.set_field_value(self.C_MANUFACTURER__FIELD_NAME.field_name, value)
-
-    def get_C_Manufacturer_field(self) -> Optional[str]:
-        """
-        Get data field value with field name 'C_Manufacturer' from this record model
-        """
-        return self.get_field_value(self.C_MANUFACTURER__FIELD_NAME.field_name)
-
-    def set_C_PartNumber_field(self, value: Optional[str]):
-        """
-        Set data field with field name 'C_PartNumber' on this record model
-        """
-        self.set_field_value(self.C_PARTNUMBER__FIELD_NAME.field_name, value)
-
-    def get_C_PartNumber_field(self) -> Optional[str]:
-        """
-        Get data field value with field name 'C_PartNumber' from this record model
-        """
-        return self.get_field_value(self.C_PARTNUMBER__FIELD_NAME.field_name)
-
-    def set_C_QuantityOnHand_field(self, value: Optional[float]):
-        """
-        Set data field with field name 'C_QuantityOnHand' on this record model
-        """
-        self.set_field_value(self.C_QUANTITYONHAND__FIELD_NAME.field_name, value)
-
-    def get_C_QuantityOnHand_field(self) -> Optional[float]:
-        """
-        Get data field value with field name 'C_QuantityOnHand' from this record model
-        """
-        return self.get_field_value(self.C_QUANTITYONHAND__FIELD_NAME.field_name)
-
-    def set_C_QuantityPerItem_field(self, value: Optional[float]):
-        """
-        Set data field with field name 'C_QuantityPerItem' on this record model
-        """
-        self.set_field_value(self.C_QUANTITYPERITEM__FIELD_NAME.field_name, value)
-
-    def get_C_QuantityPerItem_field(self) -> Optional[float]:
-        """
-        Get data field value with field name 'C_QuantityPerItem' from this record model
-        """
-        return self.get_field_value(self.C_QUANTITYPERITEM__FIELD_NAME.field_name)
-
-    def set_C_ReorderLevelQuantity_field(self, value: Optional[float]):
-        """
-        Set data field with field name 'C_ReorderLevelQuantity' on this record model
-        """
-        self.set_field_value(self.C_REORDERLEVELQUANTITY__FIELD_NAME.field_name, value)
-
-    def get_C_ReorderLevelQuantity_field(self) -> Optional[float]:
-        """
-        Get data field value with field name 'C_ReorderLevelQuantity' from this record model
-        """
-        return self.get_field_value(self.C_REORDERLEVELQUANTITY__FIELD_NAME.field_name)
-
-    def set_C_Units_field(self, value: Optional[str]):
-        """
-        Set data field with field name 'C_Units' on this record model
-        """
-        self.set_field_value(self.C_UNITS__FIELD_NAME.field_name, value)
-
-    def get_C_Units_field(self) -> Optional[str]:
-        """
-        Get data field value with field name 'C_Units' from this record model
-        """
-        return self.get_field_value(self.C_UNITS__FIELD_NAME.field_name)
-
-    def set_C_Vendor_field(self, value: Optional[str]):
-        """
-        Set data field with field name 'C_Vendor' on this record model
-        """
-        self.set_field_value(self.C_VENDOR__FIELD_NAME.field_name, value)
-
-    def get_C_Vendor_field(self) -> Optional[str]:
-        """
-        Get data field value with field name 'C_Vendor' from this record model
-        """
-        return self.get_field_value(self.C_VENDOR__FIELD_NAME.field_name)
+        return self.get_field_value(self.C_USER__FIELD_NAME.field_name)
 
     def get_CreatedBy_field(self) -> Optional[str]:
         """
@@ -10649,7 +10392,7 @@ class DNAPartModel(WrappedRecordModel):
     """
     Auto-Generated Record Model Wrapper for data type DNAPart
     Data Type Display Name: DNA Part (DNA Parts)
-    Fields: CreatedBy, DataRecordName, DateCreated, Description, EditLock, GenbankAttachment, GenebankAttachment, IsCircular, Name, PartNumber, QuantityOnHand, Sequence, SequenceHash, SequenceType, SourcePart, VeloxLastModifiedBy, VeloxLastModifiedDate, igBlastType
+    Fields: C_CVTRequest.C_NoOfSamples, C_CVTRequest.C_Status, C_CVTRequest.CreatedBy, C_CVTRequest.DataRecordName, C_CVTRequest.DateCreated, C_CVTRequest.RecordId, C_CVTRequest.VeloxLastModifiedBy, C_CVTRequest.VeloxLastModifiedDate, CreatedBy, DataRecordName, DateCreated, Description, EditLock, GenbankAttachment, GenebankAttachment, IsCircular, Name, PartNumber, QuantityOnHand, Sequence, SequenceHash, SequenceType, SourcePart, VeloxLastModifiedBy, VeloxLastModifiedDate, igBlastType
     <-- VIRTUAL ENTITY DATA TYPE -->
 
 Module: Sequence Viewer
@@ -10657,6 +10400,14 @@ Module: Sequence Viewer
     DATA_TYPE_NAME: Final[str] = 'DNAPart'
     DISPLAY_NAME: Final[str] = "DNA Part"
     PLURAL_DISPLAY_NAME: Final[str] = "DNA Parts"
+    C_CVTREQUEST_EXT_C_NOOFSAMPLES__FIELD_NAME: Final[WrapperField] = WrapperField("C_CVTRequest.C_NoOfSamples", FieldType.INTEGER, display_name="Samples #")
+    C_CVTREQUEST_EXT_C_STATUS__FIELD_NAME: Final[WrapperField] = WrapperField("C_CVTRequest.C_Status", FieldType.PICKLIST, display_name="Status")
+    C_CVTREQUEST_EXT_CREATEDBY__FIELD_NAME: Final[WrapperField] = WrapperField("C_CVTRequest.CreatedBy", FieldType.STRING, display_name="Created By")
+    C_CVTREQUEST_EXT_DATARECORDNAME__FIELD_NAME: Final[WrapperField] = WrapperField("C_CVTRequest.DataRecordName", FieldType.IDENTIFIER, display_name="ID")
+    C_CVTREQUEST_EXT_DATECREATED__FIELD_NAME: Final[WrapperField] = WrapperField("C_CVTRequest.DateCreated", FieldType.DATE, display_name="Date Created")
+    C_CVTREQUEST_EXT_RECORDID__FIELD_NAME: Final[WrapperField] = WrapperField("C_CVTRequest.RecordId", FieldType.LONG, display_name="Record ID")
+    C_CVTREQUEST_EXT_VELOXLASTMODIFIEDBY__FIELD_NAME: Final[WrapperField] = WrapperField("C_CVTRequest.VeloxLastModifiedBy", FieldType.STRING, display_name="Last Modified By")
+    C_CVTREQUEST_EXT_VELOXLASTMODIFIEDDATE__FIELD_NAME: Final[WrapperField] = WrapperField("C_CVTRequest.VeloxLastModifiedDate", FieldType.DATE, display_name="Last Modified Date")
     CREATEDBY__FIELD_NAME: Final[WrapperField] = WrapperField("CreatedBy", FieldType.STRING, display_name="Created By")
     DATARECORDNAME__FIELD_NAME: Final[WrapperField] = WrapperField("DataRecordName", FieldType.IDENTIFIER, display_name="ID")
     DATECREATED__FIELD_NAME: Final[WrapperField] = WrapperField("DateCreated", FieldType.DATE, display_name="Date Created")
@@ -10679,6 +10430,66 @@ Module: Sequence Viewer
     @classmethod
     def get_wrapper_data_type_name(cls):
         return cls.DATA_TYPE_NAME
+
+    def set_C_CVTRequestC_NoOfSamples_field(self, value: Optional[int]):
+        """
+        Set data field with field name 'C_CVTRequest.C_NoOfSamples' on this record model
+        """
+        self.set_field_value(self.C_CVTREQUEST_EXT_C_NOOFSAMPLES__FIELD_NAME.field_name, value)
+
+    def get_C_CVTRequestC_NoOfSamples_field(self) -> Optional[int]:
+        """
+        Get data field value with field name 'C_CVTRequest.C_NoOfSamples' from this record model
+        """
+        return self.get_field_value(self.C_CVTREQUEST_EXT_C_NOOFSAMPLES__FIELD_NAME.field_name)
+
+    def set_C_CVTRequestC_Status_field(self, value: Optional[str]):
+        """
+        Set data field with field name 'C_CVTRequest.C_Status' on this record model
+        """
+        self.set_field_value(self.C_CVTREQUEST_EXT_C_STATUS__FIELD_NAME.field_name, value)
+
+    def get_C_CVTRequestC_Status_field(self) -> Optional[str]:
+        """
+        Get data field value with field name 'C_CVTRequest.C_Status' from this record model
+        """
+        return self.get_field_value(self.C_CVTREQUEST_EXT_C_STATUS__FIELD_NAME.field_name)
+
+    def get_C_CVTRequestCreatedBy_field(self) -> Optional[str]:
+        """
+        Get data field value with field name 'C_CVTRequest.CreatedBy' from this record model
+        """
+        return self.get_field_value(self.C_CVTREQUEST_EXT_CREATEDBY__FIELD_NAME.field_name)
+
+    def get_C_CVTRequestDataRecordName_field(self) -> Optional[str]:
+        """
+        Get data field value with field name 'C_CVTRequest.DataRecordName' from this record model
+        """
+        return self.get_field_value(self.C_CVTREQUEST_EXT_DATARECORDNAME__FIELD_NAME.field_name)
+
+    def get_C_CVTRequestDateCreated_field(self) -> Optional[int]:
+        """
+        Get data field value with field name 'C_CVTRequest.DateCreated' from this record model
+        """
+        return self.get_field_value(self.C_CVTREQUEST_EXT_DATECREATED__FIELD_NAME.field_name)
+
+    def get_C_CVTRequestRecordId_field(self) -> Optional[int]:
+        """
+        Get data field value with field name 'C_CVTRequest.RecordId' from this record model
+        """
+        return self.get_field_value(self.C_CVTREQUEST_EXT_RECORDID__FIELD_NAME.field_name)
+
+    def get_C_CVTRequestVeloxLastModifiedBy_field(self) -> Optional[str]:
+        """
+        Get data field value with field name 'C_CVTRequest.VeloxLastModifiedBy' from this record model
+        """
+        return self.get_field_value(self.C_CVTREQUEST_EXT_VELOXLASTMODIFIEDBY__FIELD_NAME.field_name)
+
+    def get_C_CVTRequestVeloxLastModifiedDate_field(self) -> Optional[int]:
+        """
+        Get data field value with field name 'C_CVTRequest.VeloxLastModifiedDate' from this record model
+        """
+        return self.get_field_value(self.C_CVTREQUEST_EXT_VELOXLASTMODIFIEDDATE__FIELD_NAME.field_name)
 
     def get_CreatedBy_field(self) -> Optional[str]:
         """
@@ -11989,10 +11800,6 @@ class ELNExperimentDetailModel(WrappedRecordModel):
     ACTUALAMOUNT__FIELD_NAME: Final[WrapperField] = WrapperField("ActualAmount", FieldType.DOUBLE, display_name="Mass")
     ACTUALUNITS__FIELD_NAME: Final[WrapperField] = WrapperField("ActualUnits", FieldType.PICKLIST, display_name="Mass Units")
     CASNUMBER__FIELD_NAME: Final[WrapperField] = WrapperField("CASNumber", FieldType.STRING, display_name="CAS Number")
-    C_VECTORPARTCONSUMABLELOT__FIELD_NAME: Final[WrapperField] = WrapperField("C_VectorPartConsumableLot", FieldType.SELECTION, display_name="Lot Number")
-    C_VECTORPARTCONSUMABLENAME__FIELD_NAME: Final[WrapperField] = WrapperField("C_VectorPartConsumableName", FieldType.SELECTION, display_name="Vector Name")
-    C_VECTORPARTCONSUMABLEQTY__FIELD_NAME: Final[WrapperField] = WrapperField("C_VectorPartConsumableQty", FieldType.DOUBLE, display_name="Quantity Used")
-    C_VECTORPARTCONSUMABLETYPE__FIELD_NAME: Final[WrapperField] = WrapperField("C_VectorPartConsumableType", FieldType.SELECTION, display_name="Vector Subtype")
     CANEDITRUNMODE__FIELD_NAME: Final[WrapperField] = WrapperField("CanEditRunMode", FieldType.BOOLEAN, display_name="Can Edit Run Mode")
     CHEMCONCENTRATION__FIELD_NAME: Final[WrapperField] = WrapperField("ChemConcentration", FieldType.STRING, display_name="Purity/Conc")
     CI95BOUNDS__FIELD_NAME: Final[WrapperField] = WrapperField("Ci95Bounds", FieldType.DOUBLE, display_name="CI 95% Bounds")
@@ -12124,54 +11931,6 @@ class ELNExperimentDetailModel(WrappedRecordModel):
         Get data field value with field name 'CASNumber' from this record model
         """
         return self.get_field_value(self.CASNUMBER__FIELD_NAME.field_name)
-
-    def set_C_VectorPartConsumableLot_field(self, value: Optional[str]):
-        """
-        Set data field with field name 'C_VectorPartConsumableLot' on this record model
-        """
-        self.set_field_value(self.C_VECTORPARTCONSUMABLELOT__FIELD_NAME.field_name, value)
-
-    def get_C_VectorPartConsumableLot_field(self) -> Optional[str]:
-        """
-        Get data field value with field name 'C_VectorPartConsumableLot' from this record model
-        """
-        return self.get_field_value(self.C_VECTORPARTCONSUMABLELOT__FIELD_NAME.field_name)
-
-    def set_C_VectorPartConsumableName_field(self, value: Optional[str]):
-        """
-        Set data field with field name 'C_VectorPartConsumableName' on this record model
-        """
-        self.set_field_value(self.C_VECTORPARTCONSUMABLENAME__FIELD_NAME.field_name, value)
-
-    def get_C_VectorPartConsumableName_field(self) -> Optional[str]:
-        """
-        Get data field value with field name 'C_VectorPartConsumableName' from this record model
-        """
-        return self.get_field_value(self.C_VECTORPARTCONSUMABLENAME__FIELD_NAME.field_name)
-
-    def set_C_VectorPartConsumableQty_field(self, value: Optional[float]):
-        """
-        Set data field with field name 'C_VectorPartConsumableQty' on this record model
-        """
-        self.set_field_value(self.C_VECTORPARTCONSUMABLEQTY__FIELD_NAME.field_name, value)
-
-    def get_C_VectorPartConsumableQty_field(self) -> Optional[float]:
-        """
-        Get data field value with field name 'C_VectorPartConsumableQty' from this record model
-        """
-        return self.get_field_value(self.C_VECTORPARTCONSUMABLEQTY__FIELD_NAME.field_name)
-
-    def set_C_VectorPartConsumableType_field(self, value: Optional[str]):
-        """
-        Set data field with field name 'C_VectorPartConsumableType' on this record model
-        """
-        self.set_field_value(self.C_VECTORPARTCONSUMABLETYPE__FIELD_NAME.field_name, value)
-
-    def get_C_VectorPartConsumableType_field(self) -> Optional[str]:
-        """
-        Get data field value with field name 'C_VectorPartConsumableType' from this record model
-        """
-        return self.get_field_value(self.C_VECTORPARTCONSUMABLETYPE__FIELD_NAME.field_name)
 
     def set_CanEditRunMode_field(self, value: Optional[bool]):
         """
@@ -48838,7 +48597,7 @@ class RequestModel(WrappedRecordModel):
     """
     Auto-Generated Record Model Wrapper for data type Request
     Data Type Display Name: Request (Requests)
-    Fields: AddSamplesMethod, ArePoolsIncluded, AreSamplesLibraries, C_ChargeProjectOrAward, C_CloneAndVectorRequest.C_RequestName, C_CloneAndVectorRequest.C_Status, C_CloneAndVectorRequest.CreatedBy, C_CloneAndVectorRequest.DataRecordName, C_CloneAndVectorRequest.DateCreated, C_CloneAndVectorRequest.RecordId, C_CloneAndVectorRequest.VeloxLastModifiedBy, C_CloneAndVectorRequest.VeloxLastModifiedDate, C_LibraryServiceRequest.C_Author, C_LibraryServiceRequest.C_BookTitle, C_LibraryServiceRequest.C_ChapterTitle, C_LibraryServiceRequest.C_Edition, C_LibraryServiceRequest.C_URL, C_LibraryServiceRequest.CreatedBy, C_LibraryServiceRequest.DataRecordName, C_LibraryServiceRequest.DateCreated, C_LibraryServiceRequest.RecordId, C_LibraryServiceRequest.VeloxLastModifiedBy, C_LibraryServiceRequest.VeloxLastModifiedDate, C_RequestType, CompletedDate, CreatedBy, DataRecordName, DateCreated, InProcessDate, NumberOfSamples, PartiallyReceivedDate, ReceivedDate, RequestApproved, RequestDate, RequestId, RequestName, RequesterEmail, RequesterName, RequesterOrganization, RequesterPhoneNumber, SampleRegistrationLink, Status, TATFromInProcessing, TATFromReceiving, VeloxLastModifiedBy, VeloxLastModifiedDate
+    Fields: AddSamplesMethod, ArePoolsIncluded, AreSamplesLibraries, C_BillableAccount, C_CVTRequest.C_NoOfSamples, C_CVTRequest.C_Status, C_CVTRequest.CreatedBy, C_CVTRequest.DataRecordName, C_CVTRequest.DateCreated, C_CVTRequest.RecordId, C_CVTRequest.VeloxLastModifiedBy, C_CVTRequest.VeloxLastModifiedDate, C_Department, C_NGSRequest.C_MolBioTechnician, C_NGSRequest.C_PoolingInstructions, C_NGSRequest.C_ReadLength, C_NGSRequest.C_SpecialInstruction, C_NGSRequest.CreatedBy, C_NGSRequest.DataRecordName, C_NGSRequest.DateCreated, C_NGSRequest.RecordId, C_NGSRequest.VeloxLastModifiedBy, C_NGSRequest.VeloxLastModifiedDate, C_RequestStatus, C_RequestType, C_RequestedFor, C_ScientificProjects, CompletedDate, CreatedBy, DataRecordName, DateCreated, InProcessDate, NumberOfSamples, PartiallyReceivedDate, ReceivedDate, RequestApproved, RequestDate, RequestId, RequestName, RequesterEmail, RequesterName, RequesterOrganization, RequesterPhoneNumber, SampleRegistrationLink, Status, TATFromInProcessing, TATFromReceiving, VeloxLastModifiedBy, VeloxLastModifiedDate
     Module: General, QC LIMS, Process Tracking, and Request Portal
     """
     DATA_TYPE_NAME: Final[str] = 'Request'
@@ -48847,27 +48606,30 @@ class RequestModel(WrappedRecordModel):
     ADDSAMPLESMETHOD__FIELD_NAME: Final[WrapperField] = WrapperField("AddSamplesMethod", FieldType.PICKLIST, display_name="Sample Creation or Selection Method")
     AREPOOLSINCLUDED__FIELD_NAME: Final[WrapperField] = WrapperField("ArePoolsIncluded", FieldType.BOOLEAN, display_name="Are Pools Included?")
     ARESAMPLESLIBRARIES__FIELD_NAME: Final[WrapperField] = WrapperField("AreSamplesLibraries", FieldType.BOOLEAN, display_name="Are Samples Libraries?")
-    C_CHARGEPROJECTORAWARD__FIELD_NAME: Final[WrapperField] = WrapperField("C_ChargeProjectOrAward", FieldType.PICKLIST, display_name="Charge Project / Award")
-    C_CLONEANDVECTORREQUEST_EXT_C_REQUESTNAME__FIELD_NAME: Final[WrapperField] = WrapperField("C_CloneAndVectorRequest.C_RequestName", FieldType.STRING, display_name="Request Name")
-    C_CLONEANDVECTORREQUEST_EXT_C_STATUS__FIELD_NAME: Final[WrapperField] = WrapperField("C_CloneAndVectorRequest.C_Status", FieldType.PICKLIST, display_name="Status")
-    C_CLONEANDVECTORREQUEST_EXT_CREATEDBY__FIELD_NAME: Final[WrapperField] = WrapperField("C_CloneAndVectorRequest.CreatedBy", FieldType.STRING, display_name="Created By")
-    C_CLONEANDVECTORREQUEST_EXT_DATARECORDNAME__FIELD_NAME: Final[WrapperField] = WrapperField("C_CloneAndVectorRequest.DataRecordName", FieldType.IDENTIFIER, display_name="ID")
-    C_CLONEANDVECTORREQUEST_EXT_DATECREATED__FIELD_NAME: Final[WrapperField] = WrapperField("C_CloneAndVectorRequest.DateCreated", FieldType.DATE, display_name="Date Created")
-    C_CLONEANDVECTORREQUEST_EXT_RECORDID__FIELD_NAME: Final[WrapperField] = WrapperField("C_CloneAndVectorRequest.RecordId", FieldType.LONG, display_name="Record ID")
-    C_CLONEANDVECTORREQUEST_EXT_VELOXLASTMODIFIEDBY__FIELD_NAME: Final[WrapperField] = WrapperField("C_CloneAndVectorRequest.VeloxLastModifiedBy", FieldType.STRING, display_name="Last Modified By")
-    C_CLONEANDVECTORREQUEST_EXT_VELOXLASTMODIFIEDDATE__FIELD_NAME: Final[WrapperField] = WrapperField("C_CloneAndVectorRequest.VeloxLastModifiedDate", FieldType.DATE, display_name="Last Modified Date")
-    C_LIBRARYSERVICEREQUEST_EXT_C_AUTHOR__FIELD_NAME: Final[WrapperField] = WrapperField("C_LibraryServiceRequest.C_Author", FieldType.STRING, display_name="Author")
-    C_LIBRARYSERVICEREQUEST_EXT_C_BOOKTITLE__FIELD_NAME: Final[WrapperField] = WrapperField("C_LibraryServiceRequest.C_BookTitle", FieldType.STRING, display_name="Book Title")
-    C_LIBRARYSERVICEREQUEST_EXT_C_CHAPTERTITLE__FIELD_NAME: Final[WrapperField] = WrapperField("C_LibraryServiceRequest.C_ChapterTitle", FieldType.STRING, display_name="Chapter Title")
-    C_LIBRARYSERVICEREQUEST_EXT_C_EDITION__FIELD_NAME: Final[WrapperField] = WrapperField("C_LibraryServiceRequest.C_Edition", FieldType.STRING, display_name="Edition")
-    C_LIBRARYSERVICEREQUEST_EXT_C_URL__FIELD_NAME: Final[WrapperField] = WrapperField("C_LibraryServiceRequest.C_URL", FieldType.STRING, display_name="URL/Link")
-    C_LIBRARYSERVICEREQUEST_EXT_CREATEDBY__FIELD_NAME: Final[WrapperField] = WrapperField("C_LibraryServiceRequest.CreatedBy", FieldType.STRING, display_name="Created By")
-    C_LIBRARYSERVICEREQUEST_EXT_DATARECORDNAME__FIELD_NAME: Final[WrapperField] = WrapperField("C_LibraryServiceRequest.DataRecordName", FieldType.IDENTIFIER, display_name="ID")
-    C_LIBRARYSERVICEREQUEST_EXT_DATECREATED__FIELD_NAME: Final[WrapperField] = WrapperField("C_LibraryServiceRequest.DateCreated", FieldType.DATE, display_name="Date Created")
-    C_LIBRARYSERVICEREQUEST_EXT_RECORDID__FIELD_NAME: Final[WrapperField] = WrapperField("C_LibraryServiceRequest.RecordId", FieldType.LONG, display_name="Record ID")
-    C_LIBRARYSERVICEREQUEST_EXT_VELOXLASTMODIFIEDBY__FIELD_NAME: Final[WrapperField] = WrapperField("C_LibraryServiceRequest.VeloxLastModifiedBy", FieldType.STRING, display_name="Last Modified By")
-    C_LIBRARYSERVICEREQUEST_EXT_VELOXLASTMODIFIEDDATE__FIELD_NAME: Final[WrapperField] = WrapperField("C_LibraryServiceRequest.VeloxLastModifiedDate", FieldType.DATE, display_name="Last Modified Date")
+    C_BILLABLEACCOUNT__FIELD_NAME: Final[WrapperField] = WrapperField("C_BillableAccount", FieldType.SELECTION, display_name="Project/Award")
+    C_CVTREQUEST_EXT_C_NOOFSAMPLES__FIELD_NAME: Final[WrapperField] = WrapperField("C_CVTRequest.C_NoOfSamples", FieldType.INTEGER, display_name="Samples #")
+    C_CVTREQUEST_EXT_C_STATUS__FIELD_NAME: Final[WrapperField] = WrapperField("C_CVTRequest.C_Status", FieldType.PICKLIST, display_name="Status")
+    C_CVTREQUEST_EXT_CREATEDBY__FIELD_NAME: Final[WrapperField] = WrapperField("C_CVTRequest.CreatedBy", FieldType.STRING, display_name="Created By")
+    C_CVTREQUEST_EXT_DATARECORDNAME__FIELD_NAME: Final[WrapperField] = WrapperField("C_CVTRequest.DataRecordName", FieldType.IDENTIFIER, display_name="ID")
+    C_CVTREQUEST_EXT_DATECREATED__FIELD_NAME: Final[WrapperField] = WrapperField("C_CVTRequest.DateCreated", FieldType.DATE, display_name="Date Created")
+    C_CVTREQUEST_EXT_RECORDID__FIELD_NAME: Final[WrapperField] = WrapperField("C_CVTRequest.RecordId", FieldType.LONG, display_name="Record ID")
+    C_CVTREQUEST_EXT_VELOXLASTMODIFIEDBY__FIELD_NAME: Final[WrapperField] = WrapperField("C_CVTRequest.VeloxLastModifiedBy", FieldType.STRING, display_name="Last Modified By")
+    C_CVTREQUEST_EXT_VELOXLASTMODIFIEDDATE__FIELD_NAME: Final[WrapperField] = WrapperField("C_CVTRequest.VeloxLastModifiedDate", FieldType.DATE, display_name="Last Modified Date")
+    C_DEPARTMENT__FIELD_NAME: Final[WrapperField] = WrapperField("C_Department", FieldType.SELECTION, display_name="Department")
+    C_NGSREQUEST_EXT_C_MOLBIOTECHNICIAN__FIELD_NAME: Final[WrapperField] = WrapperField("C_NGSRequest.C_MolBioTechnician", FieldType.SELECTION, display_name="Mol Bio Technician")
+    C_NGSREQUEST_EXT_C_POOLINGINSTRUCTIONS__FIELD_NAME: Final[WrapperField] = WrapperField("C_NGSRequest.C_PoolingInstructions", FieldType.STRING, display_name="Pooling Instructions")
+    C_NGSREQUEST_EXT_C_READLENGTH__FIELD_NAME: Final[WrapperField] = WrapperField("C_NGSRequest.C_ReadLength", FieldType.STRING, display_name="Read Length")
+    C_NGSREQUEST_EXT_C_SPECIALINSTRUCTION__FIELD_NAME: Final[WrapperField] = WrapperField("C_NGSRequest.C_SpecialInstruction", FieldType.STRING, display_name="Special Instruction")
+    C_NGSREQUEST_EXT_CREATEDBY__FIELD_NAME: Final[WrapperField] = WrapperField("C_NGSRequest.CreatedBy", FieldType.STRING, display_name="Created By")
+    C_NGSREQUEST_EXT_DATARECORDNAME__FIELD_NAME: Final[WrapperField] = WrapperField("C_NGSRequest.DataRecordName", FieldType.IDENTIFIER, display_name="ID")
+    C_NGSREQUEST_EXT_DATECREATED__FIELD_NAME: Final[WrapperField] = WrapperField("C_NGSRequest.DateCreated", FieldType.DATE, display_name="Date Created")
+    C_NGSREQUEST_EXT_RECORDID__FIELD_NAME: Final[WrapperField] = WrapperField("C_NGSRequest.RecordId", FieldType.LONG, display_name="Record ID")
+    C_NGSREQUEST_EXT_VELOXLASTMODIFIEDBY__FIELD_NAME: Final[WrapperField] = WrapperField("C_NGSRequest.VeloxLastModifiedBy", FieldType.STRING, display_name="Last Modified By")
+    C_NGSREQUEST_EXT_VELOXLASTMODIFIEDDATE__FIELD_NAME: Final[WrapperField] = WrapperField("C_NGSRequest.VeloxLastModifiedDate", FieldType.DATE, display_name="Last Modified Date")
+    C_REQUESTSTATUS__FIELD_NAME: Final[WrapperField] = WrapperField("C_RequestStatus", FieldType.PICKLIST, display_name="Request Status")
     C_REQUESTTYPE__FIELD_NAME: Final[WrapperField] = WrapperField("C_RequestType", FieldType.PICKLIST, display_name="Request Type")
+    C_REQUESTEDFOR__FIELD_NAME: Final[WrapperField] = WrapperField("C_RequestedFor", FieldType.SELECTION, display_name="Requested For")
+    C_SCIENTIFICPROJECTS__FIELD_NAME: Final[WrapperField] = WrapperField("C_ScientificProjects", FieldType.PICKLIST, display_name="Scientific Projects")
     COMPLETEDDATE__FIELD_NAME: Final[WrapperField] = WrapperField("CompletedDate", FieldType.DATE, display_name="Completed Date")
     CREATEDBY__FIELD_NAME: Final[WrapperField] = WrapperField("CreatedBy", FieldType.STRING, display_name="Created By")
     DATARECORDNAME__FIELD_NAME: Final[WrapperField] = WrapperField("DataRecordName", FieldType.IDENTIFIER, display_name="ID")
@@ -48879,7 +48641,7 @@ class RequestModel(WrappedRecordModel):
     REQUESTAPPROVED__FIELD_NAME: Final[WrapperField] = WrapperField("RequestApproved", FieldType.BOOLEAN, display_name="Request Approved")
     REQUESTDATE__FIELD_NAME: Final[WrapperField] = WrapperField("RequestDate", FieldType.DATE, display_name="Request Date")
     REQUESTID__FIELD_NAME: Final[WrapperField] = WrapperField("RequestId", FieldType.AUTO_ACCESSION, display_name="Request ID")
-    REQUESTNAME__FIELD_NAME: Final[WrapperField] = WrapperField("RequestName", FieldType.STRING, display_name="Request Name")
+    REQUESTNAME__FIELD_NAME: Final[WrapperField] = WrapperField("RequestName", FieldType.STRING, display_name="Request Title")
     REQUESTEREMAIL__FIELD_NAME: Final[WrapperField] = WrapperField("RequesterEmail", FieldType.STRING, display_name="Requester Email")
     REQUESTERNAME__FIELD_NAME: Final[WrapperField] = WrapperField("RequesterName", FieldType.STRING, display_name="Requester Name")
     REQUESTERORGANIZATION__FIELD_NAME: Final[WrapperField] = WrapperField("RequesterOrganization", FieldType.STRING, display_name="Requester Organization")
@@ -48931,173 +48693,185 @@ class RequestModel(WrappedRecordModel):
         """
         return self.get_field_value(self.ARESAMPLESLIBRARIES__FIELD_NAME.field_name)
 
-    def set_C_ChargeProjectOrAward_field(self, value: Optional[str]):
+    def set_C_BillableAccount_field(self, value: Optional[str]):
         """
-        Set data field with field name 'C_ChargeProjectOrAward' on this record model
+        Set data field with field name 'C_BillableAccount' on this record model
         """
-        self.set_field_value(self.C_CHARGEPROJECTORAWARD__FIELD_NAME.field_name, value)
+        self.set_field_value(self.C_BILLABLEACCOUNT__FIELD_NAME.field_name, value)
 
-    def get_C_ChargeProjectOrAward_field(self) -> Optional[str]:
+    def get_C_BillableAccount_field(self) -> Optional[str]:
         """
-        Get data field value with field name 'C_ChargeProjectOrAward' from this record model
+        Get data field value with field name 'C_BillableAccount' from this record model
         """
-        return self.get_field_value(self.C_CHARGEPROJECTORAWARD__FIELD_NAME.field_name)
+        return self.get_field_value(self.C_BILLABLEACCOUNT__FIELD_NAME.field_name)
 
-    def set_C_CloneAndVectorRequestC_RequestName_field(self, value: Optional[str]):
+    def set_C_CVTRequestC_NoOfSamples_field(self, value: Optional[int]):
         """
-        Set data field with field name 'C_CloneAndVectorRequest.C_RequestName' on this record model
+        Set data field with field name 'C_CVTRequest.C_NoOfSamples' on this record model
         """
-        self.set_field_value(self.C_CLONEANDVECTORREQUEST_EXT_C_REQUESTNAME__FIELD_NAME.field_name, value)
+        self.set_field_value(self.C_CVTREQUEST_EXT_C_NOOFSAMPLES__FIELD_NAME.field_name, value)
 
-    def get_C_CloneAndVectorRequestC_RequestName_field(self) -> Optional[str]:
+    def get_C_CVTRequestC_NoOfSamples_field(self) -> Optional[int]:
         """
-        Get data field value with field name 'C_CloneAndVectorRequest.C_RequestName' from this record model
+        Get data field value with field name 'C_CVTRequest.C_NoOfSamples' from this record model
         """
-        return self.get_field_value(self.C_CLONEANDVECTORREQUEST_EXT_C_REQUESTNAME__FIELD_NAME.field_name)
+        return self.get_field_value(self.C_CVTREQUEST_EXT_C_NOOFSAMPLES__FIELD_NAME.field_name)
 
-    def set_C_CloneAndVectorRequestC_Status_field(self, value: Optional[str]):
+    def set_C_CVTRequestC_Status_field(self, value: Optional[str]):
         """
-        Set data field with field name 'C_CloneAndVectorRequest.C_Status' on this record model
+        Set data field with field name 'C_CVTRequest.C_Status' on this record model
         """
-        self.set_field_value(self.C_CLONEANDVECTORREQUEST_EXT_C_STATUS__FIELD_NAME.field_name, value)
+        self.set_field_value(self.C_CVTREQUEST_EXT_C_STATUS__FIELD_NAME.field_name, value)
 
-    def get_C_CloneAndVectorRequestC_Status_field(self) -> Optional[str]:
+    def get_C_CVTRequestC_Status_field(self) -> Optional[str]:
         """
-        Get data field value with field name 'C_CloneAndVectorRequest.C_Status' from this record model
+        Get data field value with field name 'C_CVTRequest.C_Status' from this record model
         """
-        return self.get_field_value(self.C_CLONEANDVECTORREQUEST_EXT_C_STATUS__FIELD_NAME.field_name)
+        return self.get_field_value(self.C_CVTREQUEST_EXT_C_STATUS__FIELD_NAME.field_name)
 
-    def get_C_CloneAndVectorRequestCreatedBy_field(self) -> Optional[str]:
+    def get_C_CVTRequestCreatedBy_field(self) -> Optional[str]:
         """
-        Get data field value with field name 'C_CloneAndVectorRequest.CreatedBy' from this record model
+        Get data field value with field name 'C_CVTRequest.CreatedBy' from this record model
         """
-        return self.get_field_value(self.C_CLONEANDVECTORREQUEST_EXT_CREATEDBY__FIELD_NAME.field_name)
+        return self.get_field_value(self.C_CVTREQUEST_EXT_CREATEDBY__FIELD_NAME.field_name)
 
-    def get_C_CloneAndVectorRequestDataRecordName_field(self) -> Optional[str]:
+    def get_C_CVTRequestDataRecordName_field(self) -> Optional[str]:
         """
-        Get data field value with field name 'C_CloneAndVectorRequest.DataRecordName' from this record model
+        Get data field value with field name 'C_CVTRequest.DataRecordName' from this record model
         """
-        return self.get_field_value(self.C_CLONEANDVECTORREQUEST_EXT_DATARECORDNAME__FIELD_NAME.field_name)
+        return self.get_field_value(self.C_CVTREQUEST_EXT_DATARECORDNAME__FIELD_NAME.field_name)
 
-    def get_C_CloneAndVectorRequestDateCreated_field(self) -> Optional[int]:
+    def get_C_CVTRequestDateCreated_field(self) -> Optional[int]:
         """
-        Get data field value with field name 'C_CloneAndVectorRequest.DateCreated' from this record model
+        Get data field value with field name 'C_CVTRequest.DateCreated' from this record model
         """
-        return self.get_field_value(self.C_CLONEANDVECTORREQUEST_EXT_DATECREATED__FIELD_NAME.field_name)
+        return self.get_field_value(self.C_CVTREQUEST_EXT_DATECREATED__FIELD_NAME.field_name)
 
-    def get_C_CloneAndVectorRequestRecordId_field(self) -> Optional[int]:
+    def get_C_CVTRequestRecordId_field(self) -> Optional[int]:
         """
-        Get data field value with field name 'C_CloneAndVectorRequest.RecordId' from this record model
+        Get data field value with field name 'C_CVTRequest.RecordId' from this record model
         """
-        return self.get_field_value(self.C_CLONEANDVECTORREQUEST_EXT_RECORDID__FIELD_NAME.field_name)
+        return self.get_field_value(self.C_CVTREQUEST_EXT_RECORDID__FIELD_NAME.field_name)
 
-    def get_C_CloneAndVectorRequestVeloxLastModifiedBy_field(self) -> Optional[str]:
+    def get_C_CVTRequestVeloxLastModifiedBy_field(self) -> Optional[str]:
         """
-        Get data field value with field name 'C_CloneAndVectorRequest.VeloxLastModifiedBy' from this record model
+        Get data field value with field name 'C_CVTRequest.VeloxLastModifiedBy' from this record model
         """
-        return self.get_field_value(self.C_CLONEANDVECTORREQUEST_EXT_VELOXLASTMODIFIEDBY__FIELD_NAME.field_name)
+        return self.get_field_value(self.C_CVTREQUEST_EXT_VELOXLASTMODIFIEDBY__FIELD_NAME.field_name)
 
-    def get_C_CloneAndVectorRequestVeloxLastModifiedDate_field(self) -> Optional[int]:
+    def get_C_CVTRequestVeloxLastModifiedDate_field(self) -> Optional[int]:
         """
-        Get data field value with field name 'C_CloneAndVectorRequest.VeloxLastModifiedDate' from this record model
+        Get data field value with field name 'C_CVTRequest.VeloxLastModifiedDate' from this record model
         """
-        return self.get_field_value(self.C_CLONEANDVECTORREQUEST_EXT_VELOXLASTMODIFIEDDATE__FIELD_NAME.field_name)
+        return self.get_field_value(self.C_CVTREQUEST_EXT_VELOXLASTMODIFIEDDATE__FIELD_NAME.field_name)
 
-    def set_C_LibraryServiceRequestC_Author_field(self, value: Optional[str]):
+    def set_C_Department_field(self, value: Optional[str]):
         """
-        Set data field with field name 'C_LibraryServiceRequest.C_Author' on this record model
+        Set data field with field name 'C_Department' on this record model
         """
-        self.set_field_value(self.C_LIBRARYSERVICEREQUEST_EXT_C_AUTHOR__FIELD_NAME.field_name, value)
+        self.set_field_value(self.C_DEPARTMENT__FIELD_NAME.field_name, value)
 
-    def get_C_LibraryServiceRequestC_Author_field(self) -> Optional[str]:
+    def get_C_Department_field(self) -> Optional[str]:
         """
-        Get data field value with field name 'C_LibraryServiceRequest.C_Author' from this record model
+        Get data field value with field name 'C_Department' from this record model
         """
-        return self.get_field_value(self.C_LIBRARYSERVICEREQUEST_EXT_C_AUTHOR__FIELD_NAME.field_name)
+        return self.get_field_value(self.C_DEPARTMENT__FIELD_NAME.field_name)
 
-    def set_C_LibraryServiceRequestC_BookTitle_field(self, value: Optional[str]):
+    def set_C_NGSRequestC_MolBioTechnician_field(self, value: Optional[str]):
         """
-        Set data field with field name 'C_LibraryServiceRequest.C_BookTitle' on this record model
+        Set data field with field name 'C_NGSRequest.C_MolBioTechnician' on this record model
         """
-        self.set_field_value(self.C_LIBRARYSERVICEREQUEST_EXT_C_BOOKTITLE__FIELD_NAME.field_name, value)
+        self.set_field_value(self.C_NGSREQUEST_EXT_C_MOLBIOTECHNICIAN__FIELD_NAME.field_name, value)
 
-    def get_C_LibraryServiceRequestC_BookTitle_field(self) -> Optional[str]:
+    def get_C_NGSRequestC_MolBioTechnician_field(self) -> Optional[str]:
         """
-        Get data field value with field name 'C_LibraryServiceRequest.C_BookTitle' from this record model
+        Get data field value with field name 'C_NGSRequest.C_MolBioTechnician' from this record model
         """
-        return self.get_field_value(self.C_LIBRARYSERVICEREQUEST_EXT_C_BOOKTITLE__FIELD_NAME.field_name)
+        return self.get_field_value(self.C_NGSREQUEST_EXT_C_MOLBIOTECHNICIAN__FIELD_NAME.field_name)
 
-    def set_C_LibraryServiceRequestC_ChapterTitle_field(self, value: Optional[str]):
+    def set_C_NGSRequestC_PoolingInstructions_field(self, value: Optional[str]):
         """
-        Set data field with field name 'C_LibraryServiceRequest.C_ChapterTitle' on this record model
+        Set data field with field name 'C_NGSRequest.C_PoolingInstructions' on this record model
         """
-        self.set_field_value(self.C_LIBRARYSERVICEREQUEST_EXT_C_CHAPTERTITLE__FIELD_NAME.field_name, value)
+        self.set_field_value(self.C_NGSREQUEST_EXT_C_POOLINGINSTRUCTIONS__FIELD_NAME.field_name, value)
 
-    def get_C_LibraryServiceRequestC_ChapterTitle_field(self) -> Optional[str]:
+    def get_C_NGSRequestC_PoolingInstructions_field(self) -> Optional[str]:
         """
-        Get data field value with field name 'C_LibraryServiceRequest.C_ChapterTitle' from this record model
+        Get data field value with field name 'C_NGSRequest.C_PoolingInstructions' from this record model
         """
-        return self.get_field_value(self.C_LIBRARYSERVICEREQUEST_EXT_C_CHAPTERTITLE__FIELD_NAME.field_name)
+        return self.get_field_value(self.C_NGSREQUEST_EXT_C_POOLINGINSTRUCTIONS__FIELD_NAME.field_name)
 
-    def set_C_LibraryServiceRequestC_Edition_field(self, value: Optional[str]):
+    def set_C_NGSRequestC_ReadLength_field(self, value: Optional[str]):
         """
-        Set data field with field name 'C_LibraryServiceRequest.C_Edition' on this record model
+        Set data field with field name 'C_NGSRequest.C_ReadLength' on this record model
         """
-        self.set_field_value(self.C_LIBRARYSERVICEREQUEST_EXT_C_EDITION__FIELD_NAME.field_name, value)
+        self.set_field_value(self.C_NGSREQUEST_EXT_C_READLENGTH__FIELD_NAME.field_name, value)
 
-    def get_C_LibraryServiceRequestC_Edition_field(self) -> Optional[str]:
+    def get_C_NGSRequestC_ReadLength_field(self) -> Optional[str]:
         """
-        Get data field value with field name 'C_LibraryServiceRequest.C_Edition' from this record model
+        Get data field value with field name 'C_NGSRequest.C_ReadLength' from this record model
         """
-        return self.get_field_value(self.C_LIBRARYSERVICEREQUEST_EXT_C_EDITION__FIELD_NAME.field_name)
+        return self.get_field_value(self.C_NGSREQUEST_EXT_C_READLENGTH__FIELD_NAME.field_name)
 
-    def set_C_LibraryServiceRequestC_URL_field(self, value: Optional[str]):
+    def set_C_NGSRequestC_SpecialInstruction_field(self, value: Optional[str]):
         """
-        Set data field with field name 'C_LibraryServiceRequest.C_URL' on this record model
+        Set data field with field name 'C_NGSRequest.C_SpecialInstruction' on this record model
         """
-        self.set_field_value(self.C_LIBRARYSERVICEREQUEST_EXT_C_URL__FIELD_NAME.field_name, value)
+        self.set_field_value(self.C_NGSREQUEST_EXT_C_SPECIALINSTRUCTION__FIELD_NAME.field_name, value)
 
-    def get_C_LibraryServiceRequestC_URL_field(self) -> Optional[str]:
+    def get_C_NGSRequestC_SpecialInstruction_field(self) -> Optional[str]:
         """
-        Get data field value with field name 'C_LibraryServiceRequest.C_URL' from this record model
+        Get data field value with field name 'C_NGSRequest.C_SpecialInstruction' from this record model
         """
-        return self.get_field_value(self.C_LIBRARYSERVICEREQUEST_EXT_C_URL__FIELD_NAME.field_name)
+        return self.get_field_value(self.C_NGSREQUEST_EXT_C_SPECIALINSTRUCTION__FIELD_NAME.field_name)
 
-    def get_C_LibraryServiceRequestCreatedBy_field(self) -> Optional[str]:
+    def get_C_NGSRequestCreatedBy_field(self) -> Optional[str]:
         """
-        Get data field value with field name 'C_LibraryServiceRequest.CreatedBy' from this record model
+        Get data field value with field name 'C_NGSRequest.CreatedBy' from this record model
         """
-        return self.get_field_value(self.C_LIBRARYSERVICEREQUEST_EXT_CREATEDBY__FIELD_NAME.field_name)
+        return self.get_field_value(self.C_NGSREQUEST_EXT_CREATEDBY__FIELD_NAME.field_name)
 
-    def get_C_LibraryServiceRequestDataRecordName_field(self) -> Optional[str]:
+    def get_C_NGSRequestDataRecordName_field(self) -> Optional[str]:
         """
-        Get data field value with field name 'C_LibraryServiceRequest.DataRecordName' from this record model
+        Get data field value with field name 'C_NGSRequest.DataRecordName' from this record model
         """
-        return self.get_field_value(self.C_LIBRARYSERVICEREQUEST_EXT_DATARECORDNAME__FIELD_NAME.field_name)
+        return self.get_field_value(self.C_NGSREQUEST_EXT_DATARECORDNAME__FIELD_NAME.field_name)
 
-    def get_C_LibraryServiceRequestDateCreated_field(self) -> Optional[int]:
+    def get_C_NGSRequestDateCreated_field(self) -> Optional[int]:
         """
-        Get data field value with field name 'C_LibraryServiceRequest.DateCreated' from this record model
+        Get data field value with field name 'C_NGSRequest.DateCreated' from this record model
         """
-        return self.get_field_value(self.C_LIBRARYSERVICEREQUEST_EXT_DATECREATED__FIELD_NAME.field_name)
+        return self.get_field_value(self.C_NGSREQUEST_EXT_DATECREATED__FIELD_NAME.field_name)
 
-    def get_C_LibraryServiceRequestRecordId_field(self) -> Optional[int]:
+    def get_C_NGSRequestRecordId_field(self) -> Optional[int]:
         """
-        Get data field value with field name 'C_LibraryServiceRequest.RecordId' from this record model
+        Get data field value with field name 'C_NGSRequest.RecordId' from this record model
         """
-        return self.get_field_value(self.C_LIBRARYSERVICEREQUEST_EXT_RECORDID__FIELD_NAME.field_name)
+        return self.get_field_value(self.C_NGSREQUEST_EXT_RECORDID__FIELD_NAME.field_name)
 
-    def get_C_LibraryServiceRequestVeloxLastModifiedBy_field(self) -> Optional[str]:
+    def get_C_NGSRequestVeloxLastModifiedBy_field(self) -> Optional[str]:
         """
-        Get data field value with field name 'C_LibraryServiceRequest.VeloxLastModifiedBy' from this record model
+        Get data field value with field name 'C_NGSRequest.VeloxLastModifiedBy' from this record model
         """
-        return self.get_field_value(self.C_LIBRARYSERVICEREQUEST_EXT_VELOXLASTMODIFIEDBY__FIELD_NAME.field_name)
+        return self.get_field_value(self.C_NGSREQUEST_EXT_VELOXLASTMODIFIEDBY__FIELD_NAME.field_name)
 
-    def get_C_LibraryServiceRequestVeloxLastModifiedDate_field(self) -> Optional[int]:
+    def get_C_NGSRequestVeloxLastModifiedDate_field(self) -> Optional[int]:
         """
-        Get data field value with field name 'C_LibraryServiceRequest.VeloxLastModifiedDate' from this record model
+        Get data field value with field name 'C_NGSRequest.VeloxLastModifiedDate' from this record model
         """
-        return self.get_field_value(self.C_LIBRARYSERVICEREQUEST_EXT_VELOXLASTMODIFIEDDATE__FIELD_NAME.field_name)
+        return self.get_field_value(self.C_NGSREQUEST_EXT_VELOXLASTMODIFIEDDATE__FIELD_NAME.field_name)
+
+    def set_C_RequestStatus_field(self, value: Optional[str]):
+        """
+        Set data field with field name 'C_RequestStatus' on this record model
+        """
+        self.set_field_value(self.C_REQUESTSTATUS__FIELD_NAME.field_name, value)
+
+    def get_C_RequestStatus_field(self) -> Optional[str]:
+        """
+        Get data field value with field name 'C_RequestStatus' from this record model
+        """
+        return self.get_field_value(self.C_REQUESTSTATUS__FIELD_NAME.field_name)
 
     def set_C_RequestType_field(self, value: Optional[str]):
         """
@@ -49110,6 +48884,30 @@ class RequestModel(WrappedRecordModel):
         Get data field value with field name 'C_RequestType' from this record model
         """
         return self.get_field_value(self.C_REQUESTTYPE__FIELD_NAME.field_name)
+
+    def set_C_RequestedFor_field(self, value: Optional[str]):
+        """
+        Set data field with field name 'C_RequestedFor' on this record model
+        """
+        self.set_field_value(self.C_REQUESTEDFOR__FIELD_NAME.field_name, value)
+
+    def get_C_RequestedFor_field(self) -> Optional[str]:
+        """
+        Get data field value with field name 'C_RequestedFor' from this record model
+        """
+        return self.get_field_value(self.C_REQUESTEDFOR__FIELD_NAME.field_name)
+
+    def set_C_ScientificProjects_field(self, value: Optional[str]):
+        """
+        Set data field with field name 'C_ScientificProjects' on this record model
+        """
+        self.set_field_value(self.C_SCIENTIFICPROJECTS__FIELD_NAME.field_name, value)
+
+    def get_C_ScientificProjects_field(self) -> Optional[str]:
+        """
+        Get data field value with field name 'C_ScientificProjects' from this record model
+        """
+        return self.get_field_value(self.C_SCIENTIFICPROJECTS__FIELD_NAME.field_name)
 
     def set_CompletedDate_field(self, value: Optional[int]):
         """
@@ -50274,7 +50072,7 @@ class SampleModel(WrappedRecordModel):
     """
     Auto-Generated Record Model Wrapper for data type Sample
     Data Type Display Name: Sample (Samples)
-    Fields: ActiveWorkflowId, Antibody.ConsumableName, Antibody.ConsumableType, Antibody.CreatedBy, Antibody.DataRecordName, Antibody.DateCreated, Antibody.ExpirationDate, Antibody.Expired, Antibody.HELM, Antibody.LotNumber, Antibody.RecordId, Antibody.RegistryId, Antibody.Validated, Antibody.VeloxLastModifiedBy, Antibody.VeloxLastModifiedDate, Antibody.Vendor, BioConjugate.ConsumableName, BioConjugate.ConsumableType, BioConjugate.CreatedBy, BioConjugate.DataRecordName, BioConjugate.DateCreated, BioConjugate.ExpirationDate, BioConjugate.Expired, BioConjugate.LotNumber, BioConjugate.RecordId, BioConjugate.RegistryId, BioConjugate.Validated, BioConjugate.VeloxLastModifiedBy, BioConjugate.VeloxLastModifiedDate, BioConjugate.Vendor, C_Specimin.CreatedBy, C_Specimin.DataRecordName, C_Specimin.DateCreated, C_Specimin.RecordId, C_Specimin.VeloxLastModifiedBy, C_Specimin.VeloxLastModifiedDate, C_Vector.C_ConsumableName, C_Vector.C_ConsumableType, C_Vector.C_ExpirationDate, C_Vector.C_Expired, C_Vector.C_LotNumber, C_Vector.C_Manufacturer, C_Vector.C_PartNumber, C_Vector.C_Validated, C_Vector.CreatedBy, C_Vector.DataRecordName, C_Vector.DateCreated, C_Vector.RecordId, C_Vector.VeloxLastModifiedBy, C_Vector.VeloxLastModifiedDate, ChemicalReagent.CAS, ChemicalReagent.CXSMILESHash, ChemicalReagent.Charge, ChemicalReagent.ConsumableType, ChemicalReagent.CreatedBy, ChemicalReagent.DataRecordName, ChemicalReagent.DateCreated, ChemicalReagent.ExactMass, ChemicalReagent.ExpirationDate, ChemicalReagent.Expired, ChemicalReagent.Formula, ChemicalReagent.GHSCautionCode, ChemicalReagent.GHSHazardCode, ChemicalReagent.GHSPictoCode, ChemicalReagent.GHSSignal, ChemicalReagent.HasOrStereoGroup, ChemicalReagent.IUPAC, ChemicalReagent.InchiKey, ChemicalReagent.IsGHSClassified, ChemicalReagent.LotNumber, ChemicalReagent.MolecularWeight, ChemicalReagent.PolarSurfaceArea, ChemicalReagent.PubchemCid, ChemicalReagent.Purity, ChemicalReagent.RecordId, ChemicalReagent.RegistryId, ChemicalReagent.SMILES, ChemicalReagent.StereoRegHash, ChemicalReagent.Supplier, ChemicalReagent.TotalHBondAcceptors, ChemicalReagent.TotalHBondCount, ChemicalReagent.Validated, ChemicalReagent.VeloxLastModifiedBy, ChemicalReagent.VeloxLastModifiedDate, ChemicalReagent.Yield, ChemicalReagent.cLogP, ChemicalReagent.inchi, ColPosition, CollectionDateTime, Comments, Compound.CAS, Compound.CXSMILESHash, Compound.Charge, Compound.ConsumableType, Compound.CreatedBy, Compound.DataRecordName, Compound.DateCreated, Compound.ExactMass, Compound.ExpirationDate, Compound.Expired, Compound.Formula, Compound.GHSCautionCode, Compound.GHSHazardCode, Compound.GHSPictoCode, Compound.GHSSignal, Compound.HasOrStereoGroup, Compound.IUPAC, Compound.InchiKey, Compound.IsGHSClassified, Compound.LotNumber, Compound.MolecularWeight, Compound.PolarSurfaceArea, Compound.Pressure, Compound.PubchemCid, Compound.Purity, Compound.ReactionTime, Compound.RecordId, Compound.RegistryId, Compound.SMILES, Compound.StereoRegHash, Compound.Temperature, Compound.TotalHBondAcceptors, Compound.TotalHBondCount, Compound.Validated, Compound.VeloxLastModifiedBy, Compound.VeloxLastModifiedDate, Compound.Yield, Compound.ZoBioonly, Compound.cLogP, Compound.inchi, Concentration, ConcentrationUnits, ConsumableItem.ConsumableName, ConsumableItem.ConsumableType, ConsumableItem.CreatedBy, ConsumableItem.DataRecordName, ConsumableItem.DateCreated, ConsumableItem.ExpirationDate, ConsumableItem.Expired, ConsumableItem.KitLotNumbers, ConsumableItem.LotNumber, ConsumableItem.LotNumberDefined, ConsumableItem.PartNumber, ConsumableItem.RecordId, ConsumableItem.Validated, ConsumableItem.ValidationDate, ConsumableItem.ValidationExperimentId, ConsumableItem.ValidationTechician, ConsumableItem.VeloxLastModifiedBy, ConsumableItem.VeloxLastModifiedDate, ContainerType, ControlType, CreatedBy, DNA.CreatedBy, DNA.DataRecordName, DNA.DateCreated, DNA.ExpirationDate, DNA.Expired, DNA.ItemId, DNA.Name, DNA.PartNumber, DNA.RecordId, DNA.SequenceType, DNA.Validated, DNA.VeloxLastModifiedBy, DNA.VeloxLastModifiedDate, DataRecordName, DateCreated, DrugProduct.ConsumableName, DrugProduct.ConsumableType, DrugProduct.CreatedBy, DrugProduct.DataRecordName, DrugProduct.DateCreated, DrugProduct.ExpirationDate, DrugProduct.LotNumber, DrugProduct.PartNumber, DrugProduct.RecordId, DrugProduct.Validated, DrugProduct.VeloxLastModifiedBy, DrugProduct.VeloxLastModifiedDate, Enzyme.ConsumableName, Enzyme.ConsumableType, Enzyme.CreatedBy, Enzyme.DataRecordName, Enzyme.DateCreated, Enzyme.DateOfPurchase, Enzyme.EnzymeType, Enzyme.ExpirationDate, Enzyme.Expired, Enzyme.LotNumber, Enzyme.PartNumber, Enzyme.RecordId, Enzyme.Validated, Enzyme.VeloxLastModifiedBy, Enzyme.VeloxLastModifiedDate, Enzyme.Vendor, ExemplarSampleStatus, ExemplarSampleType, Fermented, FlowJoGroupSideLink, HistologySlide.AperioId, HistologySlide.AperioImageId, HistologySlide.AssignedDosage, HistologySlide.AssignedGroups, HistologySlide.AssignedStain, HistologySlide.AssignedTissue, HistologySlide.CreatedBy, HistologySlide.DataRecordName, HistologySlide.DateCreated, HistologySlide.FileIdentifier, HistologySlide.FilePath, HistologySlide.GeneratedLayoutAssignedStain, HistologySlide.GeneratedLayoutSlideId, HistologySlide.NumSections, HistologySlide.ProtocolName, HistologySlide.ProtocolNumber, HistologySlide.RecordId, HistologySlide.SampleGroupByFieldIds, HistologySlide.SlideId, HistologySlide.SlideIdClonedFrom, HistologySlide.VeloxCurrentVersion, HistologySlide.VeloxLastModifiedBy, HistologySlide.VeloxLastModifiedDate, IsControl, IsInvalid, IsPooled, Organism, OtherSampleId, PlateId, Protein.Barcode, Protein.ConsumableName, Protein.ConsumableType, Protein.CreatedBy, Protein.DataRecordName, Protein.DateCreated, Protein.ExpirationDate, Protein.Expired, Protein.LotNumber, Protein.PartNumber, Protein.RecordId, Protein.Validated, Protein.VeloxLastModifiedBy, Protein.VeloxLastModifiedDate, RNA.ConsumableName, RNA.ConsumableType, RNA.CreatedBy, RNA.DataRecordName, RNA.DateCreated, RNA.ExpirationDate, RNA.Expired, RNA.LotNumber, RNA.RecordId, RNA.RegistryId, RNA.Validated, RNA.VeloxLastModifiedBy, RNA.VeloxLastModifiedDate, RowPosition, SampleId, SampleRegistrationLink, SamplingSchedule, SapioSingleTemplateProcess, Stain.ConsumableName, Stain.ConsumableType, Stain.CreatedBy, Stain.DataRecordName, Stain.DateCreated, Stain.ExpirationDate, Stain.Expired, Stain.LotNumber, Stain.PartNumber, Stain.ProtocolNumber, Stain.RecordId, Stain.Validated, Stain.VeloxLastModifiedBy, Stain.VeloxLastModifiedDate, StorageLocationBarcode, StorageUnitPath, Strain.Ci95Bounds, Strain.ConsumableName, Strain.ConsumableType, Strain.CreatedBy, Strain.DataRecordName, Strain.DateCreated, Strain.ExpirationDate, Strain.Expired, Strain.LotNumber, Strain.PartNumber, Strain.RecordId, Strain.SampleMean, Strain.SampleNormalizedMean, Strain.SampleStd, Strain.StandardError, Strain.Validated, Strain.VeloxLastModifiedBy, Strain.VeloxLastModifiedDate, StrainDetails.CreatedBy, StrainDetails.DataRecordName, StrainDetails.DateCreated, StrainDetails.PlasmidLotNumber, StrainDetails.PlasmidName, StrainDetails.PlasmidSequence, StrainDetails.RecordId, StrainDetails.StrainLotNumber, StrainDetails.StrainName, StrainDetails.StrainPartNumber, StrainDetails.VeloxLastModifiedBy, StrainDetails.VeloxLastModifiedDate, StrainHit, StudySamplingId, StudySubject, TatProgressStatus, TimePoint, TotalMass, TubeBarcode, UltimaPoolCreated, VeloxLastModifiedBy, VeloxLastModifiedDate, Volume, VolumeUnits
+    Fields: ActiveWorkflowId, Antibody.ConsumableName, Antibody.ConsumableType, Antibody.CreatedBy, Antibody.DataRecordName, Antibody.DateCreated, Antibody.ExpirationDate, Antibody.Expired, Antibody.HELM, Antibody.LotNumber, Antibody.RecordId, Antibody.RegistryId, Antibody.Validated, Antibody.VeloxLastModifiedBy, Antibody.VeloxLastModifiedDate, Antibody.Vendor, BioConjugate.ConsumableName, BioConjugate.ConsumableType, BioConjugate.CreatedBy, BioConjugate.DataRecordName, BioConjugate.DateCreated, BioConjugate.ExpirationDate, BioConjugate.Expired, BioConjugate.LotNumber, BioConjugate.RecordId, BioConjugate.RegistryId, BioConjugate.Validated, BioConjugate.VeloxLastModifiedBy, BioConjugate.VeloxLastModifiedDate, BioConjugate.Vendor, ChemicalReagent.CAS, ChemicalReagent.CXSMILESHash, ChemicalReagent.Charge, ChemicalReagent.ConsumableType, ChemicalReagent.CreatedBy, ChemicalReagent.DataRecordName, ChemicalReagent.DateCreated, ChemicalReagent.ExactMass, ChemicalReagent.ExpirationDate, ChemicalReagent.Expired, ChemicalReagent.Formula, ChemicalReagent.GHSCautionCode, ChemicalReagent.GHSHazardCode, ChemicalReagent.GHSPictoCode, ChemicalReagent.GHSSignal, ChemicalReagent.HasOrStereoGroup, ChemicalReagent.IUPAC, ChemicalReagent.InchiKey, ChemicalReagent.IsGHSClassified, ChemicalReagent.LotNumber, ChemicalReagent.MolecularWeight, ChemicalReagent.PolarSurfaceArea, ChemicalReagent.PubchemCid, ChemicalReagent.Purity, ChemicalReagent.RecordId, ChemicalReagent.RegistryId, ChemicalReagent.SMILES, ChemicalReagent.StereoRegHash, ChemicalReagent.Supplier, ChemicalReagent.TotalHBondAcceptors, ChemicalReagent.TotalHBondCount, ChemicalReagent.Validated, ChemicalReagent.VeloxLastModifiedBy, ChemicalReagent.VeloxLastModifiedDate, ChemicalReagent.Yield, ChemicalReagent.cLogP, ChemicalReagent.inchi, ColPosition, CollectionDateTime, Comments, Compound.CAS, Compound.CXSMILESHash, Compound.Charge, Compound.ConsumableType, Compound.CreatedBy, Compound.DataRecordName, Compound.DateCreated, Compound.ExactMass, Compound.ExpirationDate, Compound.Expired, Compound.Formula, Compound.GHSCautionCode, Compound.GHSHazardCode, Compound.GHSPictoCode, Compound.GHSSignal, Compound.HasOrStereoGroup, Compound.IUPAC, Compound.InchiKey, Compound.IsGHSClassified, Compound.LotNumber, Compound.MolecularWeight, Compound.PolarSurfaceArea, Compound.Pressure, Compound.PubchemCid, Compound.Purity, Compound.ReactionTime, Compound.RecordId, Compound.RegistryId, Compound.SMILES, Compound.StereoRegHash, Compound.Temperature, Compound.TotalHBondAcceptors, Compound.TotalHBondCount, Compound.Validated, Compound.VeloxLastModifiedBy, Compound.VeloxLastModifiedDate, Compound.Yield, Compound.ZoBioonly, Compound.cLogP, Compound.inchi, Concentration, ConcentrationUnits, ConsumableItem.ConsumableName, ConsumableItem.ConsumableType, ConsumableItem.CreatedBy, ConsumableItem.DataRecordName, ConsumableItem.DateCreated, ConsumableItem.ExpirationDate, ConsumableItem.Expired, ConsumableItem.KitLotNumbers, ConsumableItem.LotNumber, ConsumableItem.LotNumberDefined, ConsumableItem.PartNumber, ConsumableItem.RecordId, ConsumableItem.Validated, ConsumableItem.ValidationDate, ConsumableItem.ValidationExperimentId, ConsumableItem.ValidationTechician, ConsumableItem.VeloxLastModifiedBy, ConsumableItem.VeloxLastModifiedDate, ContainerType, ControlType, CreatedBy, DNA.CreatedBy, DNA.DataRecordName, DNA.DateCreated, DNA.ExpirationDate, DNA.Expired, DNA.ItemId, DNA.Name, DNA.PartNumber, DNA.RecordId, DNA.SequenceType, DNA.Validated, DNA.VeloxLastModifiedBy, DNA.VeloxLastModifiedDate, DataRecordName, DateCreated, DrugProduct.ConsumableName, DrugProduct.ConsumableType, DrugProduct.CreatedBy, DrugProduct.DataRecordName, DrugProduct.DateCreated, DrugProduct.ExpirationDate, DrugProduct.LotNumber, DrugProduct.PartNumber, DrugProduct.RecordId, DrugProduct.Validated, DrugProduct.VeloxLastModifiedBy, DrugProduct.VeloxLastModifiedDate, Enzyme.ConsumableName, Enzyme.ConsumableType, Enzyme.CreatedBy, Enzyme.DataRecordName, Enzyme.DateCreated, Enzyme.DateOfPurchase, Enzyme.EnzymeType, Enzyme.ExpirationDate, Enzyme.Expired, Enzyme.LotNumber, Enzyme.PartNumber, Enzyme.RecordId, Enzyme.Validated, Enzyme.VeloxLastModifiedBy, Enzyme.VeloxLastModifiedDate, Enzyme.Vendor, ExemplarSampleStatus, ExemplarSampleType, Fermented, FlowJoGroupSideLink, HistologySlide.AperioId, HistologySlide.AperioImageId, HistologySlide.AssignedDosage, HistologySlide.AssignedGroups, HistologySlide.AssignedStain, HistologySlide.AssignedTissue, HistologySlide.CreatedBy, HistologySlide.DataRecordName, HistologySlide.DateCreated, HistologySlide.FileIdentifier, HistologySlide.FilePath, HistologySlide.GeneratedLayoutAssignedStain, HistologySlide.GeneratedLayoutSlideId, HistologySlide.NumSections, HistologySlide.ProtocolName, HistologySlide.ProtocolNumber, HistologySlide.RecordId, HistologySlide.SampleGroupByFieldIds, HistologySlide.SlideId, HistologySlide.SlideIdClonedFrom, HistologySlide.VeloxCurrentVersion, HistologySlide.VeloxLastModifiedBy, HistologySlide.VeloxLastModifiedDate, IsControl, IsInvalid, IsPooled, Organism, OtherSampleId, PlateId, Protein.Barcode, Protein.ConsumableName, Protein.ConsumableType, Protein.CreatedBy, Protein.DataRecordName, Protein.DateCreated, Protein.ExpirationDate, Protein.Expired, Protein.LotNumber, Protein.PartNumber, Protein.RecordId, Protein.Validated, Protein.VeloxLastModifiedBy, Protein.VeloxLastModifiedDate, RNA.ConsumableName, RNA.ConsumableType, RNA.CreatedBy, RNA.DataRecordName, RNA.DateCreated, RNA.ExpirationDate, RNA.Expired, RNA.LotNumber, RNA.RecordId, RNA.RegistryId, RNA.Validated, RNA.VeloxLastModifiedBy, RNA.VeloxLastModifiedDate, RowPosition, SampleId, SampleRegistrationLink, SamplingSchedule, SapioSingleTemplateProcess, Stain.ConsumableName, Stain.ConsumableType, Stain.CreatedBy, Stain.DataRecordName, Stain.DateCreated, Stain.ExpirationDate, Stain.Expired, Stain.LotNumber, Stain.PartNumber, Stain.ProtocolNumber, Stain.RecordId, Stain.Validated, Stain.VeloxLastModifiedBy, Stain.VeloxLastModifiedDate, StorageLocationBarcode, StorageUnitPath, Strain.Ci95Bounds, Strain.ConsumableName, Strain.ConsumableType, Strain.CreatedBy, Strain.DataRecordName, Strain.DateCreated, Strain.ExpirationDate, Strain.Expired, Strain.LotNumber, Strain.PartNumber, Strain.RecordId, Strain.SampleMean, Strain.SampleNormalizedMean, Strain.SampleStd, Strain.StandardError, Strain.Validated, Strain.VeloxLastModifiedBy, Strain.VeloxLastModifiedDate, StrainDetails.CreatedBy, StrainDetails.DataRecordName, StrainDetails.DateCreated, StrainDetails.PlasmidLotNumber, StrainDetails.PlasmidName, StrainDetails.PlasmidSequence, StrainDetails.RecordId, StrainDetails.StrainLotNumber, StrainDetails.StrainName, StrainDetails.StrainPartNumber, StrainDetails.VeloxLastModifiedBy, StrainDetails.VeloxLastModifiedDate, StrainHit, StudySamplingId, StudySubject, TatProgressStatus, TimePoint, TotalMass, TubeBarcode, UltimaPoolCreated, VeloxLastModifiedBy, VeloxLastModifiedDate, Volume, VolumeUnits
     Module: Samples
     """
     DATA_TYPE_NAME: Final[str] = 'Sample'
@@ -50310,26 +50108,6 @@ class SampleModel(WrappedRecordModel):
     BIOCONJUGATE_EXT_VELOXLASTMODIFIEDBY__FIELD_NAME: Final[WrapperField] = WrapperField("BioConjugate.VeloxLastModifiedBy", FieldType.STRING, display_name="Last Modified By")
     BIOCONJUGATE_EXT_VELOXLASTMODIFIEDDATE__FIELD_NAME: Final[WrapperField] = WrapperField("BioConjugate.VeloxLastModifiedDate", FieldType.DATE, display_name="Last Modified Date")
     BIOCONJUGATE_EXT_VENDOR__FIELD_NAME: Final[WrapperField] = WrapperField("BioConjugate.Vendor", FieldType.SELECTION, display_name="Vendor")
-    C_SPECIMIN_EXT_CREATEDBY__FIELD_NAME: Final[WrapperField] = WrapperField("C_Specimin.CreatedBy", FieldType.STRING, display_name="Created By")
-    C_SPECIMIN_EXT_DATARECORDNAME__FIELD_NAME: Final[WrapperField] = WrapperField("C_Specimin.DataRecordName", FieldType.IDENTIFIER, display_name="ID")
-    C_SPECIMIN_EXT_DATECREATED__FIELD_NAME: Final[WrapperField] = WrapperField("C_Specimin.DateCreated", FieldType.DATE, display_name="Date Created")
-    C_SPECIMIN_EXT_RECORDID__FIELD_NAME: Final[WrapperField] = WrapperField("C_Specimin.RecordId", FieldType.LONG, display_name="Record ID")
-    C_SPECIMIN_EXT_VELOXLASTMODIFIEDBY__FIELD_NAME: Final[WrapperField] = WrapperField("C_Specimin.VeloxLastModifiedBy", FieldType.STRING, display_name="Last Modified By")
-    C_SPECIMIN_EXT_VELOXLASTMODIFIEDDATE__FIELD_NAME: Final[WrapperField] = WrapperField("C_Specimin.VeloxLastModifiedDate", FieldType.DATE, display_name="Last Modified Date")
-    C_VECTOR_EXT_C_CONSUMABLENAME__FIELD_NAME: Final[WrapperField] = WrapperField("C_Vector.C_ConsumableName", FieldType.STRING, display_name="Vector Name")
-    C_VECTOR_EXT_C_CONSUMABLETYPE__FIELD_NAME: Final[WrapperField] = WrapperField("C_Vector.C_ConsumableType", FieldType.SELECTION, display_name="Vector Subtype")
-    C_VECTOR_EXT_C_EXPIRATIONDATE__FIELD_NAME: Final[WrapperField] = WrapperField("C_Vector.C_ExpirationDate", FieldType.DATE, display_name="Expiration Date")
-    C_VECTOR_EXT_C_EXPIRED__FIELD_NAME: Final[WrapperField] = WrapperField("C_Vector.C_Expired", FieldType.BOOLEAN, display_name="Expired")
-    C_VECTOR_EXT_C_LOTNUMBER__FIELD_NAME: Final[WrapperField] = WrapperField("C_Vector.C_LotNumber", FieldType.STRING, display_name="Lot Number")
-    C_VECTOR_EXT_C_MANUFACTURER__FIELD_NAME: Final[WrapperField] = WrapperField("C_Vector.C_Manufacturer", FieldType.STRING, display_name="Manufacturer")
-    C_VECTOR_EXT_C_PARTNUMBER__FIELD_NAME: Final[WrapperField] = WrapperField("C_Vector.C_PartNumber", FieldType.STRING, display_name="Part Number")
-    C_VECTOR_EXT_C_VALIDATED__FIELD_NAME: Final[WrapperField] = WrapperField("C_Vector.C_Validated", FieldType.BOOLEAN, display_name="Validated")
-    C_VECTOR_EXT_CREATEDBY__FIELD_NAME: Final[WrapperField] = WrapperField("C_Vector.CreatedBy", FieldType.STRING, display_name="Created By")
-    C_VECTOR_EXT_DATARECORDNAME__FIELD_NAME: Final[WrapperField] = WrapperField("C_Vector.DataRecordName", FieldType.IDENTIFIER, display_name="ID")
-    C_VECTOR_EXT_DATECREATED__FIELD_NAME: Final[WrapperField] = WrapperField("C_Vector.DateCreated", FieldType.DATE, display_name="Date Created")
-    C_VECTOR_EXT_RECORDID__FIELD_NAME: Final[WrapperField] = WrapperField("C_Vector.RecordId", FieldType.LONG, display_name="Record ID")
-    C_VECTOR_EXT_VELOXLASTMODIFIEDBY__FIELD_NAME: Final[WrapperField] = WrapperField("C_Vector.VeloxLastModifiedBy", FieldType.STRING, display_name="Last Modified By")
-    C_VECTOR_EXT_VELOXLASTMODIFIEDDATE__FIELD_NAME: Final[WrapperField] = WrapperField("C_Vector.VeloxLastModifiedDate", FieldType.DATE, display_name="Last Modified Date")
     CHEMICALREAGENT_EXT_CAS__FIELD_NAME: Final[WrapperField] = WrapperField("ChemicalReagent.CAS", FieldType.STRING, display_name="CAS")
     CHEMICALREAGENT_EXT_CXSMILESHASH__FIELD_NAME: Final[WrapperField] = WrapperField("ChemicalReagent.CXSMILESHash", FieldType.STRING, display_name="CXSMILES Hash")
     CHEMICALREAGENT_EXT_CHARGE__FIELD_NAME: Final[WrapperField] = WrapperField("ChemicalReagent.Charge", FieldType.INTEGER, display_name="Charge")
@@ -50891,174 +50669,6 @@ class SampleModel(WrappedRecordModel):
         Get data field value with field name 'BioConjugate.Vendor' from this record model
         """
         return self.get_field_value(self.BIOCONJUGATE_EXT_VENDOR__FIELD_NAME.field_name)
-
-    def get_C_SpeciminCreatedBy_field(self) -> Optional[str]:
-        """
-        Get data field value with field name 'C_Specimin.CreatedBy' from this record model
-        """
-        return self.get_field_value(self.C_SPECIMIN_EXT_CREATEDBY__FIELD_NAME.field_name)
-
-    def get_C_SpeciminDataRecordName_field(self) -> Optional[str]:
-        """
-        Get data field value with field name 'C_Specimin.DataRecordName' from this record model
-        """
-        return self.get_field_value(self.C_SPECIMIN_EXT_DATARECORDNAME__FIELD_NAME.field_name)
-
-    def get_C_SpeciminDateCreated_field(self) -> Optional[int]:
-        """
-        Get data field value with field name 'C_Specimin.DateCreated' from this record model
-        """
-        return self.get_field_value(self.C_SPECIMIN_EXT_DATECREATED__FIELD_NAME.field_name)
-
-    def get_C_SpeciminRecordId_field(self) -> Optional[int]:
-        """
-        Get data field value with field name 'C_Specimin.RecordId' from this record model
-        """
-        return self.get_field_value(self.C_SPECIMIN_EXT_RECORDID__FIELD_NAME.field_name)
-
-    def get_C_SpeciminVeloxLastModifiedBy_field(self) -> Optional[str]:
-        """
-        Get data field value with field name 'C_Specimin.VeloxLastModifiedBy' from this record model
-        """
-        return self.get_field_value(self.C_SPECIMIN_EXT_VELOXLASTMODIFIEDBY__FIELD_NAME.field_name)
-
-    def get_C_SpeciminVeloxLastModifiedDate_field(self) -> Optional[int]:
-        """
-        Get data field value with field name 'C_Specimin.VeloxLastModifiedDate' from this record model
-        """
-        return self.get_field_value(self.C_SPECIMIN_EXT_VELOXLASTMODIFIEDDATE__FIELD_NAME.field_name)
-
-    def set_C_VectorC_ConsumableName_field(self, value: Optional[str]):
-        """
-        Set data field with field name 'C_Vector.C_ConsumableName' on this record model
-        """
-        self.set_field_value(self.C_VECTOR_EXT_C_CONSUMABLENAME__FIELD_NAME.field_name, value)
-
-    def get_C_VectorC_ConsumableName_field(self) -> Optional[str]:
-        """
-        Get data field value with field name 'C_Vector.C_ConsumableName' from this record model
-        """
-        return self.get_field_value(self.C_VECTOR_EXT_C_CONSUMABLENAME__FIELD_NAME.field_name)
-
-    def set_C_VectorC_ConsumableType_field(self, value: Optional[str]):
-        """
-        Set data field with field name 'C_Vector.C_ConsumableType' on this record model
-        """
-        self.set_field_value(self.C_VECTOR_EXT_C_CONSUMABLETYPE__FIELD_NAME.field_name, value)
-
-    def get_C_VectorC_ConsumableType_field(self) -> Optional[str]:
-        """
-        Get data field value with field name 'C_Vector.C_ConsumableType' from this record model
-        """
-        return self.get_field_value(self.C_VECTOR_EXT_C_CONSUMABLETYPE__FIELD_NAME.field_name)
-
-    def set_C_VectorC_ExpirationDate_field(self, value: Optional[int]):
-        """
-        Set data field with field name 'C_Vector.C_ExpirationDate' on this record model
-        """
-        self.set_field_value(self.C_VECTOR_EXT_C_EXPIRATIONDATE__FIELD_NAME.field_name, value)
-
-    def get_C_VectorC_ExpirationDate_field(self) -> Optional[int]:
-        """
-        Get data field value with field name 'C_Vector.C_ExpirationDate' from this record model
-        """
-        return self.get_field_value(self.C_VECTOR_EXT_C_EXPIRATIONDATE__FIELD_NAME.field_name)
-
-    def set_C_VectorC_Expired_field(self, value: Optional[bool]):
-        """
-        Set data field with field name 'C_Vector.C_Expired' on this record model
-        """
-        self.set_field_value(self.C_VECTOR_EXT_C_EXPIRED__FIELD_NAME.field_name, value)
-
-    def get_C_VectorC_Expired_field(self) -> Optional[bool]:
-        """
-        Get data field value with field name 'C_Vector.C_Expired' from this record model
-        """
-        return self.get_field_value(self.C_VECTOR_EXT_C_EXPIRED__FIELD_NAME.field_name)
-
-    def set_C_VectorC_LotNumber_field(self, value: Optional[str]):
-        """
-        Set data field with field name 'C_Vector.C_LotNumber' on this record model
-        """
-        self.set_field_value(self.C_VECTOR_EXT_C_LOTNUMBER__FIELD_NAME.field_name, value)
-
-    def get_C_VectorC_LotNumber_field(self) -> Optional[str]:
-        """
-        Get data field value with field name 'C_Vector.C_LotNumber' from this record model
-        """
-        return self.get_field_value(self.C_VECTOR_EXT_C_LOTNUMBER__FIELD_NAME.field_name)
-
-    def set_C_VectorC_Manufacturer_field(self, value: Optional[str]):
-        """
-        Set data field with field name 'C_Vector.C_Manufacturer' on this record model
-        """
-        self.set_field_value(self.C_VECTOR_EXT_C_MANUFACTURER__FIELD_NAME.field_name, value)
-
-    def get_C_VectorC_Manufacturer_field(self) -> Optional[str]:
-        """
-        Get data field value with field name 'C_Vector.C_Manufacturer' from this record model
-        """
-        return self.get_field_value(self.C_VECTOR_EXT_C_MANUFACTURER__FIELD_NAME.field_name)
-
-    def set_C_VectorC_PartNumber_field(self, value: Optional[str]):
-        """
-        Set data field with field name 'C_Vector.C_PartNumber' on this record model
-        """
-        self.set_field_value(self.C_VECTOR_EXT_C_PARTNUMBER__FIELD_NAME.field_name, value)
-
-    def get_C_VectorC_PartNumber_field(self) -> Optional[str]:
-        """
-        Get data field value with field name 'C_Vector.C_PartNumber' from this record model
-        """
-        return self.get_field_value(self.C_VECTOR_EXT_C_PARTNUMBER__FIELD_NAME.field_name)
-
-    def set_C_VectorC_Validated_field(self, value: Optional[bool]):
-        """
-        Set data field with field name 'C_Vector.C_Validated' on this record model
-        """
-        self.set_field_value(self.C_VECTOR_EXT_C_VALIDATED__FIELD_NAME.field_name, value)
-
-    def get_C_VectorC_Validated_field(self) -> Optional[bool]:
-        """
-        Get data field value with field name 'C_Vector.C_Validated' from this record model
-        """
-        return self.get_field_value(self.C_VECTOR_EXT_C_VALIDATED__FIELD_NAME.field_name)
-
-    def get_C_VectorCreatedBy_field(self) -> Optional[str]:
-        """
-        Get data field value with field name 'C_Vector.CreatedBy' from this record model
-        """
-        return self.get_field_value(self.C_VECTOR_EXT_CREATEDBY__FIELD_NAME.field_name)
-
-    def get_C_VectorDataRecordName_field(self) -> Optional[str]:
-        """
-        Get data field value with field name 'C_Vector.DataRecordName' from this record model
-        """
-        return self.get_field_value(self.C_VECTOR_EXT_DATARECORDNAME__FIELD_NAME.field_name)
-
-    def get_C_VectorDateCreated_field(self) -> Optional[int]:
-        """
-        Get data field value with field name 'C_Vector.DateCreated' from this record model
-        """
-        return self.get_field_value(self.C_VECTOR_EXT_DATECREATED__FIELD_NAME.field_name)
-
-    def get_C_VectorRecordId_field(self) -> Optional[int]:
-        """
-        Get data field value with field name 'C_Vector.RecordId' from this record model
-        """
-        return self.get_field_value(self.C_VECTOR_EXT_RECORDID__FIELD_NAME.field_name)
-
-    def get_C_VectorVeloxLastModifiedBy_field(self) -> Optional[str]:
-        """
-        Get data field value with field name 'C_Vector.VeloxLastModifiedBy' from this record model
-        """
-        return self.get_field_value(self.C_VECTOR_EXT_VELOXLASTMODIFIEDBY__FIELD_NAME.field_name)
-
-    def get_C_VectorVeloxLastModifiedDate_field(self) -> Optional[int]:
-        """
-        Get data field value with field name 'C_Vector.VeloxLastModifiedDate' from this record model
-        """
-        return self.get_field_value(self.C_VECTOR_EXT_VELOXLASTMODIFIEDDATE__FIELD_NAME.field_name)
 
     def set_ChemicalReagentCAS_field(self, value: Optional[str]):
         """
@@ -60217,12 +59827,18 @@ class VeloxDepartmentModel(WrappedRecordModel):
     """
     Auto-Generated Record Model Wrapper for data type VeloxDepartment
     Data Type Display Name: Department (Departments)
-    Fields: CreatedBy, DataRecordName, DateCreated, DepartmentName, InheritRolesFromParent, VeloxLastModifiedBy, VeloxLastModifiedDate
+    Fields: C_CompanyName, C_CompanyOrgID, C_CrossSystemGUID, C_IsActive, C_LabCode, C_OrgID, CreatedBy, DataRecordName, DateCreated, DepartmentName, InheritRolesFromParent, VeloxLastModifiedBy, VeloxLastModifiedDate
     Module: General and ELN
     """
     DATA_TYPE_NAME: Final[str] = 'VeloxDepartment'
     DISPLAY_NAME: Final[str] = "Department"
     PLURAL_DISPLAY_NAME: Final[str] = "Departments"
+    C_COMPANYNAME__FIELD_NAME: Final[WrapperField] = WrapperField("C_CompanyName", FieldType.STRING, display_name="Company Name")
+    C_COMPANYORGID__FIELD_NAME: Final[WrapperField] = WrapperField("C_CompanyOrgID", FieldType.STRING, display_name="Company Org ID")
+    C_CROSSSYSTEMGUID__FIELD_NAME: Final[WrapperField] = WrapperField("C_CrossSystemGUID", FieldType.STRING, display_name="Cross System GUID")
+    C_ISACTIVE__FIELD_NAME: Final[WrapperField] = WrapperField("C_IsActive", FieldType.BOOLEAN, display_name="Is Active?")
+    C_LABCODE__FIELD_NAME: Final[WrapperField] = WrapperField("C_LabCode", FieldType.STRING, display_name="Lab Code")
+    C_ORGID__FIELD_NAME: Final[WrapperField] = WrapperField("C_OrgID", FieldType.STRING, display_name="Org ID")
     CREATEDBY__FIELD_NAME: Final[WrapperField] = WrapperField("CreatedBy", FieldType.STRING, display_name="Created By")
     DATARECORDNAME__FIELD_NAME: Final[WrapperField] = WrapperField("DataRecordName", FieldType.IDENTIFIER, display_name="ID")
     DATECREATED__FIELD_NAME: Final[WrapperField] = WrapperField("DateCreated", FieldType.DATE, display_name="Date Created")
@@ -60234,6 +59850,78 @@ class VeloxDepartmentModel(WrappedRecordModel):
     @classmethod
     def get_wrapper_data_type_name(cls):
         return cls.DATA_TYPE_NAME
+
+    def set_C_CompanyName_field(self, value: Optional[str]):
+        """
+        Set data field with field name 'C_CompanyName' on this record model
+        """
+        self.set_field_value(self.C_COMPANYNAME__FIELD_NAME.field_name, value)
+
+    def get_C_CompanyName_field(self) -> Optional[str]:
+        """
+        Get data field value with field name 'C_CompanyName' from this record model
+        """
+        return self.get_field_value(self.C_COMPANYNAME__FIELD_NAME.field_name)
+
+    def set_C_CompanyOrgID_field(self, value: Optional[str]):
+        """
+        Set data field with field name 'C_CompanyOrgID' on this record model
+        """
+        self.set_field_value(self.C_COMPANYORGID__FIELD_NAME.field_name, value)
+
+    def get_C_CompanyOrgID_field(self) -> Optional[str]:
+        """
+        Get data field value with field name 'C_CompanyOrgID' from this record model
+        """
+        return self.get_field_value(self.C_COMPANYORGID__FIELD_NAME.field_name)
+
+    def set_C_CrossSystemGUID_field(self, value: Optional[str]):
+        """
+        Set data field with field name 'C_CrossSystemGUID' on this record model
+        """
+        self.set_field_value(self.C_CROSSSYSTEMGUID__FIELD_NAME.field_name, value)
+
+    def get_C_CrossSystemGUID_field(self) -> Optional[str]:
+        """
+        Get data field value with field name 'C_CrossSystemGUID' from this record model
+        """
+        return self.get_field_value(self.C_CROSSSYSTEMGUID__FIELD_NAME.field_name)
+
+    def set_C_IsActive_field(self, value: Optional[bool]):
+        """
+        Set data field with field name 'C_IsActive' on this record model
+        """
+        self.set_field_value(self.C_ISACTIVE__FIELD_NAME.field_name, value)
+
+    def get_C_IsActive_field(self) -> Optional[bool]:
+        """
+        Get data field value with field name 'C_IsActive' from this record model
+        """
+        return self.get_field_value(self.C_ISACTIVE__FIELD_NAME.field_name)
+
+    def set_C_LabCode_field(self, value: Optional[str]):
+        """
+        Set data field with field name 'C_LabCode' on this record model
+        """
+        self.set_field_value(self.C_LABCODE__FIELD_NAME.field_name, value)
+
+    def get_C_LabCode_field(self) -> Optional[str]:
+        """
+        Get data field value with field name 'C_LabCode' from this record model
+        """
+        return self.get_field_value(self.C_LABCODE__FIELD_NAME.field_name)
+
+    def set_C_OrgID_field(self, value: Optional[str]):
+        """
+        Set data field with field name 'C_OrgID' on this record model
+        """
+        self.set_field_value(self.C_ORGID__FIELD_NAME.field_name, value)
+
+    def get_C_OrgID_field(self) -> Optional[str]:
+        """
+        Get data field value with field name 'C_OrgID' from this record model
+        """
+        return self.get_field_value(self.C_ORGID__FIELD_NAME.field_name)
 
     def get_CreatedBy_field(self) -> Optional[str]:
         """
@@ -60450,7 +60138,7 @@ class VeloxUserModel(WrappedRecordModel):
     """
     Auto-Generated Record Model Wrapper for data type VeloxUser
     Data Type Display Name: User (Users)
-    Fields: CreatedBy, DataRecordName, DateCreated, EmailAddress, FirstName, JobTitle, LastName, MiddleName, Username, VeloxLastModifiedBy, VeloxLastModifiedDate
+    Fields: C_ActivatedAt, C_CrossSystemGUID, C_EmployeeID, C_LoginName, C_PhoneNumber, CreatedBy, DataRecordName, DateCreated, EmailAddress, FirstName, JobTitle, LastName, MiddleName, Username, VeloxLastModifiedBy, VeloxLastModifiedDate
     Data type to represent each user in the system.  These records can be searched using api methods and CustomReports but cannot be edited like typical records.
 
 Module: Platform
@@ -60458,6 +60146,11 @@ Module: Platform
     DATA_TYPE_NAME: Final[str] = 'VeloxUser'
     DISPLAY_NAME: Final[str] = "User"
     PLURAL_DISPLAY_NAME: Final[str] = "Users"
+    C_ACTIVATEDAT__FIELD_NAME: Final[WrapperField] = WrapperField("C_ActivatedAt", FieldType.DATE, display_name="Activated At")
+    C_CROSSSYSTEMGUID__FIELD_NAME: Final[WrapperField] = WrapperField("C_CrossSystemGUID", FieldType.STRING, display_name="Cross System GUID")
+    C_EMPLOYEEID__FIELD_NAME: Final[WrapperField] = WrapperField("C_EmployeeID", FieldType.STRING, display_name="Employee ID")
+    C_LOGINNAME__FIELD_NAME: Final[WrapperField] = WrapperField("C_LoginName", FieldType.STRING, display_name="Login Name")
+    C_PHONENUMBER__FIELD_NAME: Final[WrapperField] = WrapperField("C_PhoneNumber", FieldType.LONG, display_name="Phone Number")
     CREATEDBY__FIELD_NAME: Final[WrapperField] = WrapperField("CreatedBy", FieldType.STRING, display_name="Created By")
     DATARECORDNAME__FIELD_NAME: Final[WrapperField] = WrapperField("DataRecordName", FieldType.IDENTIFIER, display_name="ID")
     DATECREATED__FIELD_NAME: Final[WrapperField] = WrapperField("DateCreated", FieldType.DATE, display_name="Date Created")
@@ -60473,6 +60166,66 @@ Module: Platform
     @classmethod
     def get_wrapper_data_type_name(cls):
         return cls.DATA_TYPE_NAME
+
+    def set_C_ActivatedAt_field(self, value: Optional[int]):
+        """
+        Set data field with field name 'C_ActivatedAt' on this record model
+        """
+        self.set_field_value(self.C_ACTIVATEDAT__FIELD_NAME.field_name, value)
+
+    def get_C_ActivatedAt_field(self) -> Optional[int]:
+        """
+        Get data field value with field name 'C_ActivatedAt' from this record model
+        """
+        return self.get_field_value(self.C_ACTIVATEDAT__FIELD_NAME.field_name)
+
+    def set_C_CrossSystemGUID_field(self, value: Optional[str]):
+        """
+        Set data field with field name 'C_CrossSystemGUID' on this record model
+        """
+        self.set_field_value(self.C_CROSSSYSTEMGUID__FIELD_NAME.field_name, value)
+
+    def get_C_CrossSystemGUID_field(self) -> Optional[str]:
+        """
+        Get data field value with field name 'C_CrossSystemGUID' from this record model
+        """
+        return self.get_field_value(self.C_CROSSSYSTEMGUID__FIELD_NAME.field_name)
+
+    def set_C_EmployeeID_field(self, value: Optional[str]):
+        """
+        Set data field with field name 'C_EmployeeID' on this record model
+        """
+        self.set_field_value(self.C_EMPLOYEEID__FIELD_NAME.field_name, value)
+
+    def get_C_EmployeeID_field(self) -> Optional[str]:
+        """
+        Get data field value with field name 'C_EmployeeID' from this record model
+        """
+        return self.get_field_value(self.C_EMPLOYEEID__FIELD_NAME.field_name)
+
+    def set_C_LoginName_field(self, value: Optional[str]):
+        """
+        Set data field with field name 'C_LoginName' on this record model
+        """
+        self.set_field_value(self.C_LOGINNAME__FIELD_NAME.field_name, value)
+
+    def get_C_LoginName_field(self) -> Optional[str]:
+        """
+        Get data field value with field name 'C_LoginName' from this record model
+        """
+        return self.get_field_value(self.C_LOGINNAME__FIELD_NAME.field_name)
+
+    def set_C_PhoneNumber_field(self, value: Optional[int]):
+        """
+        Set data field with field name 'C_PhoneNumber' on this record model
+        """
+        self.set_field_value(self.C_PHONENUMBER__FIELD_NAME.field_name, value)
+
+    def get_C_PhoneNumber_field(self) -> Optional[int]:
+        """
+        Get data field value with field name 'C_PhoneNumber' from this record model
+        """
+        return self.get_field_value(self.C_PHONENUMBER__FIELD_NAME.field_name)
 
     def get_CreatedBy_field(self) -> Optional[str]:
         """
