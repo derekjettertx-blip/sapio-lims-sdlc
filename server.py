@@ -11,6 +11,7 @@ from sapiopylib.rest.pojo.webhook.WebhookResult import SapioWebhookResult
 from waitress import serve
 from webhooks.SelectionList.BillableAccount import BillableAccount
 from webhooks.SelectionList.BillableAccountCopy import BillableAccountCopy
+from webhooks.SelectionList.RequestedForUser import RequestedForUser
 from webhooks.TableToolbar.CreateRequest import CreateRequest
 from webhooks.TableToolbar.CreateCloneAndVectorRequest import CreateCloneAndVectorRequest
 
@@ -54,6 +55,7 @@ class Ping(CommonsWebhookHandler):
 # can be added to folders within this project.
 config.register('/billable_accounts', BillableAccount)
 config.register('/billable_accounts_copy', BillableAccountCopy)
+config.register('/requested_for_user', RequestedForUser)
 config.register('/create_request', CreateRequest)
 config.register('/create_clone_and_vector_request', CreateCloneAndVectorRequest)
 
