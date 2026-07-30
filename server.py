@@ -61,7 +61,6 @@ config.register('/create_clone_and_vector_request', CreateCloneAndVectorRequest)
 
 # Register new endpoints here:
 # config.register('/endpoint', ClassName)
-
 app = WebhookServerFactory.configure_flask_app(app=None, config=config)
 
 
