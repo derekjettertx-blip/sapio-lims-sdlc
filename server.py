@@ -3,10 +3,12 @@ from waitress import serve
 import os
 
 from webhooks.pre_save import sample_pre_save_validation_hook
+from webhooks.table_toolbar.create_samples_and_request_from_dna_parts import CreateSamplesAndRequestFromDnaParts
 
 # Create the Sapio webhook configuration that will handle the processing of
 config: WebhookConfiguration = WebhookConfiguration(verify_sapio_cert=True, debug=True, client_timeout_seconds=1200)
-config.register('/get_build_info', sample_pre_save_validation_hook)
+config.register('/createSamplesAndRequestFromDnaParts', CreateSamplesAndRequestFromDnaParts)
+
 
 # Create a flask application with the Sapio Webhook configuration
 app = WebhookServerFactory.configure_flask_app(app=None, config=config)
