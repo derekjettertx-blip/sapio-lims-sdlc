@@ -14,6 +14,7 @@ from webhooks.SelectionList.BillableAccountCopy import BillableAccountCopy
 from webhooks.SelectionList.RequestedForUser import RequestedForUser
 from webhooks.TableToolbar.CreateRequest import CreateRequest
 from webhooks.TableToolbar.CreateCloneAndVectorRequest import CreateCloneAndVectorRequest
+from webhooks.OnSave.PopulateCvtChargeUnitPrice import PopulateCvtChargeUnitPrice
 
 # TimeUtil is a utility provided by sapiopycommons for handling timezone conversions.
 # This call sets up a default timezone that all calls to TimeUtil will use unless otherwise
@@ -58,6 +59,7 @@ config.register('/billable_accounts_copy', BillableAccountCopy)
 config.register('/requested_for_user', RequestedForUser)
 config.register('/create_request', CreateRequest)
 config.register('/create_clone_and_vector_request', CreateCloneAndVectorRequest)
+config.register('/populate_cvt_charge_unit_price', PopulateCvtChargeUnitPrice)
 
 # Register new endpoints here:
 # config.register('/endpoint', ClassName)

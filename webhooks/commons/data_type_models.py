@@ -4480,12 +4480,13 @@ class C_BillableAccountModel(WrappedRecordModel):
     """
     Auto-Generated Record Model Wrapper for data type C_BillableAccount
     Data Type Display Name: Billable Account (Billable Accounts)
-    Fields: C_CrossSystemGUID, C_IsActive, C_ProjectAndAward, C_SLChargeAward, C_SLChargeProject, CreatedBy, DataRecordName, DateCreated, VeloxLastModifiedBy, VeloxLastModifiedDate
+    Fields: C_CrossSystemGUID, C_Department, C_IsActive, C_ProjectAndAward, C_SLChargeAward, C_SLChargeProject, CreatedBy, DataRecordName, DateCreated, VeloxLastModifiedBy, VeloxLastModifiedDate
     """
     DATA_TYPE_NAME: Final[str] = 'C_BillableAccount'
     DISPLAY_NAME: Final[str] = "Billable Account"
     PLURAL_DISPLAY_NAME: Final[str] = "Billable Accounts"
     C_CROSSSYSTEMGUID__FIELD_NAME: Final[WrapperField] = WrapperField("C_CrossSystemGUID", FieldType.STRING, display_name="Cross System GUID")
+    C_DEPARTMENT__FIELD_NAME: Final[WrapperField] = WrapperField("C_Department", FieldType.STRING, display_name="Department")
     C_ISACTIVE__FIELD_NAME: Final[WrapperField] = WrapperField("C_IsActive", FieldType.BOOLEAN, display_name="Is Active ?")
     C_PROJECTANDAWARD__FIELD_NAME: Final[WrapperField] = WrapperField("C_ProjectAndAward", FieldType.STRING, display_name="Project/Award")
     C_SLCHARGEAWARD__FIELD_NAME: Final[WrapperField] = WrapperField("C_SLChargeAward", FieldType.SIDE_LINK, display_name="Linked Charge Award")
@@ -4511,6 +4512,18 @@ class C_BillableAccountModel(WrappedRecordModel):
         Get data field value with field name 'C_CrossSystemGUID' from this record model
         """
         return self.get_field_value(self.C_CROSSSYSTEMGUID__FIELD_NAME.field_name)
+
+    def set_C_Department_field(self, value: Optional[str]):
+        """
+        Set data field with field name 'C_Department' on this record model
+        """
+        self.set_field_value(self.C_DEPARTMENT__FIELD_NAME.field_name, value)
+
+    def get_C_Department_field(self) -> Optional[str]:
+        """
+        Get data field value with field name 'C_Department' from this record model
+        """
+        return self.get_field_value(self.C_DEPARTMENT__FIELD_NAME.field_name)
 
     def set_C_IsActive_field(self, value: Optional[bool]):
         """
@@ -4559,6 +4572,199 @@ class C_BillableAccountModel(WrappedRecordModel):
         Get data field value with field name 'C_SLChargeProject' from this record model
         """
         return self.get_field_value(self.C_SLCHARGEPROJECT__FIELD_NAME.field_name)
+
+    def get_CreatedBy_field(self) -> Optional[str]:
+        """
+        Get data field value with field name 'CreatedBy' from this record model
+        """
+        return self.get_field_value(self.CREATEDBY__FIELD_NAME.field_name)
+
+    def get_DataRecordName_field(self) -> Optional[str]:
+        """
+        Get data field value with field name 'DataRecordName' from this record model
+        """
+        return self.get_field_value(self.DATARECORDNAME__FIELD_NAME.field_name)
+
+    def get_DateCreated_field(self) -> Optional[int]:
+        """
+        Get data field value with field name 'DateCreated' from this record model
+        """
+        return self.get_field_value(self.DATECREATED__FIELD_NAME.field_name)
+
+    def get_VeloxLastModifiedBy_field(self) -> Optional[str]:
+        """
+        Get data field value with field name 'VeloxLastModifiedBy' from this record model
+        """
+        return self.get_field_value(self.VELOXLASTMODIFIEDBY__FIELD_NAME.field_name)
+
+    def get_VeloxLastModifiedDate_field(self) -> Optional[int]:
+        """
+        Get data field value with field name 'VeloxLastModifiedDate' from this record model
+        """
+        return self.get_field_value(self.VELOXLASTMODIFIEDDATE__FIELD_NAME.field_name)
+
+
+class C_ChargeModel(WrappedRecordModel):
+    """
+    Auto-Generated Record Model Wrapper for data type C_Charge
+    Data Type Display Name: Charge (Charges)
+    Fields: C_ChargeID, C_ChargeStatus, C_CompletedAt, C_CreditChargeProjectAward, C_DebitChargeProjectAward, C_Description, C_Fulfiller, C_Notes, C_Quantity, C_Total, C_UnitPrice, CreatedBy, DataRecordName, DateCreated, VeloxLastModifiedBy, VeloxLastModifiedDate
+    """
+    DATA_TYPE_NAME: Final[str] = 'C_Charge'
+    DISPLAY_NAME: Final[str] = "Charge"
+    PLURAL_DISPLAY_NAME: Final[str] = "Charges"
+    C_CHARGEID__FIELD_NAME: Final[WrapperField] = WrapperField("C_ChargeID", FieldType.AUTO_ACCESSION, display_name="Charge ID")
+    C_CHARGESTATUS__FIELD_NAME: Final[WrapperField] = WrapperField("C_ChargeStatus", FieldType.PICKLIST, display_name="Charge Status")
+    C_COMPLETEDAT__FIELD_NAME: Final[WrapperField] = WrapperField("C_CompletedAt", FieldType.DATE, display_name="Completed At")
+    C_CREDITCHARGEPROJECTAWARD__FIELD_NAME: Final[WrapperField] = WrapperField("C_CreditChargeProjectAward", FieldType.SELECTION, display_name="Credit Charge Project/Award")
+    C_DEBITCHARGEPROJECTAWARD__FIELD_NAME: Final[WrapperField] = WrapperField("C_DebitChargeProjectAward", FieldType.SELECTION, display_name="Debit Charge Project/Award")
+    C_DESCRIPTION__FIELD_NAME: Final[WrapperField] = WrapperField("C_Description", FieldType.PICKLIST, display_name="Description")
+    C_FULFILLER__FIELD_NAME: Final[WrapperField] = WrapperField("C_Fulfiller", FieldType.STRING, display_name="Fulfiller")
+    C_NOTES__FIELD_NAME: Final[WrapperField] = WrapperField("C_Notes", FieldType.STRING, display_name="Notes")
+    C_QUANTITY__FIELD_NAME: Final[WrapperField] = WrapperField("C_Quantity", FieldType.SHORT, display_name="Quantity")
+    C_TOTAL__FIELD_NAME: Final[WrapperField] = WrapperField("C_Total", FieldType.DOUBLE, display_name="Total")
+    C_UNITPRICE__FIELD_NAME: Final[WrapperField] = WrapperField("C_UnitPrice", FieldType.DOUBLE, display_name="Unit Price")
+    CREATEDBY__FIELD_NAME: Final[WrapperField] = WrapperField("CreatedBy", FieldType.STRING, display_name="Created By")
+    DATARECORDNAME__FIELD_NAME: Final[WrapperField] = WrapperField("DataRecordName", FieldType.IDENTIFIER, display_name="ID")
+    DATECREATED__FIELD_NAME: Final[WrapperField] = WrapperField("DateCreated", FieldType.DATE, display_name="Date Created")
+    VELOXLASTMODIFIEDBY__FIELD_NAME: Final[WrapperField] = WrapperField("VeloxLastModifiedBy", FieldType.STRING, display_name="Last Modified By")
+    VELOXLASTMODIFIEDDATE__FIELD_NAME: Final[WrapperField] = WrapperField("VeloxLastModifiedDate", FieldType.DATE, display_name="Last Modified Date")
+
+    @classmethod
+    def get_wrapper_data_type_name(cls):
+        return cls.DATA_TYPE_NAME
+
+    def set_C_ChargeID_field(self, value: Optional[str]):
+        """
+        Set data field with field name 'C_ChargeID' on this record model
+        """
+        self.set_field_value(self.C_CHARGEID__FIELD_NAME.field_name, value)
+
+    def get_C_ChargeID_field(self) -> Optional[str]:
+        """
+        Get data field value with field name 'C_ChargeID' from this record model
+        """
+        return self.get_field_value(self.C_CHARGEID__FIELD_NAME.field_name)
+
+    def set_C_ChargeStatus_field(self, value: Optional[str]):
+        """
+        Set data field with field name 'C_ChargeStatus' on this record model
+        """
+        self.set_field_value(self.C_CHARGESTATUS__FIELD_NAME.field_name, value)
+
+    def get_C_ChargeStatus_field(self) -> Optional[str]:
+        """
+        Get data field value with field name 'C_ChargeStatus' from this record model
+        """
+        return self.get_field_value(self.C_CHARGESTATUS__FIELD_NAME.field_name)
+
+    def set_C_CompletedAt_field(self, value: Optional[int]):
+        """
+        Set data field with field name 'C_CompletedAt' on this record model
+        """
+        self.set_field_value(self.C_COMPLETEDAT__FIELD_NAME.field_name, value)
+
+    def get_C_CompletedAt_field(self) -> Optional[int]:
+        """
+        Get data field value with field name 'C_CompletedAt' from this record model
+        """
+        return self.get_field_value(self.C_COMPLETEDAT__FIELD_NAME.field_name)
+
+    def set_C_CreditChargeProjectAward_field(self, value: Optional[str]):
+        """
+        Set data field with field name 'C_CreditChargeProjectAward' on this record model
+        """
+        self.set_field_value(self.C_CREDITCHARGEPROJECTAWARD__FIELD_NAME.field_name, value)
+
+    def get_C_CreditChargeProjectAward_field(self) -> Optional[str]:
+        """
+        Get data field value with field name 'C_CreditChargeProjectAward' from this record model
+        """
+        return self.get_field_value(self.C_CREDITCHARGEPROJECTAWARD__FIELD_NAME.field_name)
+
+    def set_C_DebitChargeProjectAward_field(self, value: Optional[str]):
+        """
+        Set data field with field name 'C_DebitChargeProjectAward' on this record model
+        """
+        self.set_field_value(self.C_DEBITCHARGEPROJECTAWARD__FIELD_NAME.field_name, value)
+
+    def get_C_DebitChargeProjectAward_field(self) -> Optional[str]:
+        """
+        Get data field value with field name 'C_DebitChargeProjectAward' from this record model
+        """
+        return self.get_field_value(self.C_DEBITCHARGEPROJECTAWARD__FIELD_NAME.field_name)
+
+    def set_C_Description_field(self, value: Optional[str]):
+        """
+        Set data field with field name 'C_Description' on this record model
+        """
+        self.set_field_value(self.C_DESCRIPTION__FIELD_NAME.field_name, value)
+
+    def get_C_Description_field(self) -> Optional[str]:
+        """
+        Get data field value with field name 'C_Description' from this record model
+        """
+        return self.get_field_value(self.C_DESCRIPTION__FIELD_NAME.field_name)
+
+    def set_C_Fulfiller_field(self, value: Optional[str]):
+        """
+        Set data field with field name 'C_Fulfiller' on this record model
+        """
+        self.set_field_value(self.C_FULFILLER__FIELD_NAME.field_name, value)
+
+    def get_C_Fulfiller_field(self) -> Optional[str]:
+        """
+        Get data field value with field name 'C_Fulfiller' from this record model
+        """
+        return self.get_field_value(self.C_FULFILLER__FIELD_NAME.field_name)
+
+    def set_C_Notes_field(self, value: Optional[str]):
+        """
+        Set data field with field name 'C_Notes' on this record model
+        """
+        self.set_field_value(self.C_NOTES__FIELD_NAME.field_name, value)
+
+    def get_C_Notes_field(self) -> Optional[str]:
+        """
+        Get data field value with field name 'C_Notes' from this record model
+        """
+        return self.get_field_value(self.C_NOTES__FIELD_NAME.field_name)
+
+    def set_C_Quantity_field(self, value: Optional[int]):
+        """
+        Set data field with field name 'C_Quantity' on this record model
+        """
+        self.set_field_value(self.C_QUANTITY__FIELD_NAME.field_name, value)
+
+    def get_C_Quantity_field(self) -> Optional[int]:
+        """
+        Get data field value with field name 'C_Quantity' from this record model
+        """
+        return self.get_field_value(self.C_QUANTITY__FIELD_NAME.field_name)
+
+    def set_C_Total_field(self, value: Optional[float]):
+        """
+        Set data field with field name 'C_Total' on this record model
+        """
+        self.set_field_value(self.C_TOTAL__FIELD_NAME.field_name, value)
+
+    def get_C_Total_field(self) -> Optional[float]:
+        """
+        Get data field value with field name 'C_Total' from this record model
+        """
+        return self.get_field_value(self.C_TOTAL__FIELD_NAME.field_name)
+
+    def set_C_UnitPrice_field(self, value: Optional[float]):
+        """
+        Set data field with field name 'C_UnitPrice' on this record model
+        """
+        self.set_field_value(self.C_UNITPRICE__FIELD_NAME.field_name, value)
+
+    def get_C_UnitPrice_field(self) -> Optional[float]:
+        """
+        Get data field value with field name 'C_UnitPrice' from this record model
+        """
+        return self.get_field_value(self.C_UNITPRICE__FIELD_NAME.field_name)
 
     def get_CreatedBy_field(self) -> Optional[str]:
         """
@@ -4821,17 +5027,20 @@ class C_ChargeProjectModel(WrappedRecordModel):
         return self.get_field_value(self.VELOXLASTMODIFIEDDATE__FIELD_NAME.field_name)
 
 
-class C_CVTRequestModel(WrappedRecordModel):
+class C_CVTConfigurationModel(WrappedRecordModel):
     """
-    Auto-Generated Record Model Wrapper for data type C_CVTRequest
-    Data Type Display Name: CVT Request (CVT Requests)
-    Fields: C_NoOfSamples, C_Status, CreatedBy, DataRecordName, DateCreated, VeloxLastModifiedBy, VeloxLastModifiedDate
+    Auto-Generated Record Model Wrapper for data type C_CVTConfiguration
+    Data Type Display Name: CVT Configuration (CVT Configurations)
+    Fields: C_BulkDiscountThreshold, C_BulkDiscountedPricePerItem, C_ChargeInAccount, C_ChargeOutExpenditureType, C_PricePerItem, CreatedBy, DataRecordName, DateCreated, VeloxLastModifiedBy, VeloxLastModifiedDate
     """
-    DATA_TYPE_NAME: Final[str] = 'C_CVTRequest'
-    DISPLAY_NAME: Final[str] = "CVT Request"
-    PLURAL_DISPLAY_NAME: Final[str] = "CVT Requests"
-    C_NOOFSAMPLES__FIELD_NAME: Final[WrapperField] = WrapperField("C_NoOfSamples", FieldType.INTEGER, display_name="Samples #")
-    C_STATUS__FIELD_NAME: Final[WrapperField] = WrapperField("C_Status", FieldType.PICKLIST, display_name="Status")
+    DATA_TYPE_NAME: Final[str] = 'C_CVTConfiguration'
+    DISPLAY_NAME: Final[str] = "CVT Configuration"
+    PLURAL_DISPLAY_NAME: Final[str] = "CVT Configurations"
+    C_BULKDISCOUNTTHRESHOLD__FIELD_NAME: Final[WrapperField] = WrapperField("C_BulkDiscountThreshold", FieldType.INTEGER, display_name="Bulk Discount Threshold")
+    C_BULKDISCOUNTEDPRICEPERITEM__FIELD_NAME: Final[WrapperField] = WrapperField("C_BulkDiscountedPricePerItem", FieldType.DOUBLE, display_name="Bulk Discounted Price Per Item")
+    C_CHARGEINACCOUNT__FIELD_NAME: Final[WrapperField] = WrapperField("C_ChargeInAccount", FieldType.SELECTION, display_name="Charge - In Account")
+    C_CHARGEOUTEXPENDITURETYPE__FIELD_NAME: Final[WrapperField] = WrapperField("C_ChargeOutExpenditureType", FieldType.SELECTION, display_name="Charge-Out Expenditure Type")
+    C_PRICEPERITEM__FIELD_NAME: Final[WrapperField] = WrapperField("C_PricePerItem", FieldType.DOUBLE, display_name="Price Per Item")
     CREATEDBY__FIELD_NAME: Final[WrapperField] = WrapperField("CreatedBy", FieldType.STRING, display_name="Created By")
     DATARECORDNAME__FIELD_NAME: Final[WrapperField] = WrapperField("DataRecordName", FieldType.IDENTIFIER, display_name="ID")
     DATECREATED__FIELD_NAME: Final[WrapperField] = WrapperField("DateCreated", FieldType.DATE, display_name="Date Created")
@@ -4841,6 +5050,130 @@ class C_CVTRequestModel(WrappedRecordModel):
     @classmethod
     def get_wrapper_data_type_name(cls):
         return cls.DATA_TYPE_NAME
+
+    def set_C_BulkDiscountThreshold_field(self, value: Optional[int]):
+        """
+        Set data field with field name 'C_BulkDiscountThreshold' on this record model
+        """
+        self.set_field_value(self.C_BULKDISCOUNTTHRESHOLD__FIELD_NAME.field_name, value)
+
+    def get_C_BulkDiscountThreshold_field(self) -> Optional[int]:
+        """
+        Get data field value with field name 'C_BulkDiscountThreshold' from this record model
+        """
+        return self.get_field_value(self.C_BULKDISCOUNTTHRESHOLD__FIELD_NAME.field_name)
+
+    def set_C_BulkDiscountedPricePerItem_field(self, value: Optional[float]):
+        """
+        Set data field with field name 'C_BulkDiscountedPricePerItem' on this record model
+        """
+        self.set_field_value(self.C_BULKDISCOUNTEDPRICEPERITEM__FIELD_NAME.field_name, value)
+
+    def get_C_BulkDiscountedPricePerItem_field(self) -> Optional[float]:
+        """
+        Get data field value with field name 'C_BulkDiscountedPricePerItem' from this record model
+        """
+        return self.get_field_value(self.C_BULKDISCOUNTEDPRICEPERITEM__FIELD_NAME.field_name)
+
+    def set_C_ChargeInAccount_field(self, value: Optional[str]):
+        """
+        Set data field with field name 'C_ChargeInAccount' on this record model
+        """
+        self.set_field_value(self.C_CHARGEINACCOUNT__FIELD_NAME.field_name, value)
+
+    def get_C_ChargeInAccount_field(self) -> Optional[str]:
+        """
+        Get data field value with field name 'C_ChargeInAccount' from this record model
+        """
+        return self.get_field_value(self.C_CHARGEINACCOUNT__FIELD_NAME.field_name)
+
+    def set_C_ChargeOutExpenditureType_field(self, value: Optional[str]):
+        """
+        Set data field with field name 'C_ChargeOutExpenditureType' on this record model
+        """
+        self.set_field_value(self.C_CHARGEOUTEXPENDITURETYPE__FIELD_NAME.field_name, value)
+
+    def get_C_ChargeOutExpenditureType_field(self) -> Optional[str]:
+        """
+        Get data field value with field name 'C_ChargeOutExpenditureType' from this record model
+        """
+        return self.get_field_value(self.C_CHARGEOUTEXPENDITURETYPE__FIELD_NAME.field_name)
+
+    def set_C_PricePerItem_field(self, value: Optional[float]):
+        """
+        Set data field with field name 'C_PricePerItem' on this record model
+        """
+        self.set_field_value(self.C_PRICEPERITEM__FIELD_NAME.field_name, value)
+
+    def get_C_PricePerItem_field(self) -> Optional[float]:
+        """
+        Get data field value with field name 'C_PricePerItem' from this record model
+        """
+        return self.get_field_value(self.C_PRICEPERITEM__FIELD_NAME.field_name)
+
+    def get_CreatedBy_field(self) -> Optional[str]:
+        """
+        Get data field value with field name 'CreatedBy' from this record model
+        """
+        return self.get_field_value(self.CREATEDBY__FIELD_NAME.field_name)
+
+    def get_DataRecordName_field(self) -> Optional[str]:
+        """
+        Get data field value with field name 'DataRecordName' from this record model
+        """
+        return self.get_field_value(self.DATARECORDNAME__FIELD_NAME.field_name)
+
+    def get_DateCreated_field(self) -> Optional[int]:
+        """
+        Get data field value with field name 'DateCreated' from this record model
+        """
+        return self.get_field_value(self.DATECREATED__FIELD_NAME.field_name)
+
+    def get_VeloxLastModifiedBy_field(self) -> Optional[str]:
+        """
+        Get data field value with field name 'VeloxLastModifiedBy' from this record model
+        """
+        return self.get_field_value(self.VELOXLASTMODIFIEDBY__FIELD_NAME.field_name)
+
+    def get_VeloxLastModifiedDate_field(self) -> Optional[int]:
+        """
+        Get data field value with field name 'VeloxLastModifiedDate' from this record model
+        """
+        return self.get_field_value(self.VELOXLASTMODIFIEDDATE__FIELD_NAME.field_name)
+
+
+class C_CVTRequestModel(WrappedRecordModel):
+    """
+    Auto-Generated Record Model Wrapper for data type C_CVTRequest
+    Data Type Display Name: CVT Request (CVT Requests)
+    Fields: C_CVTRequestInformation, C_NoOfSamples, CreatedBy, DataRecordName, DateCreated, VeloxLastModifiedBy, VeloxLastModifiedDate
+    """
+    DATA_TYPE_NAME: Final[str] = 'C_CVTRequest'
+    DISPLAY_NAME: Final[str] = "CVT Request"
+    PLURAL_DISPLAY_NAME: Final[str] = "CVT Requests"
+    C_CVTREQUESTINFORMATION__FIELD_NAME: Final[WrapperField] = WrapperField("C_CVTRequestInformation", FieldType.STRING, display_name="CVT Request Information")
+    C_NOOFSAMPLES__FIELD_NAME: Final[WrapperField] = WrapperField("C_NoOfSamples", FieldType.INTEGER, display_name="Samples #")
+    CREATEDBY__FIELD_NAME: Final[WrapperField] = WrapperField("CreatedBy", FieldType.STRING, display_name="Created By")
+    DATARECORDNAME__FIELD_NAME: Final[WrapperField] = WrapperField("DataRecordName", FieldType.IDENTIFIER, display_name="ID")
+    DATECREATED__FIELD_NAME: Final[WrapperField] = WrapperField("DateCreated", FieldType.DATE, display_name="Date Created")
+    VELOXLASTMODIFIEDBY__FIELD_NAME: Final[WrapperField] = WrapperField("VeloxLastModifiedBy", FieldType.STRING, display_name="Last Modified By")
+    VELOXLASTMODIFIEDDATE__FIELD_NAME: Final[WrapperField] = WrapperField("VeloxLastModifiedDate", FieldType.DATE, display_name="Last Modified Date")
+
+    @classmethod
+    def get_wrapper_data_type_name(cls):
+        return cls.DATA_TYPE_NAME
+
+    def set_C_CVTRequestInformation_field(self, value: Optional[str]):
+        """
+        Set data field with field name 'C_CVTRequestInformation' on this record model
+        """
+        self.set_field_value(self.C_CVTREQUESTINFORMATION__FIELD_NAME.field_name, value)
+
+    def get_C_CVTRequestInformation_field(self) -> Optional[str]:
+        """
+        Get data field value with field name 'C_CVTRequestInformation' from this record model
+        """
+        return self.get_field_value(self.C_CVTREQUESTINFORMATION__FIELD_NAME.field_name)
 
     def set_C_NoOfSamples_field(self, value: Optional[int]):
         """
@@ -4853,18 +5186,6 @@ class C_CVTRequestModel(WrappedRecordModel):
         Get data field value with field name 'C_NoOfSamples' from this record model
         """
         return self.get_field_value(self.C_NOOFSAMPLES__FIELD_NAME.field_name)
-
-    def set_C_Status_field(self, value: Optional[str]):
-        """
-        Set data field with field name 'C_Status' on this record model
-        """
-        self.set_field_value(self.C_STATUS__FIELD_NAME.field_name, value)
-
-    def get_C_Status_field(self) -> Optional[str]:
-        """
-        Get data field value with field name 'C_Status' from this record model
-        """
-        return self.get_field_value(self.C_STATUS__FIELD_NAME.field_name)
 
     def get_CreatedBy_field(self) -> Optional[str]:
         """
@@ -10392,7 +10713,7 @@ class DNAPartModel(WrappedRecordModel):
     """
     Auto-Generated Record Model Wrapper for data type DNAPart
     Data Type Display Name: DNA Part (DNA Parts)
-    Fields: C_CVTRequest.C_NoOfSamples, C_CVTRequest.C_Status, C_CVTRequest.CreatedBy, C_CVTRequest.DataRecordName, C_CVTRequest.DateCreated, C_CVTRequest.RecordId, C_CVTRequest.VeloxLastModifiedBy, C_CVTRequest.VeloxLastModifiedDate, CreatedBy, DataRecordName, DateCreated, Description, EditLock, GenbankAttachment, GenebankAttachment, IsCircular, Name, PartNumber, QuantityOnHand, Sequence, SequenceHash, SequenceType, SourcePart, VeloxLastModifiedBy, VeloxLastModifiedDate, igBlastType
+    Fields: C_CVTRequest.C_CVTRequestInformation, C_CVTRequest.C_NoOfSamples, C_CVTRequest.CreatedBy, C_CVTRequest.DataRecordName, C_CVTRequest.DateCreated, C_CVTRequest.RecordId, C_CVTRequest.VeloxLastModifiedBy, C_CVTRequest.VeloxLastModifiedDate, CreatedBy, DataRecordName, DateCreated, Description, EditLock, GenbankAttachment, GenebankAttachment, IsCircular, Name, PartNumber, QuantityOnHand, Sequence, SequenceHash, SequenceType, SourcePart, VeloxLastModifiedBy, VeloxLastModifiedDate, igBlastType
     <-- VIRTUAL ENTITY DATA TYPE -->
 
 Module: Sequence Viewer
@@ -10400,8 +10721,8 @@ Module: Sequence Viewer
     DATA_TYPE_NAME: Final[str] = 'DNAPart'
     DISPLAY_NAME: Final[str] = "DNA Part"
     PLURAL_DISPLAY_NAME: Final[str] = "DNA Parts"
+    C_CVTREQUEST_EXT_C_CVTREQUESTINFORMATION__FIELD_NAME: Final[WrapperField] = WrapperField("C_CVTRequest.C_CVTRequestInformation", FieldType.STRING, display_name="CVT Request Information")
     C_CVTREQUEST_EXT_C_NOOFSAMPLES__FIELD_NAME: Final[WrapperField] = WrapperField("C_CVTRequest.C_NoOfSamples", FieldType.INTEGER, display_name="Samples #")
-    C_CVTREQUEST_EXT_C_STATUS__FIELD_NAME: Final[WrapperField] = WrapperField("C_CVTRequest.C_Status", FieldType.PICKLIST, display_name="Status")
     C_CVTREQUEST_EXT_CREATEDBY__FIELD_NAME: Final[WrapperField] = WrapperField("C_CVTRequest.CreatedBy", FieldType.STRING, display_name="Created By")
     C_CVTREQUEST_EXT_DATARECORDNAME__FIELD_NAME: Final[WrapperField] = WrapperField("C_CVTRequest.DataRecordName", FieldType.IDENTIFIER, display_name="ID")
     C_CVTREQUEST_EXT_DATECREATED__FIELD_NAME: Final[WrapperField] = WrapperField("C_CVTRequest.DateCreated", FieldType.DATE, display_name="Date Created")
@@ -10431,6 +10752,18 @@ Module: Sequence Viewer
     def get_wrapper_data_type_name(cls):
         return cls.DATA_TYPE_NAME
 
+    def set_C_CVTRequestC_CVTRequestInformation_field(self, value: Optional[str]):
+        """
+        Set data field with field name 'C_CVTRequest.C_CVTRequestInformation' on this record model
+        """
+        self.set_field_value(self.C_CVTREQUEST_EXT_C_CVTREQUESTINFORMATION__FIELD_NAME.field_name, value)
+
+    def get_C_CVTRequestC_CVTRequestInformation_field(self) -> Optional[str]:
+        """
+        Get data field value with field name 'C_CVTRequest.C_CVTRequestInformation' from this record model
+        """
+        return self.get_field_value(self.C_CVTREQUEST_EXT_C_CVTREQUESTINFORMATION__FIELD_NAME.field_name)
+
     def set_C_CVTRequestC_NoOfSamples_field(self, value: Optional[int]):
         """
         Set data field with field name 'C_CVTRequest.C_NoOfSamples' on this record model
@@ -10442,18 +10775,6 @@ Module: Sequence Viewer
         Get data field value with field name 'C_CVTRequest.C_NoOfSamples' from this record model
         """
         return self.get_field_value(self.C_CVTREQUEST_EXT_C_NOOFSAMPLES__FIELD_NAME.field_name)
-
-    def set_C_CVTRequestC_Status_field(self, value: Optional[str]):
-        """
-        Set data field with field name 'C_CVTRequest.C_Status' on this record model
-        """
-        self.set_field_value(self.C_CVTREQUEST_EXT_C_STATUS__FIELD_NAME.field_name, value)
-
-    def get_C_CVTRequestC_Status_field(self) -> Optional[str]:
-        """
-        Get data field value with field name 'C_CVTRequest.C_Status' from this record model
-        """
-        return self.get_field_value(self.C_CVTREQUEST_EXT_C_STATUS__FIELD_NAME.field_name)
 
     def get_C_CVTRequestCreatedBy_field(self) -> Optional[str]:
         """
@@ -48597,7 +48918,7 @@ class RequestModel(WrappedRecordModel):
     """
     Auto-Generated Record Model Wrapper for data type Request
     Data Type Display Name: Request (Requests)
-    Fields: AddSamplesMethod, ArePoolsIncluded, AreSamplesLibraries, C_BillableAccount, C_CVTRequest.C_NoOfSamples, C_CVTRequest.C_Status, C_CVTRequest.CreatedBy, C_CVTRequest.DataRecordName, C_CVTRequest.DateCreated, C_CVTRequest.RecordId, C_CVTRequest.VeloxLastModifiedBy, C_CVTRequest.VeloxLastModifiedDate, C_Department, C_NGSRequest.C_MolBioTechnician, C_NGSRequest.C_PoolingInstructions, C_NGSRequest.C_ReadLength, C_NGSRequest.C_SpecialInstruction, C_NGSRequest.CreatedBy, C_NGSRequest.DataRecordName, C_NGSRequest.DateCreated, C_NGSRequest.RecordId, C_NGSRequest.VeloxLastModifiedBy, C_NGSRequest.VeloxLastModifiedDate, C_RequestStatus, C_RequestType, C_RequestedFor, C_ScientificProjects, CompletedDate, CreatedBy, DataRecordName, DateCreated, InProcessDate, NumberOfSamples, PartiallyReceivedDate, ReceivedDate, RequestApproved, RequestDate, RequestId, RequestName, RequesterEmail, RequesterName, RequesterOrganization, RequesterPhoneNumber, SampleRegistrationLink, Status, TATFromInProcessing, TATFromReceiving, VeloxLastModifiedBy, VeloxLastModifiedDate
+    Fields: AddSamplesMethod, ArePoolsIncluded, AreSamplesLibraries, C_BillableAccount, C_CVTRequest.C_CVTRequestInformation, C_CVTRequest.C_NoOfSamples, C_CVTRequest.CreatedBy, C_CVTRequest.DataRecordName, C_CVTRequest.DateCreated, C_CVTRequest.RecordId, C_CVTRequest.VeloxLastModifiedBy, C_CVTRequest.VeloxLastModifiedDate, C_Department, C_NGSRequest.C_MolBioTechnician, C_NGSRequest.C_PoolingInstructions, C_NGSRequest.C_ReadLength, C_NGSRequest.C_SpecialInstruction, C_NGSRequest.CreatedBy, C_NGSRequest.DataRecordName, C_NGSRequest.DateCreated, C_NGSRequest.RecordId, C_NGSRequest.VeloxLastModifiedBy, C_NGSRequest.VeloxLastModifiedDate, C_RequestStatus, C_RequestType, C_RequestedFor, C_ScientificProjects, C_TechnicianName, CompletedDate, CreatedBy, DataRecordName, DateCreated, InProcessDate, NumberOfSamples, PartiallyReceivedDate, ReceivedDate, RequestApproved, RequestDate, RequestId, RequestName, RequesterEmail, RequesterName, RequesterOrganization, RequesterPhoneNumber, SampleRegistrationLink, Status, TATFromInProcessing, TATFromReceiving, VeloxLastModifiedBy, VeloxLastModifiedDate
     Module: General, QC LIMS, Process Tracking, and Request Portal
     """
     DATA_TYPE_NAME: Final[str] = 'Request'
@@ -48607,8 +48928,8 @@ class RequestModel(WrappedRecordModel):
     AREPOOLSINCLUDED__FIELD_NAME: Final[WrapperField] = WrapperField("ArePoolsIncluded", FieldType.BOOLEAN, display_name="Are Pools Included?")
     ARESAMPLESLIBRARIES__FIELD_NAME: Final[WrapperField] = WrapperField("AreSamplesLibraries", FieldType.BOOLEAN, display_name="Are Samples Libraries?")
     C_BILLABLEACCOUNT__FIELD_NAME: Final[WrapperField] = WrapperField("C_BillableAccount", FieldType.SELECTION, display_name="Project/Award")
+    C_CVTREQUEST_EXT_C_CVTREQUESTINFORMATION__FIELD_NAME: Final[WrapperField] = WrapperField("C_CVTRequest.C_CVTRequestInformation", FieldType.STRING, display_name="CVT Request Information")
     C_CVTREQUEST_EXT_C_NOOFSAMPLES__FIELD_NAME: Final[WrapperField] = WrapperField("C_CVTRequest.C_NoOfSamples", FieldType.INTEGER, display_name="Samples #")
-    C_CVTREQUEST_EXT_C_STATUS__FIELD_NAME: Final[WrapperField] = WrapperField("C_CVTRequest.C_Status", FieldType.PICKLIST, display_name="Status")
     C_CVTREQUEST_EXT_CREATEDBY__FIELD_NAME: Final[WrapperField] = WrapperField("C_CVTRequest.CreatedBy", FieldType.STRING, display_name="Created By")
     C_CVTREQUEST_EXT_DATARECORDNAME__FIELD_NAME: Final[WrapperField] = WrapperField("C_CVTRequest.DataRecordName", FieldType.IDENTIFIER, display_name="ID")
     C_CVTREQUEST_EXT_DATECREATED__FIELD_NAME: Final[WrapperField] = WrapperField("C_CVTRequest.DateCreated", FieldType.DATE, display_name="Date Created")
@@ -48630,6 +48951,7 @@ class RequestModel(WrappedRecordModel):
     C_REQUESTTYPE__FIELD_NAME: Final[WrapperField] = WrapperField("C_RequestType", FieldType.PICKLIST, display_name="Request Type")
     C_REQUESTEDFOR__FIELD_NAME: Final[WrapperField] = WrapperField("C_RequestedFor", FieldType.SELECTION, display_name="Requested For")
     C_SCIENTIFICPROJECTS__FIELD_NAME: Final[WrapperField] = WrapperField("C_ScientificProjects", FieldType.PICKLIST, display_name="Scientific Projects")
+    C_TECHNICIANNAME__FIELD_NAME: Final[WrapperField] = WrapperField("C_TechnicianName", FieldType.STRING, display_name="Technician Name")
     COMPLETEDDATE__FIELD_NAME: Final[WrapperField] = WrapperField("CompletedDate", FieldType.DATE, display_name="Completed Date")
     CREATEDBY__FIELD_NAME: Final[WrapperField] = WrapperField("CreatedBy", FieldType.STRING, display_name="Created By")
     DATARECORDNAME__FIELD_NAME: Final[WrapperField] = WrapperField("DataRecordName", FieldType.IDENTIFIER, display_name="ID")
@@ -48705,6 +49027,18 @@ class RequestModel(WrappedRecordModel):
         """
         return self.get_field_value(self.C_BILLABLEACCOUNT__FIELD_NAME.field_name)
 
+    def set_C_CVTRequestC_CVTRequestInformation_field(self, value: Optional[str]):
+        """
+        Set data field with field name 'C_CVTRequest.C_CVTRequestInformation' on this record model
+        """
+        self.set_field_value(self.C_CVTREQUEST_EXT_C_CVTREQUESTINFORMATION__FIELD_NAME.field_name, value)
+
+    def get_C_CVTRequestC_CVTRequestInformation_field(self) -> Optional[str]:
+        """
+        Get data field value with field name 'C_CVTRequest.C_CVTRequestInformation' from this record model
+        """
+        return self.get_field_value(self.C_CVTREQUEST_EXT_C_CVTREQUESTINFORMATION__FIELD_NAME.field_name)
+
     def set_C_CVTRequestC_NoOfSamples_field(self, value: Optional[int]):
         """
         Set data field with field name 'C_CVTRequest.C_NoOfSamples' on this record model
@@ -48716,18 +49050,6 @@ class RequestModel(WrappedRecordModel):
         Get data field value with field name 'C_CVTRequest.C_NoOfSamples' from this record model
         """
         return self.get_field_value(self.C_CVTREQUEST_EXT_C_NOOFSAMPLES__FIELD_NAME.field_name)
-
-    def set_C_CVTRequestC_Status_field(self, value: Optional[str]):
-        """
-        Set data field with field name 'C_CVTRequest.C_Status' on this record model
-        """
-        self.set_field_value(self.C_CVTREQUEST_EXT_C_STATUS__FIELD_NAME.field_name, value)
-
-    def get_C_CVTRequestC_Status_field(self) -> Optional[str]:
-        """
-        Get data field value with field name 'C_CVTRequest.C_Status' from this record model
-        """
-        return self.get_field_value(self.C_CVTREQUEST_EXT_C_STATUS__FIELD_NAME.field_name)
 
     def get_C_CVTRequestCreatedBy_field(self) -> Optional[str]:
         """
@@ -48908,6 +49230,18 @@ class RequestModel(WrappedRecordModel):
         Get data field value with field name 'C_ScientificProjects' from this record model
         """
         return self.get_field_value(self.C_SCIENTIFICPROJECTS__FIELD_NAME.field_name)
+
+    def set_C_TechnicianName_field(self, value: Optional[str]):
+        """
+        Set data field with field name 'C_TechnicianName' on this record model
+        """
+        self.set_field_value(self.C_TECHNICIANNAME__FIELD_NAME.field_name, value)
+
+    def get_C_TechnicianName_field(self) -> Optional[str]:
+        """
+        Get data field value with field name 'C_TechnicianName' from this record model
+        """
+        return self.get_field_value(self.C_TECHNICIANNAME__FIELD_NAME.field_name)
 
     def set_CompletedDate_field(self, value: Optional[int]):
         """
@@ -60139,9 +60473,7 @@ class VeloxUserModel(WrappedRecordModel):
     Auto-Generated Record Model Wrapper for data type VeloxUser
     Data Type Display Name: User (Users)
     Fields: C_ActivatedAt, C_CrossSystemGUID, C_EmployeeID, C_LoginName, C_PhoneNumber, CreatedBy, DataRecordName, DateCreated, EmailAddress, FirstName, JobTitle, LastName, MiddleName, Username, VeloxLastModifiedBy, VeloxLastModifiedDate
-    Data type to represent each user in the system.  These records can be searched using api methods and CustomReports but cannot be edited like typical records.
-
-Module: Platform
+    When new User group gets created, make all the user fields non editable for that group.
     """
     DATA_TYPE_NAME: Final[str] = 'VeloxUser'
     DISPLAY_NAME: Final[str] = "User"
@@ -60150,7 +60482,7 @@ Module: Platform
     C_CROSSSYSTEMGUID__FIELD_NAME: Final[WrapperField] = WrapperField("C_CrossSystemGUID", FieldType.STRING, display_name="Cross System GUID")
     C_EMPLOYEEID__FIELD_NAME: Final[WrapperField] = WrapperField("C_EmployeeID", FieldType.STRING, display_name="Employee ID")
     C_LOGINNAME__FIELD_NAME: Final[WrapperField] = WrapperField("C_LoginName", FieldType.STRING, display_name="Login Name")
-    C_PHONENUMBER__FIELD_NAME: Final[WrapperField] = WrapperField("C_PhoneNumber", FieldType.LONG, display_name="Phone Number")
+    C_PHONENUMBER__FIELD_NAME: Final[WrapperField] = WrapperField("C_PhoneNumber", FieldType.STRING, display_name="Phone Number")
     CREATEDBY__FIELD_NAME: Final[WrapperField] = WrapperField("CreatedBy", FieldType.STRING, display_name="Created By")
     DATARECORDNAME__FIELD_NAME: Final[WrapperField] = WrapperField("DataRecordName", FieldType.IDENTIFIER, display_name="ID")
     DATECREATED__FIELD_NAME: Final[WrapperField] = WrapperField("DateCreated", FieldType.DATE, display_name="Date Created")
@@ -60215,13 +60547,13 @@ Module: Platform
         """
         return self.get_field_value(self.C_LOGINNAME__FIELD_NAME.field_name)
 
-    def set_C_PhoneNumber_field(self, value: Optional[int]):
+    def set_C_PhoneNumber_field(self, value: Optional[str]):
         """
         Set data field with field name 'C_PhoneNumber' on this record model
         """
         self.set_field_value(self.C_PHONENUMBER__FIELD_NAME.field_name, value)
 
-    def get_C_PhoneNumber_field(self) -> Optional[int]:
+    def get_C_PhoneNumber_field(self) -> Optional[str]:
         """
         Get data field value with field name 'C_PhoneNumber' from this record model
         """

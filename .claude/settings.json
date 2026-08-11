@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "for d in \"$CLAUDE_PROJECT_DIR/sapio-lims-sdlc\" \"$CLAUDE_PROJECT_DIR\" .; do if [ -f \"$d/.claude/hooks/check_python.py\" ]; then exec python \"$d/.claude/hooks/check_python.py\"; fi; done",
+            "timeout": 90,
+            "statusMessage": "Checking Python syntax, lint and imports"
+          }
+        ]
+      }
+    ]
+  }
+}

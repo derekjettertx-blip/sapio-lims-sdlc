@@ -1,3 +1,11 @@
+"""
+NOT REGISTERED — this handler has no `config.register(...)` line in server.py, so Sapio cannot
+currently reach it.
+
+It also overlaps `webhooks/TableToolbar/CreateCloneAndVectorRequest.py`, which is registered at
+/create_clone_and_vector_request and builds a CVT Request from selected DNA Parts in a similar
+way. Which of the two is authoritative has not been decided — check before extending either.
+"""
 from sapiopycommons.callbacks.callback_util import FieldModifier
 from sapiopycommons.general.exceptions import SapioUserErrorException
 from sapiopycommons.webhook.webhook_handlers import CommonsWebhookHandler

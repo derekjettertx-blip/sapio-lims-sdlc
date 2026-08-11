@@ -6,3 +6,4 @@ pytz
 mcp>=1.0.0
 pydantic>=2.0.0
 anthropic
+ruff==0.16.2
