@@ -16,14 +16,11 @@ Register in server.py:  config.register('/populate_cvt_charge_unit_price',
 Then, in the Sapio app, create an on-save rule on Charge whose webhook URL
 points at  <server-url>/populate_cvt_charge_unit_price.
 """
+from sapiopycommons.general.exceptions import SapioUserErrorException
+from sapiopycommons.webhook.webhook_handlers import CommonsWebhookHandler
 from sapiopylib.rest.pojo.webhook.WebhookContext import SapioWebhookContext
 from sapiopylib.rest.pojo.webhook.WebhookResult import SapioWebhookResult
-from sapiopycommons.webhook.webhook_handlers import CommonsWebhookHandler
-from sapiopycommons.general.exceptions import SapioUserErrorException
-
 from webhooks.commons.data_type_models import C_ChargeModel, C_CVTConfigurationModel
-
-_author_ = "generated (sapio-webhook-plugin skill)"
 
 
 class PopulateCvtChargeUnitPrice(CommonsWebhookHandler):
